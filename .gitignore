@@ -4,8 +4,9 @@
 #Arduino
 *.o
 *.hex
-*/.deb
+*/.dep
 */.lib
+
 #Python
 *.pyc
 
