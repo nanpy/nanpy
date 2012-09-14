@@ -1,0 +1,5 @@
+MethodDescriptor.o: MethodDescriptor.cpp MethodDescriptor.h Utilities.h
+
+MethodDescriptor.h:
+
+Utilities.h:

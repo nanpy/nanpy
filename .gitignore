@@ -1,0 +1,11 @@
+#General
+*~
+
+#Arduino
+*.o
+*.hex
+*/.deb
+*/.lib
+#Python
+*.pyc
+
