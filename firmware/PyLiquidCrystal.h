@@ -1,6 +1,7 @@
 #ifndef PY_LIQUID_CRYSTAL
 #define PY_LIQUID_CRYSTAL
 #include <stdlib.h>
+#include "ArduinoClass.h"
 
 class LiquidCrystal;
 class MethodDescriptor;
@@ -13,16 +14,13 @@ struct lcds
     LiquidCrystal* obj;
 };
 
-class PyLiquidCrystal {
+class PyLiquidCrystal: public ArduinoClass {
 
     public:
 
         PyLiquidCrystal();
 
         void elaborate( MethodDescriptor* m );
-
-        //void getObjectByName()
-        //...
 
 };
 

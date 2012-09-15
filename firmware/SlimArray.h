@@ -1,4 +1,7 @@
-template <typename T> class SlimVector {
+#ifndef SLIM_ARRAY
+#define SLIM_ARRAY
+
+template <typename T> class SlimArray {
 
     private:
         int size;
@@ -6,13 +9,13 @@ template <typename T> class SlimVector {
         T *v;
 
     public:
-        SlimVector(int s=0) : size(s), v((T*)malloc(sizeof(T) * size)) {
+        SlimArray(int s=0) : size(s), v((T*)malloc(sizeof(T) * size)) {
             for(int i = 0; i < size; i++)
                 v[i] = 0;
             cur_size = 0;
         }
 
-        SlimVector(T *x, int s) : size(s), v((T*)malloc(sizeof(T) * size)) {
+        SlimArray(T *x, int s) : size(s), v((T*)malloc(sizeof(T) * size)) {
             size = s;
             for(int i = 0; i < size; i++)
                 v[i] = x[i];
@@ -53,31 +56,10 @@ template <typename T> class SlimVector {
             return (this->cur_size - 1);
         }
 
-        ~SlimVector() {
+        ~SlimArray() {
             free(v);
         }
 
 };
 
-/*  template<typename T>
-   void vecTor<T>::printvec() const
-    {
-     cout<<"Vector is:\n";
-      for(int i=0; i<size; i++)
-      cout<< v[i] <<" ";
-      cout<<"\n";
-    }
-
-int main()
-{
-  int a[3]= {3,5,7};
-
-  vecTor<int> v1(3);
-
-  v1=vecTor<int>(a,3);   // this call produces seg. fault
-
-  //v1.vecTorset(a,3);    //this call works fine
-
-  v1.printvec();
-
-  return 0; */
+#endif

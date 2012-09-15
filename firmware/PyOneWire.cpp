@@ -4,10 +4,10 @@
 #include <stdlib.h>
 
 onewire ds;
-SlimVector <OneWire*> v(2);
+SlimArray <OneWire*> v(2);
 
 PyOneWire::PyOneWire() {
-    //OneWire *o = new OneWire[5];
+
 };
 
 void PyOneWire::elaborate( MethodDescriptor* m ) {
@@ -50,8 +50,7 @@ void PyOneWire::elaborate( MethodDescriptor* m ) {
         if (strcmp(m->getName(), "select") == 0) {
             byte* addr = (byte*)malloc(m->getNArgs() * sizeof(byte));
             
-            for(int i = 0 ; i < m->getNArgs() ; i++)
-            {
+            for(int i = 0 ; i < m->getNArgs() ; i++) {
                 addr[i] = (byte)m->getInt(i);
             }
 
@@ -75,6 +74,3 @@ void PyOneWire::elaborate( MethodDescriptor* m ) {
 
     }
 };
-
-//void getObjectByName()
-//...
