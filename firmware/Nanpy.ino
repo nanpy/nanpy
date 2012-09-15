@@ -1,8 +1,8 @@
 #include <stdlib.h>
 
 #include "ArduinoClass.h"
-#include "PyOneWire.h"
-#include "PyLiquidCrystal.h"
+#include "OneWireClass.h"
+#include "LiquidCrystalClass.h"
 #include "MethodDescriptor.h"
 #include "Utilities.h"
 #include "SlimArray.h"
