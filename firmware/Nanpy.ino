@@ -16,7 +16,6 @@ MethodDescriptor *m = NULL;
 void elaborate()
 {
 
-    // send data only when you receive data
     if(m != NULL) {
         delete(m);
         m = NULL;
@@ -49,8 +48,8 @@ void elaborate()
 }
 
 void setup() {
-    classes.insert(new PyOneWire());
-    classes.insert(new PyLiquidCrystal());
+    classes.insert(new OneWireClass());
+    classes.insert(new LiquidCrystalClass());
     pinMode(13, OUTPUT);
     pinMode(12, INPUT); 
     Serial.begin(9600);

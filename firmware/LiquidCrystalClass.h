@@ -14,11 +14,11 @@ struct lcds
     LiquidCrystal* obj;
 };
 
-class PyLiquidCrystal: public ArduinoClass {
+class LiquidCrystalClass: public ArduinoClass {
 
     public:
 
-        PyLiquidCrystal();
+        LiquidCrystalClass();
 
         void elaborate( MethodDescriptor* m );
 

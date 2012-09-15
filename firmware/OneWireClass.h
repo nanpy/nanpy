@@ -17,11 +17,11 @@ struct onewire
 
 
 
-class PyOneWire: public ArduinoClass {
+class OneWireClass: public ArduinoClass {
 
     public:
 
-        PyOneWire();
+        OneWireClass();
         void elaborate( MethodDescriptor* m );
 
 };

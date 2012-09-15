@@ -6,11 +6,11 @@
 onewire ds;
 SlimArray <OneWire*> v(2);
 
-PyOneWire::PyOneWire() {
+OneWireClass::OneWireClass() {
 
 };
 
-void PyOneWire::elaborate( MethodDescriptor* m ) {
+void OneWireClass::elaborate( MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "OneWire") == 0) {
 

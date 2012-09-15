@@ -6,11 +6,11 @@
 
 lcds lcd1;
 
-PyLiquidCrystal::PyLiquidCrystal() {
+LiquidCrystalClass::LiquidCrystalClass() {
 
 };
 
-void PyLiquidCrystal::elaborate( MethodDescriptor* m ) {
+void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Lcd") == 0) {
 
         if (strcmp(m->getName(),"new") == 0) {       
