@@ -1,32 +1,34 @@
-from ArduinoObject import ArduinoSingleObject
-import Singleton
+import ArduinoObject
 
-class Arduino(ArduinoSingleObject):
+class Arduino():
 
-    def __init__(self):
-        ArduinoSingleObject.__init__(self, "Arduino")
+    @staticmethod
+    def digitalWrite(pin, value):
+        ArduinoObject.call_in_arduino('Arduino', 'digitalWrite', pin, value)
+        return ArduinoObject.return_value()
 
-    def digitalWrite(self, pin, value):
-        self.call('digitalWrite', pin, value)
-        return self._return_value()
+    @staticmethod
+    def digitalRead(pin):
+        ArduinoObject.call_in_arduino('Arduino', 'digitalRead', pin)
+        return ArduinoObject.return_value()
 
-    def digitalRead(self, pin):
-        self.call('digitalRead', pin)
-        return self._return_value()
+    @staticmethod
+    def analogWrite(pin, value):
+        ArduinoObject.call_in_arduino('Arduino', 'analogWrite', pin, value)
+        return ArduinoObject.return_value()
 
-    def analogWrite(self, pin, value):
-        self.call('analogWrite', pin, value)
-        return self._return_value()
+    @staticmethod
+    def analogRead(pin):
+        ArduinoObject.call_in_arduino('Arduino', 'analogRead', pin)
+        return ArduinoObject.return_value()
 
-    def analogRead(self, pin):
-        self.call('analogRead', pin)
-        return self._return_value()
+    @staticmethod
+    def pinMode(pin, mode):
+        ArduinoObject.call_in_arduino('Arduino', 'pinMode', pin, mode)
+        return ArduinoObject.return_value()
 
-    def pinMode(self, pin, mode):
-        self.call('pinMode', pin, mode)
-        return self._return_value()
-
-    def delay(self, value):
-        self.call('delay', value)
-        return self._return_value()
+    @staticmethod
+    def delay(value):
+        ArduinoObject.call_in_arduino('Arduino', 'delay', value)
+        return ArduinoObject.return_value()
 
