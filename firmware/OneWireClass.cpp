@@ -3,10 +3,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-onewire ds;
-SlimArray <OneWire*> v(2);
-
-OneWireClass::OneWireClass() {
+OneWireClass::OneWireClass():v(2) {
 
 };
 

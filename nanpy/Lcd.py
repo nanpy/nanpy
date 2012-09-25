@@ -5,6 +5,7 @@ class Lcd(ArduinoObject):
     def __init__(self, pins, begin):
         ArduinoObject.__init__(self, "Lcd")
         self.call('new', pins, begin)
+        self.id = self._return_value()
 
     def printString(self, value):
         self.call('print', value)

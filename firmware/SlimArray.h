@@ -4,11 +4,13 @@
 template <typename T> class SlimArray {
 
     private:
+
         int size;
         int cur_size;
         T *v;
 
     public:
+
         SlimArray(int s=0) : size(s), v((T*)malloc(sizeof(T) * size)) {
             for(int i = 0; i < size; i++)
                 v[i] = 0;

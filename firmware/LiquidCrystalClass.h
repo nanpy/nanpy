@@ -1,6 +1,8 @@
 #ifndef LIQUID_CRYSTAL_CLASS
 #define LIQUID_CRYSTAL_CLASS
+
 #include <stdlib.h>
+#include "SlimArray.h"
 #include "ArduinoClass.h"
 
 class LiquidCrystal;
@@ -8,18 +10,15 @@ class MethodDescriptor;
 
 char* readStringFromSerial();
 
-struct lcds
-{
-    char* name;
-    LiquidCrystal* obj;
-};
-
 class LiquidCrystalClass: public ArduinoClass {
+
+    private:
+
+        SlimArray <LiquidCrystal*> v;
 
     public:
 
         LiquidCrystalClass();
-
         void elaborate( MethodDescriptor* m );
 
 };

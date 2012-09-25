@@ -1,4 +1,4 @@
-from OneWire import OneWire
+from nanpy.OneWire import OneWire
 import time
 
 class DallasTemperature():
@@ -18,7 +18,7 @@ class DallasTemperature():
         self.__ds.select(ds_address)
         self.__ds.write(0x44, 1)        #start conversion, with parasite power on at the end
 
-        time.sleep(1)      #maybe 750ms is enough, maybe not
+        time.sleep(1)                   #maybe 750ms is enough, maybe not
 
         present = self.__ds.reset()
         self.__ds.select(ds_address)
@@ -42,7 +42,7 @@ class DallasTemperature():
 
         if type == 0:
 
-            raw = raw << 3;    # 9 bit resolution default
+            raw = raw << 3;        # 9 bit resolution default
             if data[7] == 0x10:
                 raw = (raw & 0xFFF0) + 12 - data[6]    # count remain gives full 12 bit resolution
 

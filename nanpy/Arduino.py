@@ -22,6 +22,10 @@ class Arduino(ArduinoSingleObject):
         self.call('analogRead', pin)
         return self._return_value()
 
+    def pinMode(self, pin, mode):
+        self.call('pinMode', pin, mode)
+        return self._return_value()
+
     def delay(self, value):
         self.call('delay', value)
         return self._return_value()

@@ -43,6 +43,3 @@ class OneWire(ArduinoObject):
         self.call('read')
         return int(self._return_value())
 
-
-
-

@@ -1,4 +1,3 @@
-import IdGenerator
 import Singleton
 from SerialManager import *
 

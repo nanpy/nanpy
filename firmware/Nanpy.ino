@@ -35,6 +35,21 @@ void elaborate()
             Serial.println("0");
         }
 
+        if (strcmp(m->getName(), "analogWrite") == 0) {
+            analogWrite(m->getInt(0), m->getInt(1));
+            Serial.println("0");
+        }
+
+        if (strcmp(m->getName(), "analogRead") == 0) {
+            analogRead(m->getInt(0));
+            Serial.println("0");
+        }
+
+        if (strcmp(m->getName(), "pinMode") == 0) {
+            pinMode(m->getInt(0), m->getInt(1));
+            Serial.println("0");
+        }
+
         if (strcmp(m->getName(), "delay") == 0) {
             delay(m->getInt(0));
             Serial.println("0");
@@ -50,8 +65,6 @@ void elaborate()
 void setup() {
     classes.insert(new OneWireClass());
     classes.insert(new LiquidCrystalClass());
-    pinMode(13, OUTPUT);
-    pinMode(12, INPUT); 
     Serial.begin(9600);
     while (Serial.available() <= 0) {
         delay(300);

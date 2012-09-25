@@ -9,15 +9,11 @@ class MethodDescriptor;
 
 char* readStringFromSerial();
 
-struct onewire
-{
-    char* name;
-    OneWire* obj;
-};
-
-
-
 class OneWireClass: public ArduinoClass {
+
+    private:
+
+        SlimArray <OneWire*> v;
 
     public:
 
