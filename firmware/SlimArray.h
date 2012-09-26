@@ -27,6 +27,27 @@ template <typename T> class SlimArray {
             this->insert(cur_size, el);
         }
 
+        void remove(int pos) {
+            if(pos > size - 1)
+                return;
+
+            T* newv = (T*)malloc(sizeof(T) * (size - 1));
+
+            int j = 0;
+
+            for(int i = 0; i < size; i++) {
+                if(i != pos) {
+                    newv[j] = v[i];
+                    j++;
+                }
+            }
+
+            free(v);
+            v = newv;
+            cur_size--;
+            size--;
+        }
+
         void insert(int pos, T el) {
             if(pos > size - 1) {
                 T* newv = (T*)malloc(sizeof(T) * (pos + 1));

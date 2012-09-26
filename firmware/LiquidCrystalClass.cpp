@@ -29,5 +29,10 @@ void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
             Serial.println("0");
         }
 
+        if (strcmp(m->getName(), "remove") == 0) {
+            v.remove(m->getObjectId());
+            Serial.println("0");
+        }
+
     }
 };

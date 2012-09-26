@@ -51,3 +51,9 @@ class ArduinoObject():
         _write(self.id)
         _send_parameters(args)
 
+    def __del__(self):
+        _write(self.namespace)
+        _write(self.id)
+        _send_parameters(["remove"])
+        return_value()
+
