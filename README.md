@@ -45,14 +45,14 @@ and then upload it on your board
 How to use
 ----------
 
-## Serial communication
+### Serial communication
 
 Nanpy autodetects the serial port for you. You can specify another serial port and baudrate manually:
 
 	from nanpy import serial_manager
 	serial_manager.connect('/dev/ttyACM1', 9600)
 
-## Import modules
+### Import modules
 
 Import all the modules you need :)
 
