@@ -1,4 +1,4 @@
-from nanpy.OneWire import OneWire
+from nanpy import OneWire
 import time
 
 class DallasTemperature():

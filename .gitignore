@@ -1,5 +1,9 @@
 #General
 *~
+*.swp
+build/
+dist/
+nanpy.egg-info/
 
 #Arduino
 *.o

@@ -1,4 +1,4 @@
-from ArduinoObject import ArduinoObject
+from nanpy.arduinoobject import ArduinoObject
 
 class OneWireAddress():
 

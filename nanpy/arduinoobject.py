@@ -1,10 +1,9 @@
-from SerialManager import *
+from nanpy.serialmanager import *
 
 def _write( data):
     data = str(data)
     for ch in data:
         sm.write('%c' % ch)
-        print ch
     sm.write('\0')
 
 def _read():
@@ -16,7 +15,6 @@ def call_in_arduino(*args):
     _send_parameters(args[1:])
 
 def _send_parameters(args):
-    print args
     toprint = []
     nel = 0
     for arg in args:
