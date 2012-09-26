@@ -42,6 +42,24 @@ and then upload it on your board
 
 	make upload
 
+How to use
+----------
+
+## Serial communication
+
+Nanpy autodetects the serial port for you. You can specify another serial port and baudrate manually:
+
+	from nanpy import serial_manager
+	serial_manager.connect('/dev/ttyACM1', 9600)
+
+## Import modules
+
+Import all the modules you need :)
+
+	from nanpy import Arduino
+	from nanpy import OneWire
+	from nanpy import Lcd
+
 License
 -------
 
