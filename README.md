@@ -28,9 +28,9 @@ How to build and install
 Nanpy is composed by a Python part, that provides a library to use Arduino via Python
 and a server firmware.
 
-To install Nanpy just type
+To install Nanpy just type (as root)
 
-	setup.py install
+	python setup.py install
 
 To build the firmware type
 

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# Author: Andrea Stagi <stagi.andrea@gmail.com>
+# Description: a fake DallasTemperature library written in Python
+# Dependencies: None
+
 from nanpy import OneWire
 import time
 
