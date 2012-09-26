@@ -1,18 +1,13 @@
-from nanpy.serialmanager import *
+from nanpy.serialmanager import serial_manager
 
 def _write( data):
     data = str(data)
     for ch in data:
-        sm.write('%c' % ch)
-    sm.write('\0')
+        serial_manager.write('%c' % ch)
+    serial_manager.write('\0')
 
 def _read():
-    return sm.readline()
-
-def call_in_arduino(*args):
-    _write(args[0])
-    _write(0)
-    _send_parameters(args[1:])
+    return serial_manager.readline()
 
 def _send_parameters(args):
     toprint = []
@@ -34,7 +29,12 @@ def _send_parameters(args):
         _write(elprint)
 
 def return_value():
-    return sm.readline().replace("\r\n","")
+    return serial_manager.readline().replace("\r\n","")
+
+def call_static_method(*args):
+    _write(args[0])
+    _write(0)
+    _send_parameters(args[1:])
 
 class ArduinoObject():
 
@@ -43,7 +43,7 @@ class ArduinoObject():
         self.single = single
         self.id = 0
 
-    def _return_value(self):
+    def return_value(self):
         return return_value()
 
     def call(self, *args):

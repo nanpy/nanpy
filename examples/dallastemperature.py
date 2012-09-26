@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from nanpy import OneWire
 import time
 
@@ -9,16 +11,15 @@ class DallasTemperature():
 
     def __fetchAddress(self):
         ds_address = self.__ds.search()
-        #print "The address of the sensor is R=%s" % ds_address.get()
 
         if ds_address == "1":
             return False
 
         self.__ds.reset()
         self.__ds.select(ds_address)
-        self.__ds.write(0x44, 1)        #start conversion, with parasite power on at the end
+        self.__ds.write(0x44, 1)
 
-        time.sleep(1)                   #maybe 750ms is enough, maybe not
+        time.sleep(1)
 
         present = self.__ds.reset()
         self.__ds.select(ds_address)
@@ -29,11 +30,8 @@ class DallasTemperature():
 
         data = []
 
-        #print "DATA",
-
         for i in range(9):
             val = self.__ds.read()
-            #print "%s" % val,
             data.append(val)
 
         raw = (data[1] << 8) | data[0]
@@ -42,21 +40,21 @@ class DallasTemperature():
 
         if type == 0:
 
-            raw = raw << 3;        # 9 bit resolution default
+            raw = raw << 3;
             if data[7] == 0x10:
-                raw = (raw & 0xFFF0) + 12 - data[6]    # count remain gives full 12 bit resolution
+                raw = (raw & 0xFFF0) + 12 - data[6]
 
         else:
             cfg = (data[4] & 0x60)
 
             if cfg == 0x00:
-                raw = raw << 3;    # 9 bit resolution, 93.75 ms
+                raw = raw << 3
             elif cfg == 0x20:
-                raw = raw << 2;    # 10 bit res, 187.5 ms
+                raw = raw << 2
             elif cfg == 0x40:
-                raw = raw << 1;    # 11 bit res, 375 ms 
+                raw = raw << 1
             else:
-                pass               #default is 12 bit resolution, 750 ms conversion time
+                pass
 
         self.__data = raw
 
@@ -69,3 +67,19 @@ class DallasTemperature():
         if self.__fetchAddress():
             self.__fetchData()
         return self.getCelsius() * 1.8 + 32.0
+
+
+from nanpy import Lcd
+
+if __name__ == "__main__":
+
+    lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
+    lcd.printString("Loc. London")
+
+    temp_int = DallasTemperature(5)
+    temp_ext = DallasTemperature(6)
+
+    while(1):
+        lcd.setCursor(0, 1)
+        lcd.printString("Ex.%0.0f\xDFC  In.%0.0f\xDFC" % (temp_int.getCelsius(), temp_ext.getCelsius()))
+

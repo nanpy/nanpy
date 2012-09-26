@@ -9,8 +9,9 @@ __version__ = '1.0'
 __author__ = 'Andrea Stagi'
 __license__ = 'MIT'
 
-from nanpy.arduinoobject import ArduinoObject
+from nanpy.arduinoboard import ArduinoObject
 from nanpy.serialmanager import SerialManager
+from nanpy.serialmanager import serial_manager
 
 from nanpy.arduino import Arduino
 from nanpy.lcd import Lcd

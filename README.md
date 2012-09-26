@@ -22,15 +22,25 @@ Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and print s
 
 really straightforward now, isn't it? :)
 
-How to use
-----------
+How to build and install
+------------------------
 
-Nanpy is composed by a Python part, that provide a set of client classes and functions to use Arduino via Python 
-and a server firmware that you can build just typing
+Nanpy is composed by a Python part, that provides a library to use Arduino via Python
+and a server firmware.
 
-	./buildfirware
+To install Nanpy just type
 
-for your Arduino UNO (we are developing Nanpy on it, open the script and change the board if you need).
+	setup.py install
+
+To build the firmware type
+
+	cd firmware
+	export BOARD=uno (in case you use UNO board, type 'make boards' for a complete list)
+	make
+
+and then upload it on your board
+
+	make upload
 
 License
 -------
