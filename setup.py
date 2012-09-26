@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(name="nanpy",
       version="1.0",
-      description="Twitter library for python",
+      description="Build your Arduino prototypes with Python",
       license="MIT",
       author="Andrea Stagi",
       author_email="stagi.andrea@gmail.com",

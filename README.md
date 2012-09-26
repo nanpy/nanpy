@@ -35,4 +35,4 @@ for your Arduino UNO (we are developing Nanpy on it, open the script and change 
 License
 -------
 
-This software is released under MIT License. Copyright (c) 2012 Octan (https://github.com/Octan)
+This software is released under MIT License. Copyright (c) 2012 Andrea Stagi <stagi.andrea@gmail.com>
