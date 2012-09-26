@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "ArduinoClass.h"
+#include "ArduinoSingle.h"
 #include "OneWireClass.h"
 #include "LiquidCrystalClass.h"
 #include "MethodDescriptor.h"
@@ -25,38 +26,6 @@ void elaborate()
 
         m = new MethodDescriptor();
 
-        if (strcmp(m->getClass(), "Arduino") == 0) {
-            if (strcmp(m->getName(), "digitalWrite") == 0) {
-                digitalWrite(m->getInt(0), m->getInt(1));
-                Serial.println("0");
-            }
-
-            if (strcmp(m->getName(), "digitalRead") == 0) {
-                digitalRead(m->getInt(0));
-                Serial.println("0");
-            }
-
-            if (strcmp(m->getName(), "analogWrite") == 0) {
-                analogWrite(m->getInt(0), m->getInt(1));
-                Serial.println("0");
-            }
-
-            if (strcmp(m->getName(), "analogRead") == 0) {
-                analogRead(m->getInt(0));
-                Serial.println("0");
-            }
-
-            if (strcmp(m->getName(), "pinMode") == 0) {
-                pinMode(m->getInt(0), m->getInt(1));
-                Serial.println("0");
-            }
-
-            if (strcmp(m->getName(), "delay") == 0) {
-                delay(m->getInt(0));
-                Serial.println("0");
-            }
-        }
-
         for(int i = 0 ; i < classes.getSize() ; i++)
             classes[i]->elaborate(m);
 
@@ -65,6 +34,7 @@ void elaborate()
 }
 
 void setup() {
+    classes.insert(ArduinoSingle::getInstance());
     classes.insert(new OneWireClass());
     classes.insert(new LiquidCrystalClass());
     Serial.begin(9600);
