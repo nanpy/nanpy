@@ -1,10 +1,29 @@
 import serial
 import time
+import fnmatch
+import serial
+
+def _auto_detect_serial_unix(preferred_list=['*']):
+    import glob
+    glist = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyACM*')
+    ret = []
+
+    for d in glist:
+        for preferred in preferred_list:
+            if fnmatch.fnmatch(d, preferred):
+                ret.append(d)
+    if len(ret) > 0:
+        return ret
+
+    for d in glist:
+        ret.append(d)
+    return ret
 
 class SerialManager(object):
     
-    def __init__(self, device, baud):
-        self.__serial = serial.Serial(device, baud)
+    def __init__(self):
+        available_ports = _auto_detect_serial_unix()
+        self.__serial = serial.Serial(available_ports[0], 9600, timeout=1)
         time.sleep(2)
 
     def connect(self, device, baud):
@@ -17,4 +36,4 @@ class SerialManager(object):
     def readline(self):
         return self.__serial.readline()
 
-serial_manager = SerialManager('/dev/ttyACM0', 9600)
+serial_manager = SerialManager()
