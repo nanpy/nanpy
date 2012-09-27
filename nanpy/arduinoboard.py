@@ -31,13 +31,6 @@ def _send_parameters(args):
 def return_value():
     return serial_manager.readline().replace("\r\n","")
 
-def arduinoclassmethod(funct, *args, **kwargs):
-    def wrapper(self, *args, **kwargs):
-        call_pars = [funct.__name__]
-        call_pars.extend(args)
-        return _call(self.namespace, self.id, call_pars)
-    return wrapper
-
 def _call(namespace, id, args):
     mutex.acquire()
     _write(namespace)
@@ -47,8 +40,25 @@ def _call(namespace, id, args):
     mutex.release()
     return ret
 
-def call_static_method(*args):
+def _call_static(args):
     return _call(args[0], 0, args[1:])
+
+def arduinoobjectmethod(funct, *args, **kwargs):
+    def wrapper(self, *args, **kwargs):
+        call_pars = [funct.__name__]
+        call_pars.extend(args)
+        return _call(self.namespace, self.id, call_pars)
+    return wrapper
+
+def arduinoclassmethod(funct, *args, **kwargs):
+    def wrapper(cls, *args, **kwargs):
+        call_pars = [cls.__name__, funct.__name__]
+        call_pars.extend(args)
+        return _call_static(call_pars)
+    return wrapper
+
+def call_static_method(*args):
+    return _call_static(args)
 
 
 class ArduinoObject():

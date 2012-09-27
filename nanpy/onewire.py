@@ -1,5 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
-from nanpy.arduinoboard import arduinoclassmethod
+from nanpy.arduinoboard import arduinoobjectmethod
 
 class OneWireAddress():
 
@@ -27,15 +27,15 @@ class OneWire(ArduinoObject):
     def read(self):
         return int(self.call('read'))
 
-    @arduinoclassmethod
+    @arduinoobjectmethod
     def reset_search(self):
         pass
 
-    @arduinoclassmethod
+    @arduinoobjectmethod
     def reset(self):
         pass
 
-    @arduinoclassmethod
+    @arduinoobjectmethod
     def write(self, address, value=None):
         pass
 

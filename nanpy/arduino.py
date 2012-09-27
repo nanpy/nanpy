@@ -1,28 +1,35 @@
 from nanpy.arduinoboard import (call_static_method, return_value)
+from nanpy.arduinoboard import arduinoclassmethod
 
 class Arduino():
 
-    @staticmethod
-    def digitalWrite(pin, value):
-        return call_static_method('Arduino', 'digitalWrite', pin, value)
+    @classmethod
+    @arduinoclassmethod
+    def digitalWrite(cls, pin, value):
+        pass
 
-    @staticmethod
-    def digitalRead(pin):
-        return call_static_method('Arduino', 'digitalRead', pin)
+    @classmethod
+    @arduinoclassmethod
+    def digitalRead(cls, pin):
+        pass
 
-    @staticmethod
-    def analogWrite(pin, value):
-        return call_static_method('Arduino', 'analogWrite', pin, value)
+    @classmethod
+    @arduinoclassmethod
+    def analogWrite(cls, pin, value):
+        pass
 
-    @staticmethod
-    def analogRead(pin):
-        return call_static_method('Arduino', 'analogRead', pin)
+    @classmethod
+    @arduinoclassmethod
+    def analogRead(cls, pin):
+        pass
 
-    @staticmethod
-    def pinMode(pin, mode):
-        return call_static_method('Arduino', 'pinMode', pin, mode)
+    @classmethod
+    @arduinoclassmethod
+    def pinMode(cls, pin, mode):
+        pass
 
-    @staticmethod
-    def delay(value):
-        return call_static_method('Arduino', 'delay', value)
+    @classmethod
+    @arduinoclassmethod
+    def delay(cls, value):
+        pass
 
