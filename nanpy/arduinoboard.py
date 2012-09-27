@@ -4,7 +4,10 @@ from threading import Lock
 mutex = Lock()
 
 def _write( data):
-    serial_manager.write('%s\0' % data)
+    data = str(data)
+    for ch in data:
+        serial_manager.write('%c' % ch)
+    serial_manager.write('\0')
 
 def _send_parameters(args):
     toprint = []
