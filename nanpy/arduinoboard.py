@@ -31,6 +31,13 @@ def _send_parameters(args):
 def return_value():
     return serial_manager.readline().replace("\r\n","")
 
+def arduinoclassmethod(funct, *args, **kwargs):
+    def wrapper(self, *args, **kwargs):
+        call_pars = [funct.__name__]
+        call_pars.extend(args)
+        return _call(self.namespace, self.id, call_pars)
+    return wrapper
+
 def _call(namespace, id, args):
     mutex.acquire()
     _write(namespace)

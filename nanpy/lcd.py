@@ -1,4 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
+from nanpy.arduinoboard import arduinoclassmethod
 
 class Lcd(ArduinoObject):
 
@@ -6,8 +7,10 @@ class Lcd(ArduinoObject):
         ArduinoObject.__init__(self)
         self.id = self.call('new', pins, begin)
 
+    @arduinoclassmethod
     def printString(self, value):
-        return self.call('print', value)
+        pass
 
+    @arduinoclassmethod
     def setCursor(self, col, row):
-        return self.call('setCursor', col, row)
+        pass

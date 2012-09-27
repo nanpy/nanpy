@@ -19,7 +19,7 @@ void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
             Serial.println(v.getLastIndex());
         }
 
-        if (strcmp(m->getName(), "print") == 0) {
+        if (strcmp(m->getName(), "printString") == 0) {
             v[m->getObjectId()]->print(m->getString(0));
             Serial.println("0");
         }

@@ -1,4 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
+from nanpy.arduinoboard import arduinoclassmethod
 
 class OneWireAddress():
 
@@ -20,18 +21,21 @@ class OneWire(ArduinoObject):
             return val
         return OneWireAddress(val.split(" "))
 
-    def reset_search(self):
-        return self.call('reset_search')
-
-    def reset(self):
-        return self.call('reset')
-
     def select(self, address):
         return self.call('select', address.get())
 
-    def write(self, address, value=None):
-        return self.call('write', address, value)
-
     def read(self):
         return int(self.call('read'))
+
+    @arduinoclassmethod
+    def reset_search(self):
+        pass
+
+    @arduinoclassmethod
+    def reset(self):
+        pass
+
+    @arduinoclassmethod
+    def write(self, address, value=None):
+        pass
 
