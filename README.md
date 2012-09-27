@@ -7,7 +7,7 @@ Description
 -----------
 
 Use Python for developing prototypes for your Arduino board!
-Let's start with a classic example, turn on a led placed in 13th pin..
+Let's start with a classic example, turn on a led placed in the 13th pin..
 
 	Arduino.pinMode(13, Arduino.OUTPUT)
 	Arduino.digitalWrite(13, Arduino.HIGH)
