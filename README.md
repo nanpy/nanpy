@@ -57,8 +57,8 @@ Nanpy autodetects the serial port for you. You can specify another serial port a
 Import all the modules you need :)
 
 	from nanpy import Arduino
-	from nanpy import OneWire
-	from nanpy import Lcd
+	from nanpy import (OneWire, Lcd)
+	...
 
 License
 -------
