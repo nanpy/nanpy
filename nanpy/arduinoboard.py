@@ -40,9 +40,6 @@ def _call(namespace, id, args):
     mutex.release()
     return ret
 
-def _call_static(args):
-    return _call(args[0], 0, args[1:])
-
 def arduinoobjectmethod(funct, *args, **kwargs):
     def wrapper(self, *args, **kwargs):
         call_pars = [funct.__name__]
@@ -52,13 +49,13 @@ def arduinoobjectmethod(funct, *args, **kwargs):
 
 def arduinoclassmethod(funct, *args, **kwargs):
     def wrapper(cls, *args, **kwargs):
-        call_pars = [cls.__name__, funct.__name__]
+        call_pars = [funct.__name__]
         call_pars.extend(args)
-        return _call_static(call_pars)
+        return _call(cls.__name__, 0, call_pars)
     return wrapper
 
 def call_static_method(*args):
-    return _call_static(args)
+    return _call(args[0], 0, args[1:])
 
 
 class ArduinoObject():
