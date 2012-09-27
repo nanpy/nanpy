@@ -3,6 +3,11 @@ from nanpy.arduinoboard import arduinoclassmethod
 
 class Arduino():
 
+    HIGH = 1
+    LOW  = 0
+    INPUT  = 0
+    OUTPUT = 1
+
     @classmethod
     @arduinoclassmethod
     def digitalWrite(cls, pin, value):

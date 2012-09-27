@@ -6,7 +6,7 @@
 
 from nanpy import Arduino
 
-Arduino.pinMode(13, 1)
+Arduino.pinMode(13, Arduino.OUTPUT)
 
 for i in range(10000):
     Arduino.digitalWrite(13, (i + 1) % 2)

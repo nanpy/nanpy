@@ -9,8 +9,8 @@ Description
 Use Python for developing prototypes for your Arduino board!
 Let's start with a classic example, turn on a led place in 13th pin..
 
-	Arduino.pinMode(13, 1)
-	Arduino.digitalWrite(13, 1)
+	Arduino.pinMode(13, Arduino.OUTPUT)
+	Arduino.digitalWrite(13, Arduino.HIGH)
 
 There are a lot of projects able to do that. Nanpy can do more! 
 Nanpy is easily extensible and can theoretically use every library, allowing you to create how many objects you want.
