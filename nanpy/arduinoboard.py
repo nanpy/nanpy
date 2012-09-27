@@ -1,4 +1,7 @@
 from nanpy.serialmanager import serial_manager
+from threading import Lock
+
+mutex = Lock()
 
 def _write( data):
     serial_manager.write('%s\0' % data)
@@ -26,10 +29,13 @@ def return_value():
     return serial_manager.readline().replace("\r\n","")
 
 def _call(namespace, id, args):
+    mutex.acquire()
     _write(namespace)
     _write(id)
     _send_parameters(args)
-    return return_value()
+    ret = return_value()
+    mutex.release()
+    return ret
 
 def call_static_method(*args):
     return _call(args[0], 0, args[1:])
