@@ -12,34 +12,26 @@ class OneWire(ArduinoObject):
     
     def __init__(self, pin):
         ArduinoObject.__init__(self, "OneWire")
-        self.call('new', pin)
-        self.id = self.return_value()
+        self.id = self.call('new', pin)
 
     def search(self):
-        self.call('search')
-        val = self.return_value()
+        val = self.call('search')
         if val == "1":
             return val
-        else:
-            return OneWireAddress(val.split(" "))
+        return OneWireAddress(val.split(" "))
 
     def reset_search(self):
-        self.call('reset_search')
-        return self.return_value()
+        return self.call('reset_search')
 
     def reset(self):
-        self.call('reset')
-        self.return_value()
+        return self.call('reset')
 
     def select(self, address):
-        self.call('select', address.get())
-        return self.return_value()
+        return self.call('select', address.get())
 
     def write(self, address, value=None):
-        self.call('write', address, value)
-        return self.return_value()
+        return self.call('write', address, value)
 
     def read(self):
-        self.call('read')
-        return int(self.return_value())
+        return int(self.call('read'))
 

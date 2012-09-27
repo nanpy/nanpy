@@ -4,31 +4,25 @@ class Arduino():
 
     @staticmethod
     def digitalWrite(pin, value):
-        call_static_method('Arduino', 'digitalWrite', pin, value)
-        return return_value()
+        return call_static_method('Arduino', 'digitalWrite', pin, value)
 
     @staticmethod
     def digitalRead(pin):
-        call_static_method('Arduino', 'digitalRead', pin)
-        return return_value()
+        return call_static_method('Arduino', 'digitalRead', pin)
 
     @staticmethod
     def analogWrite(pin, value):
-        call_static_method('Arduino', 'analogWrite', pin, value)
-        return return_value()
+        return call_static_method('Arduino', 'analogWrite', pin, value)
 
     @staticmethod
     def analogRead(pin):
-        call_static_method('Arduino', 'analogRead', pin)
-        return return_value()
+        return call_static_method('Arduino', 'analogRead', pin)
 
     @staticmethod
     def pinMode(pin, mode):
-        call_static_method('Arduino', 'pinMode', pin, mode)
-        return return_value()
+        return call_static_method('Arduino', 'pinMode', pin, mode)
 
     @staticmethod
     def delay(value):
-        call_static_method('Arduino', 'delay', value)
-        return return_value()
+        return call_static_method('Arduino', 'delay', value)
 

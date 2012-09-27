@@ -1,13 +1,7 @@
 from nanpy.serialmanager import serial_manager
 
 def _write( data):
-    data = str(data)
-    for ch in data:
-        serial_manager.write('%c' % ch)
-    serial_manager.write('\0')
-
-def _read():
-    return serial_manager.readline()
+    serial_manager.write('%s\0' % data)
 
 def _send_parameters(args):
     toprint = []
@@ -31,10 +25,15 @@ def _send_parameters(args):
 def return_value():
     return serial_manager.readline().replace("\r\n","")
 
+def _call(namespace, id, args):
+    _write(namespace)
+    _write(id)
+    _send_parameters(args)
+    return return_value()
+
 def call_static_method(*args):
-    _write(args[0])
-    _write(0)
-    _send_parameters(args[1:])
+    return _call(args[0], 0, args[1:])
+
 
 class ArduinoObject():
 
@@ -47,13 +46,8 @@ class ArduinoObject():
         return return_value()
 
     def call(self, *args):
-        _write(self.namespace)
-        _write(self.id)
-        _send_parameters(args)
+        return _call(self.namespace, self.id, args)
 
     def __del__(self):
-        _write(self.namespace)
-        _write(self.id)
-        _send_parameters(["remove"])
-        return_value()
+        return _call(self.namespace, self.id, ["remove"])
 
