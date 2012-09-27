@@ -22,8 +22,9 @@ while (1):
     lcd.printString((datetime.fromtimestamp(time)).strftime('%Y-%m-%d'))
     lcd.setCursor(0, 1)
     if time % 2:
-        lcd.printString((datetime.fromtimestamp(time)).strftime('%H:%M'))
+        time_format = '%H:%M'
     else:
-        lcd.printString((datetime.fromtimestamp(time)).strftime('%H %M'))
+        time_format = '%H %M'    
+    lcd.printString((datetime.fromtimestamp(time)).strftime(time_format))
     Arduino.delay(1000)
     time += 1
