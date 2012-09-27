@@ -46,8 +46,8 @@ def call_static_method(*args):
 
 class ArduinoObject():
 
-    def __init__(self, namespace):
-        self.namespace = namespace
+    def __init__(self):
+        self.namespace = self.__class__.__name__
         self.id = 0
 
     def call(self, *args):

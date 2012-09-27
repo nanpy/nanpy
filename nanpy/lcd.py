@@ -3,7 +3,7 @@ from nanpy.arduinoboard import ArduinoObject
 class Lcd(ArduinoObject):
 
     def __init__(self, pins, begin):
-        ArduinoObject.__init__(self, "Lcd")
+        ArduinoObject.__init__(self)
         self.id = self.call('new', pins, begin)
 
     def printString(self, value):

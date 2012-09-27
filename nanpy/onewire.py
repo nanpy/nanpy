@@ -11,7 +11,7 @@ class OneWireAddress():
 class OneWire(ArduinoObject):
     
     def __init__(self, pin):
-        ArduinoObject.__init__(self, "OneWire")
+        ArduinoObject.__init__(self)
         self.id = self.call('new', pin)
 
     def search(self):

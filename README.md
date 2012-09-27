@@ -25,20 +25,19 @@ really straightforward now, isn't it? :)
 How to build and install
 ------------------------
 
-Nanpy is composed by a Python part, that provides a library to use Arduino via Python
-and a server firmware.
+Nanpy is composed by a Python part, that provides a library to use Arduino via Python and a server firmware.
 
-To install Nanpy just type (as root)
+To install Nanpy just type (as root):
 
 	python setup.py install
 
-To build the firmware type
+To build the firmware type:
 
 	cd firmware
-	export BOARD=uno (in case you use UNO board, type 'make boards' for a complete list)
+	export BOARD=uno (in case you use UNO board. Type 'make boards' for a complete list)
 	make
 
-and then upload it on your board
+and then upload it on your board:
 
 	make upload
 
@@ -47,7 +46,7 @@ How to use
 
 ### Serial communication
 
-Nanpy autodetects the serial port for you. You can specify another serial port and baudrate manually:
+Nanpy autodetects the serial port for you, anyway you can specify another serial port and baudrate manually:
 
 	from nanpy import serial_manager
 	serial_manager.connect('/dev/ttyACM1', 9600)
