@@ -5,9 +5,7 @@
 # Dependencies: ntplib (http://pypi.python.org/pypi/ntplib/)
 
 import ntplib
-from nanpy import Arduino
-from nanpy import Lcd
-from time import ctime
+from nanpy import (Arduino, Lcd)
 from datetime import datetime
 
 ntp_client = ntplib.NTPClient()

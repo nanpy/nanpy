@@ -4,7 +4,7 @@
 # Description: a fake DallasTemperature library written in Python
 # Dependencies: None
 
-from nanpy import OneWire
+from nanpy import (Arduino, OneWire)
 import time
 
 class DallasTemperature():
@@ -22,9 +22,7 @@ class DallasTemperature():
         self.__ds.reset()
         self.__ds.select(ds_address)
         self.__ds.write(0x44, 1)
-
-        time.sleep(1)
-
+        Arduino.delay(700)
         present = self.__ds.reset()
         self.__ds.select(ds_address)
         self.__ds.write(0xBE)
