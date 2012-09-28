@@ -1,7 +1,7 @@
 Nanpy
 =====
 
-Program your Arduino prototypes using Python.
+Program your Arduino prototypes using Python, also using a Raspberry!!
 
 Description
 -----------
