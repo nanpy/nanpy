@@ -5,6 +5,7 @@
 #include "OneWireClass.h"
 #include "LiquidCrystalClass.h"
 #include "StepperClass.h"
+#include "ServoClass.h"
 #include "MethodDescriptor.h"
 #include "Utilities.h"
 #include "SlimArray.h"
@@ -43,6 +44,7 @@ void setup() {
     classes.insert(new OneWireClass());
     classes.insert(new LiquidCrystalClass());
     classes.insert(new StepperClass());
+    classes.insert(new ServoClass());
     Serial.begin(BAUDRATE);
     while (Serial.available() <= 0) {
         delay(300);
