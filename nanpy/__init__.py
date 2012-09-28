@@ -16,3 +16,4 @@ from nanpy.serialmanager import serial_manager
 from nanpy.arduino import Arduino
 from nanpy.lcd import Lcd
 from nanpy.onewire import OneWire
+from nanpy.stepper import Stepper

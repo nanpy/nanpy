@@ -4,6 +4,7 @@
 #include "ArduinoSingle.h"
 #include "OneWireClass.h"
 #include "LiquidCrystalClass.h"
+#include "StepperClass.h"
 #include "MethodDescriptor.h"
 #include "Utilities.h"
 #include "SlimArray.h"
@@ -37,6 +38,7 @@ void setup() {
     classes.insert(ArduinoSingle::getInstance());
     classes.insert(new OneWireClass());
     classes.insert(new LiquidCrystalClass());
+    classes.insert(new StepperClass());
     Serial.begin(9600);
     while (Serial.available() <= 0) {
         delay(300);
