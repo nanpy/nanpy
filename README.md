@@ -41,6 +41,10 @@ and then upload it on your board:
 
 	make upload
 
+Optionally you can also set the baud rate:
+
+	export BAUDRATE=115200 (default value is 9600)
+
 How to use
 ----------
 

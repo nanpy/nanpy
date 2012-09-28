@@ -9,6 +9,10 @@
 #include "Utilities.h"
 #include "SlimArray.h"
 
+#ifndef BAUDRATE
+    #define BAUDRATE 9600
+#endif
+
 SlimArray <ArduinoClass*> classes(2);
 
 int pin, value;
@@ -39,7 +43,7 @@ void setup() {
     classes.insert(new OneWireClass());
     classes.insert(new LiquidCrystalClass());
     classes.insert(new StepperClass());
-    Serial.begin(9600);
+    Serial.begin(BAUDRATE);
     while (Serial.available() <= 0) {
         delay(300);
     }
