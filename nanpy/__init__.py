@@ -17,4 +17,4 @@ from nanpy.arduino import Arduino
 from nanpy.lcd import Lcd
 from nanpy.onewire import OneWire
 from nanpy.stepper import Stepper
-from nanpy.stepper import Servo
+from nanpy.servo import Servo
