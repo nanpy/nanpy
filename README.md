@@ -1,12 +1,12 @@
 Nanpy
 =====
 
-Program your Arduino prototypes using Python.
+Use your Arduino board with Python.
 
 Description
 -----------
 
-The main purpose of Nanpy is making programmers' life easier, giving them something to create prototypes faster and use Arduino in a simpler way, thanks to a powerful language like Python. Also Nanpy can run on RaspberryPi (tested with Raspbian http://www.raspbian.org/) so you can use it for communicating with Arduino :)
+The main purpose of Nanpy is making programmers' life easier, giving them something to create prototypes faster and use Arduino in a simpler way, thanks to a simple and powerful language like Python. Also Nanpy can run on RaspberryPi (tested with Raspbian http://www.raspbian.org/) so you can use it for communicating with Arduino :)
 
 Let's start with a classic example, turn on a led placed in the 13th pin..
 
@@ -34,6 +34,7 @@ Dependencies
 #### Arduino
 
 	OneWire http://www.pjrc.com/teensy/td_libs_OneWire.html
+	DallasTemperature http://milesburton.com/Main_Page?title=Dallas_Temperature_Control_Library
 
 NOTE: Nanpy uses both built-in and third-party libraries, such as OneWire and DallasTemperature. We assume that you install them in the Arduino's "libraries" folder, for example in Ubuntu you can find it in /usr/share/arduino by default.
 
