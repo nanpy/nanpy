@@ -44,5 +44,11 @@ void ServoClass::elaborate( MethodDescriptor* m ) {
             Serial.println(v[m->getObjectId()]->attached());
         }
 
+        if (strcmp(m->getName(), "remove") == 0) {
+            delete(v[m->getObjectId()]);
+            v.remove(m->getObjectId());
+            Serial.println("0");
+        }
+
     }
 };
