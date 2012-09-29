@@ -3,7 +3,7 @@ from nanpy.arduinoboard import arduinoobjectmethod
 
 class Servo(ArduinoObject):
 
-    def __init__(self, pin)
+    def __init__(self, pin):
         self.id = self.call('new', pin)
 
     @arduinoobjectmethod

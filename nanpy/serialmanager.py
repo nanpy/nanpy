@@ -19,12 +19,28 @@ def _auto_detect_serial_unix(preferred_list=['*']):
         ret.append(d)
     return ret
 
+class NoneSerialManager(object):
+
+    def write(self, val):
+        pass
+
+    def read(self):
+        return ""
+
+    def readline(self):
+        return ""
+    
+
 class SerialManager(object):
     
     def __init__(self):
         available_ports = _auto_detect_serial_unix()
-        self.__serial = serial.Serial(available_ports[0], 9600, timeout=1)
-        time.sleep(2)
+        try:
+            self.__serial = serial.Serial(available_ports[0], 9600, timeout=1)
+            time.sleep(2)
+        except:
+            print "Error trying to connect to Arduino"
+            self.__serial = NoneSerialManager()
 
     def connect(self, device, baud):
         self.__serial = serial.Serial(device, baud)
