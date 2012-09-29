@@ -7,6 +7,7 @@
 #include "StepperClass.h"
 #include "ServoClass.h"
 #include "DallasTemperatureClass.h"
+#include "ToneClass.h"
 #include "MethodDescriptor.h"
 #include "Utilities.h"
 #include "SlimArray.h"
@@ -28,6 +29,7 @@ void setup() {
     classes.insert(new StepperClass());
     classes.insert(new ServoClass());
     classes.insert(new DallasTemperatureClass());
+    classes.insert(new ToneClass());
     Serial.begin(BAUDRATE);
     while (Serial.available() <= 0) {
         delay(300);

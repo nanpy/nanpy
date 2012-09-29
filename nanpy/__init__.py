@@ -19,3 +19,4 @@ from nanpy.onewire import OneWire
 from nanpy.stepper import Stepper
 from nanpy.servo import Servo
 from nanpy.dallastemperature import DallasTemperature
+from nanpy.tone import Tone
