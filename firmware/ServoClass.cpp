@@ -4,7 +4,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-ServoClass::ServoClass():v(2) {
+ServoClass::ServoClass():v(0) {
 
 };
 

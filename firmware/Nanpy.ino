@@ -21,7 +21,20 @@ int pin, value;
 
 MethodDescriptor *m = NULL;
 
-void elaborate()
+void setup() {
+    classes.insert(ArduinoSingle::getInstance());
+    classes.insert(new OneWireClass());
+    classes.insert(new LiquidCrystalClass());
+    classes.insert(new StepperClass());
+    classes.insert(new ServoClass());
+    classes.insert(new DallasTemperatureClass());
+    Serial.begin(BAUDRATE);
+    while (Serial.available() <= 0) {
+        delay(300);
+    }
+}
+
+void loop()
 {
 
     if(m != NULL) {
@@ -38,23 +51,6 @@ void elaborate()
 
     }
 
-}
-
-void setup() {
-    classes.insert(ArduinoSingle::getInstance());
-    classes.insert(new OneWireClass());
-    classes.insert(new LiquidCrystalClass());
-    classes.insert(new StepperClass());
-    classes.insert(new ServoClass());
-    classes.insert(new DallasTemperatureClass());
-    Serial.begin(BAUDRATE);
-    while (Serial.available() <= 0) {
-        delay(300);
-    }
-}
-
-void loop(){
-    elaborate();
 }
 
 

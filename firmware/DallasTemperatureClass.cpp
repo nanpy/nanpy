@@ -5,7 +5,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-DallasTemperatureClass::DallasTemperatureClass():v(2) {
+DallasTemperatureClass::DallasTemperatureClass():v(0) {
 
 };
 

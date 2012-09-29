@@ -4,7 +4,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-LiquidCrystalClass::LiquidCrystalClass():v(2) {
+LiquidCrystalClass::LiquidCrystalClass():v(0) {
 
 };
 

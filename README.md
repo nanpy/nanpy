@@ -26,13 +26,11 @@ really straightforward now, isn't it? :)
 Dependencies
 ------------
 
-#### Python
-
+#### Python (2.2 or later)
 - python-setuptools
 - python-serial
 
 #### Arduino
-
 - OneWire http://www.pjrc.com/teensy/td_libs_OneWire.html
 - DallasTemperature http://milesburton.com/Main_Page?title=Dallas_Temperature_Control_Library
 

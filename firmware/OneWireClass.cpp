@@ -3,7 +3,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-OneWireClass::OneWireClass():v(2) {
+OneWireClass::OneWireClass():v(0) {
 
 };
 

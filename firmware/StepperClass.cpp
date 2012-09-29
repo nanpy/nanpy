@@ -4,7 +4,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-StepperClass::StepperClass():v(2) {
+StepperClass::StepperClass():v(0) {
 
 };
 
