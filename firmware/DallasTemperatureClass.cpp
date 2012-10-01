@@ -15,13 +15,10 @@ void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;
             OneWire* wr = new OneWire(m->getInt(0));
-            v.insert(new DallasTemperature(&(*wr)));
+            DallasTemperature* dt = new DallasTemperature(&(*wr));
+            v.insert(dt);
+            dt->begin();
             Serial.println(v.getLastIndex());
-        }
-
-        if (strcmp(m->getName(), "begin") == 0) {
-            v[m->getObjectId()]->begin();
-            Serial.println("0");
         }
 
         if (strcmp(m->getName(), "requestTemperatures") == 0) {

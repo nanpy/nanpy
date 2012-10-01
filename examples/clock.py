@@ -16,13 +16,11 @@ time = int(response.tx_time)
 lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
 
 while (1):
-    lcd.setCursor(0, 0)
-    lcd.printString((datetime.fromtimestamp(time)).strftime('%Y-%m-%d'))
-    lcd.setCursor(0, 1)
+    lcd.printString(0, 0, (datetime.fromtimestamp(time)).strftime('%Y-%m-%d'))
     if time % 2:
         time_format = '%H:%M'
     else:
         time_format = '%H %M'    
-    lcd.printString((datetime.fromtimestamp(time)).strftime(time_format))
+    lcd.printString(0, 1, (datetime.fromtimestamp(time)).strftime(time_format))
     Arduino.delay(1000)
     time += 1

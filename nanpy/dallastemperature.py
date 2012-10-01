@@ -8,10 +8,6 @@ class DallasTemperature(ArduinoObject):
         self.id = self.call('new', pin)
 
     @arduinoobjectmethod
-    def begin(self):
-        pass
-
-    @arduinoobjectmethod
     def requestTemperatures(self):
         pass
 

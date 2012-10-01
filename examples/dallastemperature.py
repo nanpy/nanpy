@@ -8,8 +8,6 @@ from nanpy import DallasTemperature
 
 sensors = DallasTemperature(5)
 
-sensors.begin()
-
 while True:
     sensors.requestTemperatures()
     print sensors.getTempCByIndex(0)
