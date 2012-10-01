@@ -3,13 +3,11 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-OneWireClass::OneWireClass():v(0) {
-
-};
-
 void OneWireClass::elaborate( MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "OneWire") == 0) {
+
+        ObjectsManager::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {      
             v.insert(new OneWire(m->getInt(0)));

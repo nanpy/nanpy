@@ -4,12 +4,10 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-ServoClass::ServoClass():v(0) {
-
-};
-
 void ServoClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Servo") == 0) {
+
+        ObjectsManager::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             v.insert(new Servo());

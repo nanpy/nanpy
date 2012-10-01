@@ -4,14 +4,12 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-LiquidCrystalClass::LiquidCrystalClass():v(0) {
-
-};
-
 void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Lcd") == 0) {
 
-        if (strcmp(m->getName(),"new") == 0) {       
+        ObjectsManager::elaborate(m);
+
+        if (strcmp(m->getName(), "new") == 0) {       
             int prm = 0;
             v.insert(new LiquidCrystal (m->getInt(prm++), m->getInt(prm++), 
                             m->getInt(prm++), m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
@@ -26,12 +24,6 @@ void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "setCursor") == 0) {
             v[m->getObjectId()]->setCursor(m->getInt(0), m->getInt(1));
-            Serial.println("0");
-        }
-
-        if (strcmp(m->getName(), "remove") == 0) {
-            delete(v[m->getObjectId()]);
-            v.remove(m->getObjectId());
             Serial.println("0");
         }
 

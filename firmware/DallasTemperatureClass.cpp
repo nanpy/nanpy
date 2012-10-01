@@ -5,12 +5,11 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-DallasTemperatureClass::DallasTemperatureClass():v(0) {
-
-};
-
 void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
+
     if (strcmp(m->getClass(), "DallasTemperature") == 0) {
+
+        ObjectsManager::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;

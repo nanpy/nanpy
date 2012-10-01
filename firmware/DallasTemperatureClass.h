@@ -1,24 +1,14 @@
 #ifndef DALLAS_TEMP_CLASS
 #define DALLAS_TEMP_CLASS
 
-#include <stdlib.h>
-#include "SlimArray.h"
-#include "ArduinoClass.h"
+#include "BaseClass.h"
 
 class DallasTemperature;
 class MethodDescriptor;
 
-char* readStringFromSerial();
-
-class DallasTemperatureClass: public ArduinoClass {
-
-    private:
-
-        SlimArray <DallasTemperature*> v;
+class DallasTemperatureClass: public ObjectsManager<DallasTemperature> {
 
     public:
-
-        DallasTemperatureClass();
         void elaborate( MethodDescriptor* m );
 
 };

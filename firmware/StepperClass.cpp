@@ -4,12 +4,10 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-StepperClass::StepperClass():v(0) {
-
-};
-
 void StepperClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Stepper") == 0) {
+
+        ObjectsManager::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;

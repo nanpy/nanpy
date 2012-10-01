@@ -1,9 +1,7 @@
 #ifndef TONE_CLASS
 #define TONE_CLASS
 
-#include <stdlib.h>
-#include "SlimArray.h"
-#include "ArduinoClass.h"
+#include "BaseClass.h"
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -115,17 +113,9 @@ class Tone {
 
 };
 
-char* readStringFromSerial();
-
-class ToneClass: public ArduinoClass {
-
-    private:
-
-        SlimArray <Tone*> v;
+class ToneClass: public ObjectsManager<Tone> {
 
     public:
-
-        ToneClass();
         void elaborate( MethodDescriptor* m );
 
 };

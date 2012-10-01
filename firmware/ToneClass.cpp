@@ -1,15 +1,12 @@
 #include <Arduino.h>
-#include <Stepper.h>
 #include "ToneClass.h"
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-ToneClass::ToneClass():v(0) {
-
-};
-
 void ToneClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Tone") == 0) {
+
+        ObjectsManager::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {
             v.insert(new Tone (m->getInt(0)));

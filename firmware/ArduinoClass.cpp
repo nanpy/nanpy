@@ -1,21 +1,9 @@
 #include <Arduino.h>
-#include "ArduinoSingle.h"
+#include "ArduinoClass.h"
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 
-ArduinoSingle* ArduinoSingle::instance = NULL; 
-
-ArduinoSingle::ArduinoSingle() {
-
-};
-
-ArduinoSingle* ArduinoSingle::getInstance() {
-    if (instance == NULL)
-        instance = new ArduinoSingle();
-    return instance;
-}
-
-void ArduinoSingle::elaborate( MethodDescriptor* m ) {
+void ArduinoClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Arduino") == 0) {
         if (strcmp(m->getName(), "digitalWrite") == 0) {
             digitalWrite(m->getInt(0), m->getInt(1));

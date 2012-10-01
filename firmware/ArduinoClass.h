@@ -1,12 +1,14 @@
-#ifndef PY_ARDUINO_CLASS
-#define PY_ARDUINO_CLASS
+#ifndef ARDUINO_CLASS
+#define ARDUINO_CLASS
+
+#include "BaseClass.h"
 
 class MethodDescriptor;
 
-class ArduinoClass {
+class ArduinoClass : public BaseClass {
 
     public:
-        virtual void elaborate( MethodDescriptor* m ) = 0;
+        void elaborate( MethodDescriptor* m );
 
 };
 

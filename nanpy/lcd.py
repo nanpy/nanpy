@@ -11,11 +11,6 @@ class Lcd(ArduinoObject):
     def printString(self, value):
         pass
 
-    def printString(self, col, row, value):
-        self.setCursor(col, row)
-        self.printString(value)
-        pass
-
     @arduinoobjectmethod
     def setCursor(self, col, row):
         pass

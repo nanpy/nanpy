@@ -1,24 +1,14 @@
 #ifndef SERVO_CLASS
 #define SERVO_CLASS
 
-#include <stdlib.h>
-#include "SlimArray.h"
-#include "ArduinoClass.h"
+#include "BaseClass.h"
 
 class Servo;
 class MethodDescriptor;
 
-char* readStringFromSerial();
-
-class ServoClass: public ArduinoClass {
-
-    private:
-
-        SlimArray <Servo*> v;
+class ServoClass: public ObjectsManager<Servo> {
 
     public:
-
-        ServoClass();
         void elaborate( MethodDescriptor* m );
 
 };
