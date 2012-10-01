@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name="nanpy",
-      version="1.0",
+      version="0.1",
       description="Build your Arduino prototypes with Python",
       license="MIT",
       author="Andrea Stagi",

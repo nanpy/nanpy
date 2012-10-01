@@ -1,5 +1,5 @@
 from nanpy.arduinoboard import (call_static_method, return_value)
-from nanpy.arduinoboard import arduinoclassmethod
+from nanpy.arduinoboard import (arduinoclassmethod, returnint)
 
 class Arduino():
 
@@ -13,6 +13,7 @@ class Arduino():
     def digitalWrite(cls, pin, value):
         pass
 
+    @returnint
     @classmethod
     @arduinoclassmethod
     def digitalRead(cls, pin):
@@ -23,6 +24,7 @@ class Arduino():
     def analogWrite(cls, pin, value):
         pass
 
+    @returnint
     @classmethod
     @arduinoclassmethod
     def analogRead(cls, pin):

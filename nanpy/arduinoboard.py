@@ -40,6 +40,22 @@ def _call(namespace, id, args):
     mutex.release()
     return ret
 
+def returnfloat(conv, *args, **kwargs):
+    def wrapper(self, *args, **kwargs):
+        try:
+            return float(conv(self, args, kwargs))
+        except ValueError:
+            return -1
+    return wrapper
+
+def returnint(conv, *args, **kwargs):
+    def wrapper(self, *args, **kwargs):
+        try:
+            return int(conv(self, args, kwargs))
+        except ValueError:
+            return -1
+    return wrapper
+
 def arduinoobjectmethod(funct, *args, **kwargs):
     def wrapper(self, *args, **kwargs):
         call_pars = [funct.__name__]
