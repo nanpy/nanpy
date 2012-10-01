@@ -3,8 +3,8 @@
 from setuptools import setup, find_packages
 
 setup(name="nanpy",
-      version="0.1",
-      description="Build your Arduino prototypes with Python",
+      version="0.2",
+      description="Use your Arduino board with Python",
       license="MIT",
       author="Andrea Stagi",
       author_email="stagi.andrea@gmail.com",
