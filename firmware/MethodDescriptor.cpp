@@ -27,11 +27,9 @@ int MethodDescriptor::getNArgs() {
     return this->n_args;
 };
 
-
 int MethodDescriptor::getInt(int n) {
     return atoi(this->stack[n]);
 };
-
 
 char* MethodDescriptor::getString(int n) {
     return this->stack[n];

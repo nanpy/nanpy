@@ -13,8 +13,8 @@ class Arduino():
     def digitalWrite(cls, pin, value):
         pass
 
-    @returnint
     @classmethod
+    @returnint
     @arduinoclassmethod
     def digitalRead(cls, pin):
         pass
@@ -24,8 +24,8 @@ class Arduino():
     def analogWrite(cls, pin, value):
         pass
 
-    @returnint
     @classmethod
+    @returnint
     @arduinoclassmethod
     def analogRead(cls, pin):
         pass

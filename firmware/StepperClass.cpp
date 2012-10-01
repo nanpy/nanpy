@@ -25,11 +25,5 @@ void StepperClass::elaborate( MethodDescriptor* m ) {
             Serial.println("0");
         }
 
-        if (strcmp(m->getName(), "remove") == 0) {
-            delete(v[m->getObjectId()]);
-            v.remove(m->getObjectId());
-            Serial.println("0");
-        }
-
     }
 };

@@ -3,6 +3,7 @@
 #include "LiquidCrystalClass.h"
 #include "MethodDescriptor.h"
 #include <stdlib.h>
+#include <math.h>
 
 void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Lcd") == 0) {

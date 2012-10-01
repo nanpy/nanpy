@@ -20,3 +20,17 @@ class DallasTemperature(ArduinoObject):
     @arduinoobjectmethod
     def getTempFByIndex(self, index):
         pass
+
+    """
+    @classmethod
+    @returnfloat
+    @arduinoclassmethod
+    def toFahrenheit(cls, value):
+        pass
+
+    @classmethod
+    @returnfloat
+    @arduinoclassmethod
+    def toFahrenheit(cls, value):
+        pass
+    """

@@ -33,11 +33,13 @@ void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
             Serial.println(v[m->getObjectId()]->getTempFByIndex(m->getInt(0)));
         }
 
-        if (strcmp(m->getName(), "remove") == 0) {
-            delete(v[m->getObjectId()]);
-            v.remove(m->getObjectId());
-            Serial.println("0");
+        /*if (strcmp(m->getName(), "toFahrenheit") == 0) {
+            Serial.println(DallasTemperature::toFahrenheit(m->getFloat(0)));
         }
+
+        if (strcmp(m->getName(), "toCelsius") == 0) {
+            Serial.println(DallasTemperature::toCelsius(m->getFloat(0)));
+        }*/
 
     }
 };

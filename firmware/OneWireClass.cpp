@@ -67,11 +67,5 @@ void OneWireClass::elaborate( MethodDescriptor* m ) {
             Serial.println(v[m->getObjectId()]->read());
         }
 
-        if (strcmp(m->getName(), "remove") == 0) {
-            delete(v[m->getObjectId()]);
-            v.remove(m->getObjectId());
-            Serial.println("0");
-        }
-
     }
 };
