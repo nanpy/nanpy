@@ -1,5 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
-from nanpy.arduinoboard import (arduinoobjectmethod, returnfloat)
+from nanpy.arduinoboard import (arduinoobjectmethod, arduinoclassmethod, returnfloat, returnint)
 
 class DallasTemperature(ArduinoObject):
 
@@ -21,11 +21,10 @@ class DallasTemperature(ArduinoObject):
     def getTempFByIndex(self, index):
         pass
 
-    """
     @classmethod
     @returnfloat
     @arduinoclassmethod
-    def toFahrenheit(cls, value):
+    def toCelsius(cls, value):
         pass
 
     @classmethod
@@ -33,4 +32,4 @@ class DallasTemperature(ArduinoObject):
     @arduinoclassmethod
     def toFahrenheit(cls, value):
         pass
-    """
+

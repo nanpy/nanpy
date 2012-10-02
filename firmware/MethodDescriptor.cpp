@@ -1,6 +1,7 @@
 #include "MethodDescriptor.h"
 #include "Utilities.h"
 #include <stdlib.h>
+#include <math.h>
 
 MethodDescriptor::MethodDescriptor() {
 
@@ -29,6 +30,14 @@ int MethodDescriptor::getNArgs() {
 
 int MethodDescriptor::getInt(int n) {
     return atoi(this->stack[n]);
+};
+
+float MethodDescriptor::getFloat(int n) {
+    return atof(this->stack[n]);
+};
+
+double MethodDescriptor::getDouble(int n) {
+    return atof(this->stack[n]);
 };
 
 char* MethodDescriptor::getString(int n) {

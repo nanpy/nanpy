@@ -16,6 +16,8 @@ class MethodDescriptor {
         char* getClass();
         int getObjectId();
         int getInt(int n);
+        float getFloat(int n);
+        double getDouble(int n);
         char* getString(int n);
         char* getName();
         ~MethodDescriptor();

@@ -10,5 +10,7 @@ sensors = DallasTemperature(5)
 
 while True:
     sensors.requestTemperatures()
-    print sensors.getTempCByIndex(0)
+    temp = sensors.getTempCByIndex(0)
+    print temp
+    print DallasTemperature.toFahrenheit(temp)
 
