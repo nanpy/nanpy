@@ -11,6 +11,6 @@ sensors = DallasTemperature(5)
 while True:
     sensors.requestTemperatures()
     temp = sensors.getTempCByIndex(0)
-    print temp
-    print DallasTemperature.toFahrenheit(temp)
+    print "The temperature, in Celsius degrees is %0.2f" % temp
+    print "Let's convert it in Fahrenheit degrees: %0.2f" % DallasTemperature.toFahrenheit(temp)
 

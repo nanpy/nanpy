@@ -293,7 +293,6 @@ all: target
 target: $(TARGET).hex
 
 upload:
-	@echo $(LIBRARIES)
 	@echo "\nUploading to board..."
 	@test -n "$(SERIALDEV)" || { \
 		echo "error: SERIALDEV could not be determined automatically." >&2; \

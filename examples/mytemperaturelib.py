@@ -7,7 +7,7 @@
 from nanpy import (Arduino, OneWire)
 import time
 
-class DallasTemperature():
+class FakeDallasTemperature():
 
     def __init__(self, pin):
         self.__ds = OneWire(pin)
@@ -78,8 +78,8 @@ if __name__ == "__main__":
     lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
     lcd.printString("Loc. London")
 
-    temp_int = DallasTemperature(5)
-    temp_ext = DallasTemperature(6)
+    temp_int = FakeDallasTemperature(6)
+    temp_ext = FakeDallasTemperature(5)
 
     while(1):
         lcd.setCursor(0, 1)
