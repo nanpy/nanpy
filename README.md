@@ -30,12 +30,6 @@ Dependencies
 - python-setuptools
 - python-serial
 
-#### Arduino
-- OneWire http://www.pjrc.com/teensy/td_libs_OneWire.html
-- DallasTemperature http://milesburton.com/Main_Page?title=Dallas_Temperature_Control_Library
-
-NOTE: Nanpy uses both built-in and third-party libraries, such as OneWire and DallasTemperature. We assume that you install them in the Arduino's "libraries" folder, for example in Ubuntu you can find it in /usr/share/arduino by default.
-
 How to build and install
 ------------------------
 
