@@ -15,17 +15,17 @@ void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
             v.insert(new LiquidCrystal (m->getInt(prm++), m->getInt(prm++), 
                             m->getInt(prm++), m->getInt(prm++), m->getInt(prm++), m->getInt(prm++)));
             v[m->getObjectId()]->begin(m->getInt(prm++), m->getInt(prm++));
-            Serial.println(v.getLastIndex());
+            m->returns(v.getLastIndex());
         }
 
         if (strcmp(m->getName(), "printString") == 0) {
             v[m->getObjectId()]->print(m->getString(0));
-            Serial.println("0");
+            m->returns("0");
         }
 
         if (strcmp(m->getName(), "setCursor") == 0) {
             v[m->getObjectId()]->setCursor(m->getInt(0), m->getInt(1));
-            Serial.println("0");
+            m->returns("0");
         }
 
     }

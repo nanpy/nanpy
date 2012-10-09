@@ -17,28 +17,28 @@ void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
             DallasTemperature* dt = new DallasTemperature(&(*wr));
             v.insert(dt);
             dt->begin();
-            Serial.println(v.getLastIndex());
+            m->returns(v.getLastIndex());
         }
 
         if (strcmp(m->getName(), "requestTemperatures") == 0) {
             v[m->getObjectId()]->requestTemperatures();
-            Serial.println("0");
+            m->returns("0");
         }
 
         if (strcmp(m->getName(), "getTempCByIndex") == 0) {
-            Serial.println(v[m->getObjectId()]->getTempCByIndex(m->getInt(0)));
+            m->returns(v[m->getObjectId()]->getTempCByIndex(m->getInt(0)));
         }
 
         if (strcmp(m->getName(), "getTempFByIndex") == 0) {
-            Serial.println(v[m->getObjectId()]->getTempFByIndex(m->getInt(0)));
+            m->returns(v[m->getObjectId()]->getTempFByIndex(m->getInt(0)));
         }
 
         if (strcmp(m->getName(), "toFahrenheit") == 0) {
-            Serial.println(DallasTemperature::toFahrenheit(m->getFloat(0)));
+            m->returns(DallasTemperature::toFahrenheit(m->getFloat(0)));
         }
 
         if (strcmp(m->getName(), "toCelsius") == 0) {
-            Serial.println(DallasTemperature::toCelsius(m->getFloat(0)));
+            m->returns(DallasTemperature::toCelsius(m->getFloat(0)));
         }
 
     }

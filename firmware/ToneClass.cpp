@@ -10,17 +10,17 @@ void ToneClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(),"new") == 0) {
             v.insert(new Tone (m->getInt(0)));
-            Serial.println(v.getLastIndex());
+            m->returns(v.getLastIndex());
         }
 
         if (strcmp(m->getName(), "play") == 0) {
             v[m->getObjectId()]->play(m->getInt(0), m->getInt(0));
-            Serial.println("0");
+            m->returns("0");
         }
 
         if (strcmp(m->getName(), "stop") == 0) {
             v[m->getObjectId()]->stop();
-            Serial.println("0");
+            m->returns("0");
         }
 
     }

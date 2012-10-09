@@ -1,6 +1,8 @@
 #ifndef METHOD_DESCRIPTOR
 #define METHOD_DESCRIPTOR
 
+#include <WString.h>
+
 class MethodDescriptor {
 
     private:
@@ -20,11 +22,13 @@ class MethodDescriptor {
         double getDouble(int n);
         char* getString(int n);
         char* getName();
+        void returns(String& val);
+        void returns(const char* val);
+        void returns(int val);
+        void returns(float val);
+        void returns(double val);
         ~MethodDescriptor();
 
 };
-
-
-
 
 #endif
