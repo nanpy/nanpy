@@ -1,5 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
-from nanpy.arduinoboard import (arduinoobjectmethod, returnint)
+from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class Servo(ArduinoObject):
 
@@ -10,7 +10,7 @@ class Servo(ArduinoObject):
     def write(self, value):
         pass
 
-    @returnint
+    @returns(int)
     @arduinoobjectmethod
     def read(self):
         pass
@@ -19,7 +19,7 @@ class Servo(ArduinoObject):
     def writeMicroseconds(self, value):
         pass
 
-    @returnint
+    @returns(int)
     @arduinoobjectmethod
     def readMicroseconds(self, value):
         pass
