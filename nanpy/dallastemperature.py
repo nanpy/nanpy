@@ -5,20 +5,32 @@ class DallasTemperature(ArduinoObject):
 
     def __init__(self, pin):
         ArduinoObject.__init__(self)
+        self.pin = pin
         self.id = self.call('new', pin)
 
+    @returns(int)
     @arduinoobjectmethod
-    def requestTemperatures(self):
+    def getDeviceCount(self):
+        pass
+
+    def getAddress(self, index):
+        val = self.call('getAddress')
+        if val == "1":
+            return val
+        return val.split(" ")
+
+    @arduinoobjectmethod
+    def requestTemperatures(self, address = None):
         pass
 
     @returns(float)
     @arduinoobjectmethod
-    def getTempCByIndex(self, index):
+    def getTempC(self, address):
         pass
 
     @returns(float)
     @arduinoobjectmethod
-    def getTempFByIndex(self, index):
+    def getTempF(self, address):
         pass
 
     @classmethod
