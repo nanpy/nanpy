@@ -1,14 +1,6 @@
 from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
-class OneWireAddress():
-
-    def __init__(self, bytes):
-        self.__bytes = bytes
-
-    def get(self):
-        return self.__bytes
-
 class OneWire(ArduinoObject):
     
     def __init__(self, pin):
@@ -19,10 +11,11 @@ class OneWire(ArduinoObject):
         val = self.call('search')
         if val == "1":
             return val
-        return OneWireAddress(val.split(" "))
+        return val.split(" ")
 
+    @arduinoobjectmethod
     def select(self, address):
-        return self.call('select', address.get())
+        pass
 
     @returns(int)
     @arduinoobjectmethod
