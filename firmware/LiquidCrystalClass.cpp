@@ -19,7 +19,12 @@ void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "printString") == 0) {
-            v[m->getObjectId()]->print(m->getString(0));
+            if(m->getNArgs() == 3) {
+                v[m->getObjectId()]->setCursor(m->getInt(1), m->getInt(2));
+                v[m->getObjectId()]->print(m->getString(0));
+            }
+            else
+                v[m->getObjectId()]->print(m->getString(0));
             m->returns("0");
         }
 

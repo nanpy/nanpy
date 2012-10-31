@@ -11,8 +11,7 @@ void ArduinoClass::elaborate( MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "digitalRead") == 0) {
-            digitalRead(m->getInt(0));
-            Serial.println("0");
+            Serial.println(digitalRead(m->getInt(0)));
         }
 
         if (strcmp(m->getName(), "analogWrite") == 0) {
@@ -21,8 +20,7 @@ void ArduinoClass::elaborate( MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "analogRead") == 0) {
-            analogRead(m->getInt(0));
-            Serial.println("0");
+            Serial.println(analogRead(m->getInt(0)));
         }
 
         if (strcmp(m->getName(), "pinMode") == 0) {

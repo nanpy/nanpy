@@ -8,7 +8,7 @@ class Lcd(ArduinoObject):
         self.id = self.call('new', pins, begin)
 
     @arduinoobjectmethod
-    def printString(self, value):
+    def printString(self, value, col = None, row = None):
         pass
 
     @arduinoobjectmethod
