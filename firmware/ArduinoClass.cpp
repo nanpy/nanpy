@@ -31,7 +31,7 @@ void ArduinoClass::elaborate( MethodDescriptor* m ) {
         }
 
         if (strcmp(m->getName(), "delay") == 0) {
-            delay(m->getInt(0));
+            //delay(m->getInt(0));
             Serial.println("0");
         }
     }

@@ -1,6 +1,8 @@
 from nanpy.arduinoboard import (call_static_method, return_value)
 from nanpy.arduinoboard import (arduinoclassmethod, returns)
 
+import time
+
 class Arduino():
 
     HIGH = 1
@@ -38,5 +40,5 @@ class Arduino():
     @classmethod
     @arduinoclassmethod
     def delay(cls, value):
-        pass
+        time.sleep(value/1000)
 

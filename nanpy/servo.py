@@ -4,6 +4,7 @@ from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 class Servo(ArduinoObject):
 
     def __init__(self, pin):
+        ArduinoObject.__init__(self)
         self.id = self.call('new', pin)
 
     @arduinoobjectmethod

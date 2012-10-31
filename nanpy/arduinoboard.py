@@ -61,6 +61,7 @@ def arduinoclassmethod(funct):
     def wrapper(cls, *args, **kwargs):
         call_pars = [funct.__name__]
         call_pars.extend(args)
+        funct(cls, *args, **kwargs)
         return _call(cls.__name__, 0, call_pars)
     return wrapper
 
