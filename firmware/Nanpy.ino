@@ -1,5 +1,4 @@
 #include "BaseClass.h"
-
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
 #include "StepperClass.h"
@@ -8,10 +7,7 @@
 #include "LiquidCrystalClass.h"
 #include "ToneClass.h"
 #include "MethodDescriptor.h"
-
-#ifndef BAUDRATE
-    #define BAUDRATE 9600
-#endif
+#include "ComChannel.h"
 
 MethodDescriptor *m = NULL;
 
@@ -25,15 +21,11 @@ void setup() {
     REGISTER_CLASS(ServoClass);
     REGISTER_CLASS(ToneClass);
 
-    Serial.begin(BAUDRATE);
-
-    while (Serial.available() <= 0) {
-        delay(300);
-    }
+    ComChannel::connect();
 }
 
 void loop() {
-    if (Serial.available() > 0) {
+    if (ComChannel::available() > 0) {
         m = new MethodDescriptor();
         Register::elaborate(m);
     }

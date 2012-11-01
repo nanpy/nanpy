@@ -1,7 +1,7 @@
 #include "MethodDescriptor.h"
 #include <stdlib.h>
 #include <math.h>
-#include <HardwareSerial.h>
+#include "ComChannel.h"
 
 char* readStringFromSerial()
 {
@@ -78,23 +78,23 @@ char* MethodDescriptor::getName() {
 };
 
 void MethodDescriptor::returns(String& val) {
-    Serial.println(val);
+    ComChannel::println(val);
 }
 
 void MethodDescriptor::returns(const char* val) {
-    Serial.println(val);
+    ComChannel::println(val);
 }
 
 void MethodDescriptor::returns(int val) {
-    Serial.println(val);
+    ComChannel::println(val);
 }
 
 void MethodDescriptor::returns(float val) {
-    Serial.println(val);
+    ComChannel::println(val);
 }
 
 void MethodDescriptor::returns(double val) {
-    Serial.println(val);
+    ComChannel::println(val);
 }
 
 MethodDescriptor::~MethodDescriptor() {
