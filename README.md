@@ -23,6 +23,21 @@ Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and print s
 
 really straightforward now, isn't it? :)
 
+Multithreading
+--------------
+
+What happens if you call methods in an async context? Nothing bad, all works! every call is mutually exclusive.. For example, suppose that two threads need to write on the same Lcd and in different positions at the same time... well, just call printString on the Lcd object specifying the position (row and column)
+
+	#Thread_1
+	...
+	lcd.printString("Hello First Row!", 0, 0)
+	...
+	
+	#Thread_2
+	....
+	lcd.printString("Hello Second Row!", 0, 1)
+	...
+
 Dependencies
 ------------
 
@@ -74,7 +89,7 @@ Import all the modules you need :)
 How to contribute
 -----------------
 
-Nanpy needs a lot of work to be a great instrument. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
+Nanpy needs a lot of work to be a great instrument. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
 
 License
 -------
