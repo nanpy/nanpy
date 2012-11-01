@@ -54,6 +54,7 @@ def arduinoobjectmethod(funct, *args, **kwargs):
     def wrapper(self, *args, **kwargs):
         call_pars = [funct.__name__]
         call_pars.extend(args)
+        funct(self, *args, **kwargs)
         return _call(self.namespace, self.id, call_pars)
     return wrapper
 
