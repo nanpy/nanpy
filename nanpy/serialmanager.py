@@ -36,23 +36,32 @@ class SerialManager(object):
     def __init__(self):
         available_ports = _auto_detect_serial_unix()
         try:
-            self.__serial = serial.Serial(available_ports[0], 9600, timeout=1)
+            self._serial = serial.Serial(available_ports[0], 9600, timeout=1)
             time.sleep(2)
         except:
             print("Error trying to connect to Arduino")
-            self.__serial = NoneSerialManager()
+            self._serial = NoneSerialManager()
 
     def connect(self, device, baud):
-        self.__serial = serial.Serial(device, baud)
+        self._serial = serial.Serial(device, baud)
         time.sleep(2)
 
     def write(self, value):
-        if sys.version_info.major == 2:
-            self.__serial.write(value)
-        else:
-            self.__serial.write(bytes(value, 'latin-1'))
+        self._serial.write(bytes(value, 'latin-1'))
 
     def readline(self):
-        return self.__serial.readline().decode()
+        return self._serial.readline().decode()
 
-serial_manager = SerialManager()
+class SerialManagerPy2(SerialManager):
+
+    def __init__(self):
+        SerialManager.__init__(self)
+
+    def write(self, value):
+        self._serial.write(value)
+
+if sys.version_info.major == 2:
+    serial_manager = SerialManagerPy2()
+elif sys.version_info.major == 3:
+    serial_manager = SerialManager()
+
