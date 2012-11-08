@@ -29,7 +29,7 @@ def _send_parameters(args):
         _write(elprint)
 
 def return_value():
-    return serial_manager.readline().replace("\r\n","")
+    return serial_manager.readline().replace('\r\n', '')
 
 def _call(namespace, id, args):
     mutex.acquire()

@@ -11,7 +11,7 @@ class OneWire(ArduinoObject):
         val = self.call('search')
         if val == "1":
             return val
-        return val.split(" ")
+        return val.split(' ')
 
     @arduinoobjectmethod
     def select(self, address):

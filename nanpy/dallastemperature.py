@@ -17,7 +17,8 @@ class DallasTemperature(ArduinoObject):
         val = self.call('getAddress')
         if val == "1":
             return val
-        return val.split(" ")
+        return val.split(' ')
+            
 
     @arduinoobjectmethod
     def requestTemperatures(self, address = None):

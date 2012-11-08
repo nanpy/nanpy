@@ -1,7 +1,7 @@
 import serial
 import time
 import fnmatch
-import serial
+import sys
 
 def _auto_detect_serial_unix(preferred_list=['*']):
     import glob
@@ -39,7 +39,7 @@ class SerialManager(object):
             self.__serial = serial.Serial(available_ports[0], 9600, timeout=1)
             time.sleep(2)
         except:
-            print "Error trying to connect to Arduino"
+            print("Error trying to connect to Arduino")
             self.__serial = NoneSerialManager()
 
     def connect(self, device, baud):
@@ -47,9 +47,12 @@ class SerialManager(object):
         time.sleep(2)
 
     def write(self, value):
-        self.__serial.write(value)
+        if sys.version_info.major == 2:
+            self.__serial.write(value)
+        else:
+            self.__serial.write(bytes(value, 'latin-1'))
 
     def readline(self):
-        return self.__serial.readline()
+        return self.__serial.readline().decode()
 
 serial_manager = SerialManager()
