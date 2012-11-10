@@ -26,14 +26,8 @@ class ComChannel {
         static void connect() {
             #if BOARD == 2
             Serial1.begin(BAUDRATE);
-            while (Serial1.available() <= 0) {
-                delay(300);
-            }
             #else
             Serial.begin(BAUDRATE);
-            while (Serial.available() <= 0) {
-                delay(300);
-            }
             #endif
         }
 
