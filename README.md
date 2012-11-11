@@ -42,7 +42,7 @@ Dependencies
 ------------
 
 #### Python (2.2 or later)
-- python-setuptools
+- python-distribute (http://pypi.python.org/pypi/distribute)
 - python-serial
 
 How to build and install
