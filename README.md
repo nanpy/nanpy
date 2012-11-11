@@ -91,6 +91,11 @@ How to contribute
 
 Nanpy needs a lot of work to be a great instrument. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
 
+Donate
+------
+
+Do you want to buy us a coffee? We need it to code all night long! if you like this project and you want to support it with some cents, please donate :) https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J
+
 License
 -------
 
