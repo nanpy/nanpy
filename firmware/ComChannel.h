@@ -5,7 +5,6 @@
     #define BAUDRATE 9600
 #endif
 
-#include <HardwareSerial.h>
 #include <Arduino.h>
 
 class ComChannel {
@@ -21,6 +20,9 @@ class ComChannel {
 
         static void connect() {
             Serial.begin(BAUDRATE);
+            while (!Serial) {
+                ;
+            }
         }
 
         static void println(String& val) {

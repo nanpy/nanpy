@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "ComChannel.h"
+#include <Arduino.h>
 
 char* readStringFromSerial()
 {
