@@ -1,50 +1,21 @@
-#ifndef COM_CH
-#define COM_CH
+#ifndef COM_CHANNEL
+#define COM_CHANNEL
 
-#ifndef BAUDRATE
-    #define BAUDRATE 9600
-#endif
+#define BAUDRATE 9600
 
 #include <Arduino.h>
 
 class ComChannel {
 
     public:
-
-        static bool available() {
-            if (Serial.available() > 0)
-                return true;
-            else
-                return false;
-        }
-
-        static void connect() {
-            Serial.begin(BAUDRATE);
-            while (!Serial) {
-                ;
-            }
-        }
-
-        static void println(String& val) {
-            Serial.println(val);
-        }
-
-        static void println(const char* val) {
-            Serial.println(val);
-        }
-
-        static void println(int val) {
-            Serial.println(val);
-        }
-
-        static void println(float val) {
-            Serial.println(val);
-        }
-
-        static void println(double val) {
-            Serial.println(val);
-        }
-
+        static bool available();
+        static void connect();
+        static void println(String& val);
+        static void println(const char* val);
+        static void println(int val);
+        static void println(float val);
+        static void println(double val);
+        static char* readLine();
 };
 
 #endif

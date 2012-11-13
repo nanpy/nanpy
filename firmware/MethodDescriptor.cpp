@@ -4,44 +4,26 @@
 #include "ComChannel.h"
 #include <Arduino.h>
 
-char* readStringFromSerial()
-{
-    char* buffer = (char*)malloc(30);
-    int i=0;
-    char ch = '0';
-    do {
-        ch = Serial.read();
-        if(ch != '\0' && ch < 255 && ch >= 0) {
-            buffer[i++] = ch;
-        }
-    } while(ch != '\0');
-    char* buffer2 = (char*)malloc(i + 1);
-    buffer[i] = '\0';
-    strcpy(buffer2, buffer);
-    free(buffer);
-    return buffer2;
-};
-
 MethodDescriptor::MethodDescriptor() {
 
-    this->classname = readStringFromSerial();
+    this->classname = ComChannel::readLine();
 
     char* buff;
 
-    buff = readStringFromSerial();
+    buff = ComChannel::readLine();
     this->objid = atoi(buff);
     free(buff);
 
-    buff = readStringFromSerial();
+    buff = ComChannel::readLine();
     this->n_args = atoi(buff);
     free(buff);
 
-    this->name = readStringFromSerial();
+    this->name = ComChannel::readLine();
 
     this->stack = (char**)malloc(sizeof(char*) * this->n_args);
 
     for(int n = 0; n < this->n_args; n++) {
-        this->stack[n] = readStringFromSerial();
+        this->stack[n] = ComChannel::readLine();
     }
 
 };

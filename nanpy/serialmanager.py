@@ -42,8 +42,8 @@ class SerialManager(object):
             print("Error trying to connect to Arduino")
             self._serial = NoneSerialManager()
 
-    def connect(self, device, baud):
-        self._serial = serial.Serial(device, baud)
+    def connect(self, device):
+        self._serial = serial.Serial(device, 9600)
         time.sleep(2)
 
     def write(self, value):

@@ -64,19 +64,15 @@ and then upload it on your board:
 
 	make upload
 
-Optionally you can also set the baud rate:
-
-	export BAUDRATE=115200 (default value is 9600)
-
 How to use
 ----------
 
 ### Serial communication
 
-Nanpy autodetects the serial port for you, anyway you can specify another serial port and baudrate manually:
+Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
 
 	from nanpy import serial_manager
-	serial_manager.connect('/dev/ttyACM1', 9600)
+	serial_manager.connect('/dev/ttyACM1')
 
 ### Import modules
 
