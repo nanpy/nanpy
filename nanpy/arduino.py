@@ -1,4 +1,3 @@
-from nanpy.arduinoboard import (call_static_method, return_value)
 from nanpy.arduinoboard import (arduinoclassmethod, returns)
 
 import time

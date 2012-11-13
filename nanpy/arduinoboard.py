@@ -3,15 +3,21 @@ from threading import Lock
 
 mutex = Lock()
 
-def _write( data):
-    data = str(data)
-    for ch in data:
-        serial_manager.write('%c' % ch)
-    serial_manager.write('\0')
+def _write(data):
+    serial_manager.write('%s\0' % str(data))
 
-def _send_parameters(args):
+def return_value():
+    return serial_manager.readline().replace('\r\n', '')
+
+def _call(namespace, id, args):
+
     toprint = []
     nel = 0
+
+    mutex.acquire()
+    _write(namespace)
+    _write(id)
+
     for arg in args:
         if type(arg) == type(list()):
             for el in arg:
@@ -28,14 +34,6 @@ def _send_parameters(args):
     for elprint in toprint:
         _write(elprint)
 
-def return_value():
-    return serial_manager.readline().replace('\r\n', '')
-
-def _call(namespace, id, args):
-    mutex.acquire()
-    _write(namespace)
-    _write(id)
-    _send_parameters(args)
     ret = return_value()
     mutex.release()
     return ret
@@ -65,10 +63,6 @@ def arduinoclassmethod(funct):
         funct(cls, *args, **kwargs)
         return _call(cls.__name__, 0, call_pars)
     return wrapper
-
-def call_static_method(*args):
-    return _call(args[0], 0, args[1:])
-
 
 class ArduinoObject():
 
