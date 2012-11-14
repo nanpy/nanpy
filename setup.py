@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name="nanpy",
-      version="0.5",
+      version="0.6",
       description="Use your Arduino board with Python",
       license="MIT",
       author="Andrea Stagi",
