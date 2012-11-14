@@ -25,7 +25,9 @@ void setup() {
 }
 
 void loop() {
-    m = new MethodDescriptor();
-    Register::elaborate(m);
+    if(ComChannel::available()) {
+        m = new MethodDescriptor();
+        Register::elaborate(m);
+    }
 }
 
