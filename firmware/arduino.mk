@@ -159,18 +159,22 @@ ifeq "$(wildcard $(ARDUINODIR)/hardware/arduino/boards.txt)" ""
 $(error ARDUINODIR is not set correctly; arduino software not found)
 endif
 
+# obtain preferences from the IDE's preferences.txt
+PREFERENCES_FILE := $(wildcard $(HOME)/.arduino/preferences.txt)
+ifneq "$(PREFERENCES_FILE)" ""
+SKETCHBOOKDIR := \
+	$(shell sed -ne "s/sketchbook.path=\(.*\)/\1/p" $(PREFERENCES_FILE))
+endif
+
 # default arduino version
 ARDUINOCONST ?= 100
 
 # default path for avr tools
-ifndef AVRTOOLSPATH
-AVRTOOLSPATH := $(subst :, , $(PATH))
-AVRTOOLSPATH += $(ARDUINODIR)/hardware/tools
-AVRTOOLSPATH += $(ARDUINODIR)/hardware/tools/avr/bin
-endif
+AVRTOOLSPATH ?= $(subst :, , $(PATH)) $(ARDUINODIR)/hardware/tools \
+	$(ARDUINODIR)/hardware/tools/avr/bin
 
 # default path to find libraries
-LIBRARYPATH ?= libraries libs $(ARDUINODIR)/libraries
+LIBRARYPATH ?= libraries libs $(SKETCHBOOKDIR)/libraries $(ARDUINODIR)/libraries
 
 # auto mode?
 INOFILE := $(wildcard *.ino *.pde)
@@ -258,6 +262,8 @@ BOARD_USB_VID := \
 	$(shell sed -ne "s/$(BOARD).build.vid=\(.*\)/\1/p" $(BOARDS_FILE))
 BOARD_USB_PID := \
 	$(shell sed -ne "s/$(BOARD).build.pid=\(.*\)/\1/p" $(BOARDS_FILE))
+BOARD_BOOTLOADER_PATH := \
+	$(shell sed -ne "s/$(BOARD).bootloader.path=\(.*\)/\1/p" $(BOARDS_FILE))
 
 # invalid board?
 ifeq "$(BOARD_BUILD_MCU)" ""
@@ -313,6 +319,10 @@ upload: target
 	@test 0 -eq $(SERIALDEVGUESS) || { \
 		echo "*GUESSING* at serial device:" $(SERIALDEV); \
 		echo; }
+ifeq "$(BOARD_BOOTLOADER_PATH)" "caterina"
+	stty $(STTYFARG) $(SERIALDEV) speed 1200
+	sleep 1
+endif
 	stty $(STTYFARG) $(SERIALDEV) hupcl
 	$(AVRDUDE) $(AVRDUDEFLAGS) -U flash:w:$(TARGET).hex:i
 
