@@ -2,9 +2,9 @@
 #
 #                         edam's Arduino makefile
 #_______________________________________________________________________________
-#                                                                 version 0.4dev
+#                                                                 version 0.5dev
 #
-# Copyright (C) 2011, 1012 Tim Marston <tim@ed.am>.
+# Copyright (C) 2011, 2012 Tim Marston <tim@ed.am>.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -70,7 +70,7 @@
 # determine values for SOURCES, TARGET and LIBRARIES.  Any .c, .cc and .cpp
 # files in the project directory (or any "util" or "utility" subdirectories)
 # are automatically included in the build and are scanned for Arduino libraries
-# that have been #included. Note, there can only be one .ino (or .pde) file.
+# that have been #included.  Note, there can only be one .ino (or .pde) file.
 #
 # Alternatively, if you want to manually specify build variables, create a
 # Makefile that defines SOURCES and LIBRARIES and then includes arduino.mk.
@@ -85,21 +85,34 @@
 # ARDUINODIR   The path where the Arduino software is installed on your system.
 #
 # ARDUINOCONST The Arduino software version, as an integer, used to define the
-#              ARDUINO version constant. This defaults to 100 if undefined.
+#              ARDUINO version constant.  This defaults to 100 if undefined.
 #
-# AVRDUDECONF  The avrdude.conf to use. If undefined, this defaults to a guess
-#              based on where the avrdude in use is. If empty, no avrdude.conf
+# AVRDUDECONF  The avrdude.conf to use.  If undefined, this defaults to a guess
+#              based on where the avrdude in use is.  If empty, no avrdude.conf
 #              is passed to avrdude (to the system default is used).
 #
-# AVRTOOLSPATH A space-separated list of directories to search in order when
-#              looking for the avr build tools. This defaults to the system PATH
-#              followed by subdirectories in ARDUINODIR if undefined.
+# AVRDUDEFLAGS Specify any additional flags for avrdude.  The usual flags,
+#              required to build the project, will be appended to this.
+#
+# AVRTOOLSPATH A space-separated list of directories that is searched in order
+#              when looking for the avr build tools.  This defaults to PATH,
+#              followed by subdirectories in ARDUINODIR.
 #
 # BOARD        Specify a target board type.  Run `make boards` to see available
 #              board types.
 #
+# CPPFLAGS     Specify any additional flags for the compiler.  The usual flags,
+#              required to build the project, will be appended to this.
+#
+# LINKFLAGS    Specify any additional flags for the linker.  The usual flags,
+#              required to build the project, will be appended to this.
+#
 # LIBRARIES    A list of Arduino libraries to build and include.  This is set
 #              automatically if a .ino (or .pde) is found.
+#
+# LIBRARYPATH  A space-separated list of directories that is searched in order
+#              when looking for Arduino libraries.  This defaults to "libs",
+#              "libraries" and then the Arduino software's libraries directory.
 #
 # SERIALDEV    The unix device name of the serial device that is the Arduino.
 #              If unspecified, an attempt is made to determine the name of a
@@ -156,6 +169,9 @@ AVRTOOLSPATH += $(ARDUINODIR)/hardware/tools
 AVRTOOLSPATH += $(ARDUINODIR)/hardware/tools/avr/bin
 endif
 
+# default path to find libraries
+LIBRARYPATH ?= libraries libs $(ARDUINODIR)/libraries
+
 # auto mode?
 INOFILE := $(wildcard *.ino *.pde)
 ifdef INOFILE
@@ -166,15 +182,12 @@ endif
 # automatically determine sources and targeet
 TARGET := $(basename $(INOFILE))
 SOURCES := $(INOFILE) \
-	$(wildcard *.c *.cc *.cpp) \
-	$(wildcard $(addprefix util/, *.c *.cc *.cpp)) \
-	$(wildcard $(addprefix utility/, *.c *.cc *.cpp))
+	$(wildcard *.c *.cc *.cpp *.C) \
+	$(wildcard $(addprefix util/, *.c *.cc *.cpp *.C)) \
+	$(wildcard $(addprefix utility/, *.c *.cc *.cpp *.C))
 
 # automatically determine included libraries
-LIBRARIES := $(filter $(notdir $(wildcard $(ARDUINODIR)/libraries/*)), \
-	$(shell sed -ne "s/^ *\# *include *[<\"]\(.*\)\.h[>\"]/\1/p" $(SOURCES)))
-
-LIBRARIES += $(filter $(notdir $(wildcard libraries/*)), \
+LIBRARIES := $(filter $(notdir $(wildcard $(addsuffix /*, $(LIBRARYPATH)))), \
 	$(shell sed -ne "s/^ *\# *include *[<\"]\(.*\)\.h[>\"]/\1/p" $(SOURCES)))
 
 endif
@@ -197,19 +210,21 @@ OBJCOPY := $(call findsoftware,avr-objcopy)
 AVRDUDE := $(call findsoftware,avrdude)
 AVRSIZE := $(call findsoftware,avr-size)
 
+# directories
+ARDUINOCOREDIR := $(ARDUINODIR)/hardware/arduino/cores/arduino
+LIBRARYDIRS := $(foreach lib, $(LIBRARIES), \
+	$(firstword $(wildcard $(addsuffix /$(lib), $(LIBRARYPATH)))))
+LIBRARYDIRS += $(addsuffix /utility, $(LIBRARYDIRS))
+
 # files
 TARGET := $(if $(TARGET),$(TARGET),a.out)
 OBJECTS := $(addsuffix .o, $(basename $(SOURCES)))
 DEPFILES := $(patsubst %, .dep/%.dep, $(SOURCES))
-ARDUINOCOREDIR := $(ARDUINODIR)/hardware/arduino/cores/arduino
 ARDUINOLIB := .lib/arduino.a
-ARDUINOLIBLIBSDIR := $(ARDUINODIR)/libraries
-ARDUINOLIBLIBSPATH := $(foreach lib, $(LIBRARIES), \
-	$(ARDUINODIR)/libraries/$(lib)/ $(ARDUINODIR)/libraries/$(lib)/utility/ )
-ARDUINOLIBLIBSPATH += $(foreach lib, $(LIBRARIES), \
-	./libraries/$(lib)/ ./libraries/$(lib)/utility/ )
-ARDUINOLIBOBJS := $(foreach dir, $(ARDUINOCOREDIR) $(ARDUINOLIBLIBSPATH), \
+ARDUINOLIBOBJS := $(foreach dir, $(ARDUINOCOREDIR) $(LIBRARYDIRS), \
 	$(patsubst %, .lib/%.o, $(wildcard $(addprefix $(dir)/, *.c *.cpp))))
+
+# avrdude confifuration
 ifeq "$(AVRDUDECONF)" ""
 ifeq "$(AVRDUDE)" "$(ARDUINODIR)/hardware/tools/avr/bin/avrdude"
 AVRDUDECONF := $(ARDUINODIR)/hardware/tools/avr/etc/avrdude.conf
@@ -254,22 +269,20 @@ endif
 endif
 
 # flags
-CPPFLAGS := -Os -Wall -fno-exceptions -ffunction-sections -fdata-sections
+CPPFLAGS += -Os -Wall -fno-exceptions -ffunction-sections -fdata-sections
 CPPFLAGS += -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CPPFLAGS += -mmcu=$(BOARD_BUILD_MCU)
 CPPFLAGS += -DF_CPU=$(BOARD_BUILD_FCPU) -DARDUINO=$(ARDUINOCONST)
 CPPFLAGS += -DUSB_VID=$(BOARD_USB_VID) -DUSB_PID=$(BOARD_USB_PID)
 CPPFLAGS += -I. -Iutil -Iutility -I $(ARDUINOCOREDIR)
 CPPFLAGS += -I $(ARDUINODIR)/hardware/arduino/variants/$(BOARD_BUILD_VARIANT)/
-CPPFLAGS += $(addprefix -I $(ARDUINODIR)/libraries/, $(LIBRARIES))
-CPPFLAGS += $(addprefix -I./libraries/, $(LIBRARIES))
-CPPFLAGS += $(patsubst %, -I $(ARDUINODIR)/libraries/%/utility, $(LIBRARIES))
+CPPFLAGS += $(addprefix -I , $(LIBRARYDIRS))
 CPPDEPFLAGS = -MMD -MP -MF .dep/$<.dep
 CPPINOFLAGS := -x c++ -include $(ARDUINOCOREDIR)/Arduino.h
-AVRDUDEFLAGS := $(addprefix -C , $(AVRDUDECONF)) -DV
+AVRDUDEFLAGS += $(addprefix -C , $(AVRDUDECONF)) -DV
 AVRDUDEFLAGS += -p $(BOARD_BUILD_MCU) -P $(SERIALDEV)
 AVRDUDEFLAGS += -c $(BOARD_UPLOAD_PROTOCOL) -b $(BOARD_UPLOAD_SPEED)
-LINKFLAGS := -Os -Wl,--gc-sections -mmcu=$(BOARD_BUILD_MCU)
+LINKFLAGS += -Os -Wl,--gc-sections -mmcu=$(BOARD_BUILD_MCU)
 
 # figure out which arg to use with stty (for OS X, GNU and busybox stty)
 STTYFARG := $(shell stty --help 2>&1 | \
@@ -320,7 +333,7 @@ monitor:
 		exit 1; }
 	@test -n `which screen` || { \
 		echo "error: can't find GNU screen, you might need to install it." >&2 \
-		ecit 1; }
+		exit 1; }
 	@test 0 -eq $(SERIALDEVGUESS) || { \
 		echo "*GUESSING* at serial device:" $(SERIALDEV); \
 		echo; }
@@ -361,7 +374,7 @@ $(TARGET).elf: $(ARDUINOLIB) $(OBJECTS)
 
 %.o: %.pde
 	mkdir -p .dep/$(dir $<)
-	$(COMPILE.cpp) $(CPPDEPFLAGS) -o $@ -x c++ -include $(ARDUINOCOREDIR)/Arduino.h $<
+	$(COMPILE.cpp) $(CPPDEPFLAGS) -o $@ $(CPPINOFLAGS) $<
 
 # building the arduino library
 

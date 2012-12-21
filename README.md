@@ -44,6 +44,7 @@ Dependencies
 #### Python (2.2 or later)
 - python-distribute (http://pypi.python.org/pypi/distribute)
 - python-serial
+- edam's Arduino makefile (http://bzr.ed.am/make/arduino-mk/, included)
 
 How to build and install
 ------------------------
