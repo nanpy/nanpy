@@ -37,7 +37,10 @@ class Arduino():
         pass
 
     @classmethod
-    @arduinoclassmethod
     def delay(cls, value):
         time.sleep(value/1000)
+
+    @classmethod
+    def map(cls, x, in_min, in_max, out_min, out_max):
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
