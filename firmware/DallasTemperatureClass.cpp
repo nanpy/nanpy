@@ -31,7 +31,7 @@ void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
                 m->returns(v[m->getObjectId()]->requestTemperaturesByAddress(addr));
             } else {
                 v[m->getObjectId()]->requestTemperatures();
-                m->returns("0");
+                m->returns(0);
             }
         }
 
@@ -63,7 +63,7 @@ void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
             byte addr[8];
             String addr_hex = String(); 
             if(!v[m->getObjectId()]->getAddress(addr, m->getInt(0))) {
-                m->returns("1");
+                m->returns(1);
                 return;
             }
             for( int cc = 0; cc < 7; cc++ )

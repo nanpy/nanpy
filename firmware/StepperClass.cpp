@@ -17,12 +17,12 @@ void StepperClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "setSpeed") == 0) {
             v[m->getObjectId()]->setSpeed(m->getInt(0));
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "step") == 0) {
             v[m->getObjectId()]->step(m->getInt(0));
-            m->returns("0");
+            m->returns(0);
         }
 
     }

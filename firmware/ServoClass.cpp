@@ -17,7 +17,7 @@ void ServoClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "write") == 0) {
             v[m->getObjectId()]->write(m->getInt(0));
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "read") == 0) {
@@ -26,7 +26,7 @@ void ServoClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "writeMicroseconds") == 0) {
             v[m->getObjectId()]->writeMicroseconds(m->getInt(0));
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "readMicroseconds") == 0) {
@@ -35,7 +35,7 @@ void ServoClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "detach") == 0) {
             v[m->getObjectId()]->detach();
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "attached") == 0) {

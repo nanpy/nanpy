@@ -21,7 +21,7 @@ void OneWireClass::elaborate( MethodDescriptor* m ) {
             if(!res) {
                 v[m->getObjectId()]->reset_search();
                 delay(250);
-                m->returns("1");
+                m->returns(1);
             }
 
             else {    
@@ -35,7 +35,7 @@ void OneWireClass::elaborate( MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "reset_search") == 0) {
             v[m->getObjectId()]->reset_search();
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "reset") == 0) {
@@ -52,7 +52,7 @@ void OneWireClass::elaborate( MethodDescriptor* m ) {
             v[m->getObjectId()]->select(addr);
 
             delete(addr);
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "write") == 0) {
@@ -60,7 +60,7 @@ void OneWireClass::elaborate( MethodDescriptor* m ) {
                 v[m->getObjectId()]->write(m->getInt(0));
             else
                 v[m->getObjectId()]->write(m->getInt(0), m->getInt(1));
-            m->returns("0");
+            m->returns(0);
         }
 
         if (strcmp(m->getName(), "read") == 0) {
