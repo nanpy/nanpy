@@ -28,9 +28,6 @@ bool ComChannel::available() {
 
 void ComChannel::connect() {
     Serial.begin(BAUDRATE);
-    while (!Serial) {
-        ;
-    }
 }
 
 void ComChannel::println(String& val) {
@@ -50,6 +47,10 @@ void ComChannel::println(float val) {
 }
 
 void ComChannel::println(double val) {
+    Serial.println(val);
+}
+
+void ComChannel::println(long val) {
     Serial.println(val);
 }
 

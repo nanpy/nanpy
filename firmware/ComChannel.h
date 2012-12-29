@@ -15,6 +15,7 @@ class ComChannel {
         static void println(int val);
         static void println(float val);
         static void println(double val);
+        static void println(long val);
         static char* readLine();
 };
 

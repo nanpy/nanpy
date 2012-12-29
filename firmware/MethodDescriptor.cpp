@@ -80,6 +80,10 @@ void MethodDescriptor::returns(double val) {
     ComChannel::println(val);
 }
 
+void MethodDescriptor::returns(long val) {
+    ComChannel::println(val);
+}
+
 MethodDescriptor::~MethodDescriptor() {
     delete(name);
     delete(classname);
