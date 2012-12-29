@@ -5,6 +5,7 @@
 #include "ServoClass.h"
 #include "DallasTemperatureClass.h"
 #include "LiquidCrystalClass.h"
+#include "CapacitiveSensorClass.h"
 #include "ToneClass.h"
 #include "MethodDescriptor.h"
 #include "ComChannel.h"
@@ -20,6 +21,7 @@ void setup() {
     REGISTER_CLASS(StepperClass);
     REGISTER_CLASS(ServoClass);
     REGISTER_CLASS(ToneClass);
+    REGISTER_CLASS(CapacitiveSensorClass);
 
     ComChannel::connect();
 }
