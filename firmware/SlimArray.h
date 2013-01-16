@@ -1,6 +1,8 @@
 #ifndef SLIM_ARRAY
 #define SLIM_ARRAY
 
+#include <Arduino.h>
+
 template <typename T> class SlimArray {
 
     private:

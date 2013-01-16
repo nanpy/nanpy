@@ -9,11 +9,15 @@
 #include "ToneClass.h"
 #include "MethodDescriptor.h"
 #include "ComChannel.h"
+#include "EEPROMClass.h"
+
+using namespace nanpy;
 
 MethodDescriptor *m = NULL;
 
 void setup() {
 
+    REGISTER_CLASS(EEPROMClass);
     REGISTER_CLASS(ArduinoClass);
     REGISTER_CLASS(LiquidCrystalClass);
     REGISTER_CLASS(OneWireClass);
