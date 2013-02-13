@@ -1,10 +1,9 @@
 #include <Arduino.h>
 #include <Servo.h>
 #include "ServoClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void ServoClass::elaborate( MethodDescriptor* m ) {
+void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Servo") == 0) {
 
         ObjectsManager::elaborate(m);

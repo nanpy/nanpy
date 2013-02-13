@@ -2,15 +2,17 @@
 #define DALLAS_TEMP_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 class DallasTemperature;
-class MethodDescriptor;
 
-class DallasTemperatureClass: public ObjectsManager<DallasTemperature> {
+namespace nanpy {
+    class DallasTemperatureClass: public ObjectsManager<DallasTemperature> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
+    };
+}
 
 #endif

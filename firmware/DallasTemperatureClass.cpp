@@ -2,10 +2,9 @@
 #include <DallasTemperature.h>
 #include <OneWire.h>
 #include "DallasTemperatureClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void DallasTemperatureClass::elaborate( MethodDescriptor* m ) {
+void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "DallasTemperature") == 0) {
 

@@ -2,14 +2,15 @@
 #define ARDUINO_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
-class MethodDescriptor;
+namespace nanpy {
+    class ArduinoClass : public BaseClass {
 
-class ArduinoClass : public BaseClass {
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-    public:
-        void elaborate( MethodDescriptor* m );
-
+    };
 };
 
 #endif

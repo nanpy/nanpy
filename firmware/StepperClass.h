@@ -2,15 +2,17 @@
 #define STEPPER_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 class Stepper;
-class MethodDescriptor;
 
-class StepperClass: public ObjectsManager<Stepper> {
+namespace nanpy {
+    class StepperClass: public ObjectsManager<Stepper> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
+    };
+}
 
 #endif

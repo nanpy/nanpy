@@ -1,9 +1,8 @@
 #include <OneWire.h>
 #include "OneWireClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void OneWireClass::elaborate( MethodDescriptor* m ) {
+void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "OneWire") == 0) {
 

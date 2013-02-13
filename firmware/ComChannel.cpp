@@ -19,42 +19,42 @@ char* readLineFromSerial()
     return buffer2;
 };
 
-bool ComChannel::available() {
+bool nanpy::ComChannel::available() {
     if (Serial.available() > 0)
         return true;
     else
         return false;
 }
 
-void ComChannel::connect() {
+void nanpy::ComChannel::connect() {
     Serial.begin(BAUDRATE);
 }
 
-void ComChannel::println(String& val) {
+void nanpy::ComChannel::println(String& val) {
     Serial.println(val);
 }
 
-void ComChannel::println(const char* val) {
+void nanpy::ComChannel::println(const char* val) {
     Serial.println(val);
 }
 
-void ComChannel::println(int val) {
+void nanpy::ComChannel::println(int val) {
     Serial.println(val);
 }
 
-void ComChannel::println(float val) {
+void nanpy::ComChannel::println(float val) {
     Serial.println(val);
 }
 
-void ComChannel::println(double val) {
+void nanpy::ComChannel::println(double val) {
     Serial.println(val);
 }
 
-void ComChannel::println(long val) {
+void nanpy::ComChannel::println(long val) {
     Serial.println(val);
 }
 
-char* ComChannel::readLine() {
+char* nanpy::ComChannel::readLine() {
     return readLineFromSerial();
 }
 

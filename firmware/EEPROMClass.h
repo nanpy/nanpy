@@ -2,14 +2,13 @@
 #define EEPROM_CLASS
 
 #include "BaseClass.h"
-
-class MethodDescriptor;
+#include "MethodDescriptor.h"
 
 namespace nanpy {
     class EEPROMClass : public BaseClass {
 
         public:
-            void elaborate( MethodDescriptor* m );
+            void elaborate( nanpy::MethodDescriptor* m );
 
     };
 }

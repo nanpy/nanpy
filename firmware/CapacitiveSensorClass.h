@@ -2,15 +2,17 @@
 #define CAPACITIVE_SENSOR_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 class CapacitiveSensor;
-class MethodDescriptor;
 
-class CapacitiveSensorClass : public ObjectsManager<CapacitiveSensor> {
+namespace nanpy {
+    class CapacitiveSensorClass : public ObjectsManager<CapacitiveSensor> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
+    };
+}
 
 #endif

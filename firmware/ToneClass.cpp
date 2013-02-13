@@ -1,9 +1,8 @@
 #include <Arduino.h>
 #include "ToneClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void ToneClass::elaborate( MethodDescriptor* m ) {
+void nanpy::ToneClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Tone") == 0) {
 
         ObjectsManager::elaborate(m);

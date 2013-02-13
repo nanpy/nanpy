@@ -2,6 +2,7 @@
 #define TONE_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -93,31 +94,32 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-class MethodDescriptor;
+namespace nanpy {
 
-class Tone {
+    class Tone {
 
-    private:
+        private:
 
-        int pin;
+            int pin;
 
-    public:
+        public:
 
-        Tone(int pin) : pin(pin) {}
-        void play(int note, int duration) {
-            tone(pin, note, duration);
-            delay(duration * 1.30);
-            noTone(pin);
-        }
-        void stop(void) {noTone(pin);}
+            Tone(int pin) : pin(pin) {}
+            void play(int note, int duration) {
+                tone(pin, note, duration);
+                delay(duration * 1.30);
+                noTone(pin);
+            }
+            void stop(void) {noTone(pin);}
 
-};
+    };
 
-class ToneClass: public ObjectsManager<Tone> {
+    class ToneClass: public ObjectsManager<Tone> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
+    };
+}
 
 #endif

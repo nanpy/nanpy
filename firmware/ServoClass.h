@@ -2,15 +2,17 @@
 #define SERVO_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 class Servo;
-class MethodDescriptor;
 
-class ServoClass: public ObjectsManager<Servo> {
+namespace nanpy {
+    class ServoClass: public ObjectsManager<Servo> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
+    };
+}
 
 #endif

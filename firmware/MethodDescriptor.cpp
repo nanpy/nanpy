@@ -4,7 +4,7 @@
 #include "ComChannel.h"
 #include <Arduino.h>
 
-MethodDescriptor::MethodDescriptor() {
+nanpy::MethodDescriptor::MethodDescriptor() {
 
     this->classname = ComChannel::readLine();
 
@@ -28,63 +28,63 @@ MethodDescriptor::MethodDescriptor() {
 
 };
 
-int MethodDescriptor::getNArgs() {
+int nanpy::MethodDescriptor::getNArgs() {
     return this->n_args;
 };
 
-int MethodDescriptor::getInt(int n) {
+int nanpy::MethodDescriptor::getInt(int n) {
     return atoi(this->stack[n]);
 };
 
-float MethodDescriptor::getFloat(int n) {
+float nanpy::MethodDescriptor::getFloat(int n) {
     return atof(this->stack[n]);
 };
 
-double MethodDescriptor::getDouble(int n) {
+double nanpy::MethodDescriptor::getDouble(int n) {
     return atof(this->stack[n]);
 };
 
-char* MethodDescriptor::getString(int n) {
+char* nanpy::MethodDescriptor::getString(int n) {
     return this->stack[n];
 };
 
-char* MethodDescriptor::getClass() {
+char* nanpy::MethodDescriptor::getClass() {
     return this->classname;
 };
 
-int MethodDescriptor::getObjectId() {
+int nanpy::MethodDescriptor::getObjectId() {
     return this->objid;
 };
 
-char* MethodDescriptor::getName() {
+char* nanpy::MethodDescriptor::getName() {
     return this->name;
 };
 
-void MethodDescriptor::returns(String& val) {
+void nanpy::MethodDescriptor::returns(String& val) {
     ComChannel::println(val);
 }
 
-void MethodDescriptor::returns(const char* val) {
+void nanpy::MethodDescriptor::returns(const char* val) {
     ComChannel::println(val);
 }
 
-void MethodDescriptor::returns(int val) {
+void nanpy::MethodDescriptor::returns(int val) {
     ComChannel::println(val);
 }
 
-void MethodDescriptor::returns(float val) {
+void nanpy::MethodDescriptor::returns(float val) {
     ComChannel::println(val);
 }
 
-void MethodDescriptor::returns(double val) {
+void nanpy::MethodDescriptor::returns(double val) {
     ComChannel::println(val);
 }
 
-void MethodDescriptor::returns(long val) {
+void nanpy::MethodDescriptor::returns(long val) {
     ComChannel::println(val);
 }
 
-MethodDescriptor::~MethodDescriptor() {
+nanpy::MethodDescriptor::~MethodDescriptor() {
     delete(name);
     delete(classname);
 

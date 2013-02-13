@@ -1,10 +1,9 @@
 #include <Arduino.h>
 #include <Stepper.h>
 #include "StepperClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void StepperClass::elaborate( MethodDescriptor* m ) {
+void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Stepper") == 0) {
 
         ObjectsManager::elaborate(m);

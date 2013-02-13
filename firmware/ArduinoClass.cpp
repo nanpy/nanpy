@@ -1,9 +1,8 @@
 #include <Arduino.h>
 #include "ArduinoClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 
-void ArduinoClass::elaborate( MethodDescriptor* m ) {
+void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Arduino") == 0) {
         if (strcmp(m->getName(), "digitalWrite") == 0) {
             digitalWrite(m->getInt(0), m->getInt(1));

@@ -1,11 +1,10 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include "LiquidCrystalClass.h"
-#include "MethodDescriptor.h"
 #include <stdlib.h>
 #include <math.h>
 
-void LiquidCrystalClass::elaborate( MethodDescriptor* m ) {
+void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Lcd") == 0) {
 
         ObjectsManager::elaborate(m);

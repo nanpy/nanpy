@@ -2,17 +2,18 @@
 #define LIQUID_CRYSTAL_CLASS
 
 #include "BaseClass.h"
+#include "MethodDescriptor.h"
 
 class LiquidCrystal;
-class MethodDescriptor;
 
-class LiquidCrystalClass : public ObjectsManager<LiquidCrystal> {
+namespace nanpy {
+    class LiquidCrystalClass : public ObjectsManager<LiquidCrystal> {
 
-    public:
-        void elaborate( MethodDescriptor* m );
+        public:
+            void elaborate( nanpy::MethodDescriptor* m );
 
-};
-
+    };
+}
 
 
 #endif
