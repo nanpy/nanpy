@@ -49,13 +49,7 @@ Dependencies
 How to build and install
 ------------------------
 
-Nanpy is composed by a Python part, that provides a library to use Arduino via Python and a server firmware. You can install Nanpy on a Raspberry too :)
-
-To install Nanpy just type (as root, requires python-setuptools):
-
-	python setup.py install
-
-To build the firmware type:
+You need to build the firmware for your Arduino first, you can find it in the firmware directory:
 
 	cd firmware
 	export BOARD=uno (in case you use UNO board. Type 'make boards' for a complete list)
@@ -64,6 +58,10 @@ To build the firmware type:
 and then upload it on your board:
 
 	make upload
+
+To install Nanpy just type (as root):
+
+	python setup.py install
 
 How to use
 ----------
@@ -91,9 +89,9 @@ Nanpy needs a lot of work to be a great instrument. You can contribute with patc
 Donate
 ------
 
-Do you want to buy us a coffee? We need it to code all night long! if you like this project and you want to support it with some cents, please donate :) https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J
+Do you want to support us with a coffee? We need it to code all night long! if you like this project and you want to support it with some cents, please donate :) https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J
 
 License
 -------
 
-This software is released under MIT License. Copyright (c) 2012 Andrea Stagi <stagi.andrea@gmail.com>
+This software is released under MIT License. Copyright (c) 2012-2013 Andrea Stagi <stagi.andrea@gmail.com>
