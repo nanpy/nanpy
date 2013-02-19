@@ -38,7 +38,7 @@ class Arduino():
 
     @classmethod
     def delay(cls, value):
-        time.sleep(value/1000)
+        time.sleep(float(value)/1000)
 
     @classmethod
     def map(cls, x, in_min, in_max, out_min, out_max):
