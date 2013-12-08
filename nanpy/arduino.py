@@ -37,6 +37,11 @@ class Arduino():
         pass
 
     @classmethod
+    @arduinoclassmethod
+    def pinModeRead(cls, pin):
+        pass
+
+    @classmethod
     def delay(cls, value):
         time.sleep(float(value)/1000)
 
