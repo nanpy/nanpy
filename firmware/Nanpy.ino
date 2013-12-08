@@ -1,3 +1,11 @@
+#include <EEPROM.h>
+#include <Servo.h>
+#include <LiquidCrystal.h>
+#include <Stepper.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#include <CapacitiveSensor.h>
+
 #include "BaseClass.h"
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
@@ -17,7 +25,7 @@ MethodDescriptor *m = NULL;
 
 void setup() {
 
-    REGISTER_CLASS(EEPROMClass);
+    REGISTER_CLASS(nanpy::EEPROMClass);
     REGISTER_CLASS(ArduinoClass);
     REGISTER_CLASS(LiquidCrystalClass);
     REGISTER_CLASS(OneWireClass);
