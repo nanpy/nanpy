@@ -5,7 +5,7 @@
 void nanpy::ToneClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Tone") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<Tone>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {
             v.insert(new Tone (m->getInt(0)));
