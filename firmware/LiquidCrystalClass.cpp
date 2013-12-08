@@ -7,7 +7,7 @@
 void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Lcd") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<LiquidCrystal>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {       
             int prm = 0;

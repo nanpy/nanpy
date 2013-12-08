@@ -6,7 +6,7 @@
 void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Servo") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<Servo>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             v.insert(new Servo());

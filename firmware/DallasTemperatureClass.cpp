@@ -8,7 +8,7 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "DallasTemperature") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<DallasTemperature>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;

@@ -6,7 +6,7 @@ void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
 
     if (strcmp(m->getClass(), "OneWire") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<OneWire>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {      
             v.insert(new OneWire(m->getInt(0)));

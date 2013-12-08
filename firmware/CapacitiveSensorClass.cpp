@@ -5,7 +5,7 @@
 void nanpy::CapacitiveSensorClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "CapacitiveSensor") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<CapacitiveSensor>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {       
             v.insert(new CapacitiveSensor(m->getInt(0), m->getInt(1)));

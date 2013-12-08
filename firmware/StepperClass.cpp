@@ -6,7 +6,7 @@
 void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Stepper") == 0) {
 
-        ObjectsManager::elaborate(m);
+        ObjectsManager<Stepper>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
             int prm = 0;
