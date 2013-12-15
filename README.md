@@ -59,7 +59,9 @@ and then upload it on your board:
 
 	make upload
 
-To install Nanpy just type (as root):
+or copy firmware/Nanpy directory under your "sketchbook" directory, start Arduino program, open Sketchbook/Nanpy, select "Upload".
+
+To install Nanpy Python library just type (as root):
 
 	python setup.py install
 
