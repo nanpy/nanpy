@@ -1,11 +1,9 @@
 Nanpy
 =====
-
 Use your Arduino board with Python.
 
 Description
 -----------
-
 The main purpose of Nanpy is making programmers' life easier, giving them something to create prototypes faster and use Arduino in a simpler way, thanks to a simple and powerful language like Python. Also Nanpy can run on RaspberryPi (tested with Raspbian http://www.raspbian.org/) so you can use it for communicating with Arduino :)
 
 Let's start with a classic example, turn on a led placed in the 13th pin..
@@ -25,7 +23,6 @@ really straightforward now, isn't it? :)
 
 Multithreading
 --------------
-
 What happens if you call methods in an async context? Nothing bad, all works! every call is mutually exclusive.. For example, suppose that two threads need to write on the same Lcd and in different positions at the same time... well, just call printString on the Lcd object specifying the position (row and column)
 
 	#Thread_1
@@ -40,32 +37,18 @@ What happens if you call methods in an async context? Nothing bad, all works! ev
 
 Dependencies
 ------------
-
-#### Python (2.2 or later)
-- python-distribute (http://pypi.python.org/pypi/distribute)
 - python-serial
-- edam's Arduino makefile (http://ed.am/dev/make/arduino-mk, included)
 
 How to build and install
 ------------------------
+You need to build the firmware for your Arduino first, so upload it on your Arduino IDE and compile!
 
-You need to build the firmware for your Arduino first, you can find it in the firmware directory:
+To install Nanpy just type:
 
-	cd firmware
-	export BOARD=uno (in case you use UNO board. Type 'make boards' for a complete list)
-	make
-
-and then upload it on your board:
-
-	make upload
-
-To install Nanpy just type (as root):
-
-	python setup.py install
+	# python setup.py install
 
 How to use
 ----------
-
 ### Serial communication
 
 Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
@@ -83,15 +66,12 @@ Import all the modules you need :)
 
 How to contribute
 -----------------
-
 Nanpy needs a lot of work to be a great instrument. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
 
 Donate
 ------
-
 Do you want to support us with a coffee? We need it to code all night long! if you like this project and you want to support it with some cents, please donate :) https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J
 
 License
 -------
-
 This software is released under MIT License. Copyright (c) 2012-2013 Andrea Stagi <stagi.andrea@gmail.com>
