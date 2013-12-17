@@ -40,17 +40,17 @@ void setup() {
     REGISTER_CLASS(ArduinoClass);               // 0.8 k
     REGISTER_CLASS(LiquidCrystalClass);         // 2.3 k
     REGISTER_CLASS(OneWireClass);               // 1.7 k
-    REGISTER_CLASS(DallasTemperatureClass);     // 6.1 k
+//    REGISTER_CLASS(DallasTemperatureClass);     // 6.1 k
     REGISTER_CLASS(StepperClass);               // 0.8 k
     REGISTER_CLASS(ServoClass);                 // 2.5 k
     REGISTER_CLASS(ToneClass);                  // 2.2 k
     REGISTER_CLASS(CapacitiveSensorClass);      // 2.2 k
     
     // new classes
-    //REGISTER_CLASS(DefineClass);                // 0.6 k
-    //REGISTER_CLASS(ArduinoCoreClass);           // 0.7 k
-    //REGISTER_CLASS(WatchdogClass);              // 0.2 k
-    //REGISTER_CLASS(RegisterClass);              // 1.5 k
+    REGISTER_CLASS(DefineClass);                // 0.6 k
+    REGISTER_CLASS(ArduinoCoreClass);           // 0.7 k
+    REGISTER_CLASS(WatchdogClass);              // 0.2 k
+    REGISTER_CLASS(RegisterClass);              // 1.5 k
 
     ComChannel::connect();
 }
