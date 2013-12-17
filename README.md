@@ -35,17 +35,13 @@ What happens if you call methods in an async context? Nothing bad, all works! ev
 	lcd.printString("Hello Second Row!", 0, 1)
 	...
 
-Dependencies
-------------
-- python-serial
-
 How to build and install
 ------------------------
-You need to build the firmware for your Arduino first, so upload it on your Arduino IDE and compile!
+You need to build the firmware for your Arduino first, copy firmware/Nanpy directory under your "sketchbook" directory, start Arduino program, open Sketchbook/Nanpy, select "Upload".
 
-To install Nanpy just type:
+To install Nanpy Python library just type (as root):
 
-	# python setup.py install
+	python setup.py install
 
 How to use
 ----------
