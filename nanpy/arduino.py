@@ -1,6 +1,6 @@
 from nanpy.arduinoboard import (arduinoclassmethod, returns)
-
 import time
+
 
 class Arduino(object):
 
@@ -37,8 +37,20 @@ class Arduino(object):
         pass
 
     @classmethod
+    @returns(int)
+    @arduinoclassmethod
+    def pinModeRead(cls, pin):
+        pass
+
+    @classmethod
     def delay(cls, value):
         time.sleep(float(value)/1000)
+        
+    @classmethod
+    @returns(int)
+    @arduinoclassmethod
+    def millis(cls):
+        pass
 
     @classmethod
     def map(cls, x, in_min, in_max, out_min, out_max):
