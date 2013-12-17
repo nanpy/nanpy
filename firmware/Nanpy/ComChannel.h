@@ -14,9 +14,11 @@ namespace nanpy {
             static void println(String& val);
             static void println(const char* val);
             static void println(int val);
+            static void println(unsigned int val);
             static void println(float val);
             static void println(double val);
             static void println(long val);
+            static void println(unsigned long val);
             static char* readLine();
     };
 }

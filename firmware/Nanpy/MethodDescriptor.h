@@ -26,9 +26,11 @@ namespace nanpy {
             void returns(String& val);
             void returns(const char* val);
             void returns(int val);
+            void returns(unsigned int val);
             void returns(float val);
             void returns(double val);
             void returns(long val);
+            void returns(unsigned long val);
             ~MethodDescriptor();
 
     };
