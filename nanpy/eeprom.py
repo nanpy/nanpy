@@ -1,6 +1,6 @@
 from nanpy.arduinoboard import (arduinoclassmethod, returns)
 
-class EEPROM():
+class EEPROM(object):
 
     @classmethod
     @arduinoclassmethod

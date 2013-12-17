@@ -64,7 +64,7 @@ def arduinoclassmethod(funct):
         return _call(cls.__name__, 0, call_pars)
     return wrapper
 
-class ArduinoObject():
+class ArduinoObject(object):
 
     def __init__(self):
         self.namespace = self.__class__.__name__

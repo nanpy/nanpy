@@ -2,7 +2,7 @@ from nanpy.arduinoboard import (arduinoclassmethod, returns)
 
 import time
 
-class Arduino():
+class Arduino(object):
 
     HIGH = 1
     LOW  = 0
