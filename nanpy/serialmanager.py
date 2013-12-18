@@ -6,6 +6,10 @@ import sys
 DEFAULT_BAUDRATE = 9600
 
 
+class SerialManagerError(Exception):
+    pass
+
+
 def _auto_detect_serial_unix(preferred_list=['*']):
     import glob
     glist = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyACM*')
@@ -47,15 +51,19 @@ class SerialManager(object):
             self._serial = NoneSerialManager()
 
     def connect(self, device):
-        self._serial = serial.Serial(device, self.baudrate)
+        self._serial = serial.Serial(device, self.baudrate, timeout=1)
         time.sleep(2)
 
     def write(self, value):
         self._serial.write(bytes(value, 'latin-1'))
 
     def readline(self):
-        return self._serial.readline().decode()
-
+        s = self._serial.readline().decode()
+        if not len(s):
+            raise SerialManagerError('Serial timeout!')
+        return s
+    
+    
 class SerialManagerPy2(SerialManager):
 
     def __init__(self):
