@@ -40,15 +40,18 @@ class NoneSerialManager(object):
 
 class SerialManager(object):
     
-    def __init__(self, baudrate=DEFAULT_BAUDRATE):
+    def __init__(self, device=None, baudrate=DEFAULT_BAUDRATE):
         self.baudrate = baudrate
-        available_ports = _auto_detect_serial_unix()
-        try:
-            self._serial = serial.Serial(available_ports[0], self.baudrate, timeout=1)
-            time.sleep(2)
-        except:
-            print("Error trying to connect to Arduino")
-            self._serial = NoneSerialManager()
+        if device:
+            self.connect(device)
+        else:
+            # auto detection?
+            available_ports = _auto_detect_serial_unix()
+            try:
+                self.connect(available_ports[0])
+            except:
+                print("Error trying to connect to Arduino")
+                self._serial = NoneSerialManager()
 
     def connect(self, device):
         self._serial = serial.Serial(device, self.baudrate, timeout=1)
