@@ -72,6 +72,10 @@ void nanpy::MethodDescriptor::returns(int val) {
     ComChannel::println(val);
 }
 
+void nanpy::MethodDescriptor::returns(unsigned int val) {
+    ComChannel::println(val);
+}
+
 void nanpy::MethodDescriptor::returns(float val) {
     ComChannel::println(val);
 }
@@ -81,6 +85,10 @@ void nanpy::MethodDescriptor::returns(double val) {
 }
 
 void nanpy::MethodDescriptor::returns(long val) {
+    ComChannel::println(val);
+}
+
+void nanpy::MethodDescriptor::returns(unsigned long val) {
     ComChannel::println(val);
 }
 

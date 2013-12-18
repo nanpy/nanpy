@@ -16,3 +16,6 @@ nanpy.egg-info/
 #Python
 *.pyc
 
+#hidden files
+.*
+!.gitignore

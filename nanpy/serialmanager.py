@@ -60,8 +60,8 @@ class SerialManagerPy2(SerialManager):
     def write(self, value):
         self._serial.write(value)
 
-if sys.version_info.major == 2:
+if sys.version_info[0] == 2:
     serial_manager = SerialManagerPy2()
-elif sys.version_info.major == 3:
+elif sys.version_info[0] == 3:
     serial_manager = SerialManager()
 

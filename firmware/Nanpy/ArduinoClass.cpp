@@ -2,6 +2,16 @@
 #include "ArduinoClass.h"
 #include <stdlib.h>
 
+
+byte pinModeRead(int pin)
+{
+        byte bitmask = digitalPinToBitMask(pin);
+        word port = digitalPinToPort(pin);
+        byte reg = *portModeRegister(port);
+        byte mode = (reg & bitmask) ? 1 : 0;
+        return mode;
+}
+
 void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
     if (strcmp(m->getClass(), "Arduino") == 0) {
         if (strcmp(m->getName(), "digitalWrite") == 0) {
@@ -27,8 +37,16 @@ void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
             m->returns(0);
         }
 
+        if (strcmp(m->getName(), "pinModeRead") == 0) {
+            m->returns(pinModeRead(m->getInt(0)));
+        }
+
         if (strcmp(m->getName(), "delay") == 0) {
             m->returns(0);
+        }
+
+        if (strcmp(m->getName(), "millis") == 0) {
+            m->returns(millis());
         }
     }
 };

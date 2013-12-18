@@ -1,6 +1,7 @@
 from nanpy.arduinoboard import (arduinoclassmethod, returns)
+from nanpy.memo import memoized
 
-class EEPROM():
+class EEPROM(object):
 
     @classmethod
     @arduinoclassmethod
@@ -11,4 +12,11 @@ class EEPROM():
     @returns(int)
     @arduinoclassmethod
     def read(cls, address):
+        pass
+    
+    @classmethod
+    @memoized
+    @returns(int)
+    @arduinoclassmethod
+    def size(cls):
         pass

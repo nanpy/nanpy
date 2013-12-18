@@ -8,9 +8,12 @@ void nanpy::EEPROMClass::elaborate( nanpy::MethodDescriptor* m ) {
             EEPROM.write(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
-
         if (strcmp(m->getName(), "read") == 0) {
             m->returns(EEPROM.read(m->getInt(0)));
+        }
+
+        if (strcmp(m->getName(), "size") == 0) {
+            m->returns(E2END+1);
         }
     }
 };
