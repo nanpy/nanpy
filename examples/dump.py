@@ -1,3 +1,6 @@
+'''Dump all possible values from the AVR
+'''
+
 from dicts.sorteddict import SortedDict
 from entrypoint2 import entrypoint
 from nanpy.arduino import Arduino

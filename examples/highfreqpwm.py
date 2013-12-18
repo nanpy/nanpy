@@ -1,3 +1,6 @@
+'''High frequency PWM mode demo
+'''
+
 from nanpy.arduinopin import ArduinoPin
 
 FREQ = 10007

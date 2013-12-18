@@ -1,5 +1,4 @@
 from __future__ import division
-from nanpy.memo import memoized
 from nanpy.arduino import Arduino
 from nanpy.arduinocore import ArduinoCore
 from nanpy.define import Define
@@ -85,6 +84,9 @@ timer_mask = 7  # 0b111
 
 
 class ArduinoPwmPin(object):
+
+    '''Object-oriented representation of the pin PWM functionality
+    '''
     DEFAULT_DIVISOR = 64
 
     def __init__(self, nr):
@@ -92,12 +94,15 @@ class ArduinoPwmPin(object):
         self.F_CPU = Define().asDict().get('F_CPU')
 
     def reset(self):
+        '''reset to the PWM default state: default frequency is set
+        '''
         if not self.available:
             return
         self.write_divisor(self.DEFAULT_DIVISOR)
 
     @property
     def available(self):
+        """PWM is available for this pin?"""
         timer_id = self._timer_id()
         return timer_id > 0 and timer_id < len(TIMERS_B)
 #        return self.nr in timer_register
@@ -107,23 +112,27 @@ class ArduinoPwmPin(object):
             raise PwmError('pwm not available for pin: %s' % self.nr)
 
     def write_value(self, value):
+        """same as analogWrite."""
         self._check()
 #         assert self.mcu.pins.read_mode(self.nr) == OUTPUT
         Arduino.analogWrite(self.nr, value)
 
     @property
     def divisors_available(self):
+        """list of available divisors."""
         try:
             return list(divisor_mapping[self.nr].norm.values())
         except KeyError:
             return []
 
     def read_divisor(self):
+        """read current divisor."""
         self._check()
         d = divisor_mapping[self.nr]
         return d.norm[self.read_timer_mode()]
 
     def write_divisor(self, value):
+        """write current divisor."""
         self._check()
         d = divisor_mapping[self.nr]
         self.write_timer_mode(d.inv[value])
@@ -168,6 +177,7 @@ class ArduinoPwmPin(object):
 
     @property
     def frequencies_available(self):
+        """list of available frequencies."""
         ls = sorted([self.calculate_frequency(x)
                     for x in self.divisors_available])
         return ls
@@ -192,7 +202,7 @@ class ArduinoPwmPin(object):
     frequency = property(read_frequency, write_frequency)
 
     def read_wgm(self):
-        """Waveform generation mode."""
+        """read waveform generation mode."""
         self._check()
         rega = self.timer_register_name_a
         regb = self.timer_register_name_b
@@ -239,6 +249,16 @@ class ArduinoPwmPin(object):
         OCR1B.value = fill
 
     def set_high_freq_around(self, freq):
+        """set high frequency mode, and try to set frequency as close as
+        possible.
+
+        available frequencies:  F_CPU/N (N=2..65535)
+
+        Example: F_CPU=16000000 (default) -> frequencies=244Hz-8MHz
+
+        TODO: test it on more AVRs, read config from firmware
+
+        """
         top = int(self.F_CPU / freq + 0.5)
         assert 1 < top < (1 << 16)
         self.set_high_freq_around_pwm(top, int(top / 2))
