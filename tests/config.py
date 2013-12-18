@@ -1,3 +1,5 @@
+
+# custom board with 20MHz quartz and ATMEGA328P
 config = dict(
     A0=14,
     ARDUINO=105,

@@ -1,4 +1,5 @@
 from nose.tools import ok_
+import tempfile
 
 
 def exc_(excClass, callableObj, *args, **kwargs):
@@ -28,3 +29,8 @@ def  ok_vcc(vcc):
     print ('vcc=', vcc)
     ok_(vcc < 5.5)
     ok_(vcc > 3)
+
+
+def tmpdir(dir=None, suffix=''):
+    x = tempfile.mkdtemp(suffix=suffix, prefix='nanpy_test_', dir=dir)
+    return x
