@@ -3,6 +3,9 @@ import time
 import fnmatch
 import sys
 
+DEFAULT_BAUDRATE = 9600
+
+
 def _auto_detect_serial_unix(preferred_list=['*']):
     import glob
     glist = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyACM*')
@@ -33,17 +36,18 @@ class NoneSerialManager(object):
 
 class SerialManager(object):
     
-    def __init__(self):
+    def __init__(self, baudrate=DEFAULT_BAUDRATE):
+        self.baudrate = baudrate
         available_ports = _auto_detect_serial_unix()
         try:
-            self._serial = serial.Serial(available_ports[0], 9600, timeout=1)
+            self._serial = serial.Serial(available_ports[0], self.baudrate, timeout=1)
             time.sleep(2)
         except:
             print("Error trying to connect to Arduino")
             self._serial = NoneSerialManager()
 
     def connect(self, device):
-        self._serial = serial.Serial(device, 9600)
+        self._serial = serial.Serial(device, self.baudrate)
         time.sleep(2)
 
     def write(self, value):
