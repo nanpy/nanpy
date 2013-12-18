@@ -3,7 +3,7 @@ import time
 import fnmatch
 import sys
 
-DEFAULT_BAUDRATE = 9600
+DEFAULT_BAUDRATE = 115200
 
 
 class SerialManagerError(Exception):

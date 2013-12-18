@@ -1,3 +1,3 @@
 #pragma once
 
-#define BAUDRATE 9600
+#define BAUDRATE 115200
