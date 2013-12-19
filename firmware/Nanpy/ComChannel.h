@@ -1,7 +1,7 @@
 #ifndef COM_CHANNEL
 #define COM_CHANNEL
 
-#define BAUDRATE 9600
+#include "cfg.h"
 
 #include <Arduino.h>
 
