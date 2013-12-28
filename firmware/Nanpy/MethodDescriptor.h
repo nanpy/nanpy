@@ -18,6 +18,7 @@ namespace nanpy {
             int getNArgs();
             char* getClass();
             int getObjectId();
+            bool getBool(int n);
             int getInt(int n);
             float getFloat(int n);
             double getDouble(int n);
