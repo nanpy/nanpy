@@ -5,6 +5,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <CapacitiveSensor.h>
+#include <DHT.h>
 
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -18,6 +19,7 @@
 #include "MethodDescriptor.h"
 #include "ComChannel.h"
 #include "EEPROMClass.h"
+#include "DHTClass.h"
 
 #include "DefineClass.h"
 #include "ArduinoCoreClass.h"
@@ -51,6 +53,7 @@ void setup() {
     REGISTER_CLASS(ArduinoCoreClass);           // 0.7 k
     REGISTER_CLASS(WatchdogClass);              // 0.2 k
     REGISTER_CLASS(RegisterClass);              // 1.5 k
+    REGISTER_CLASS(DHTClass);
 
     ComChannel::connect();
 }
