@@ -1,9 +1,14 @@
-import serial
-import time
+from nanpy.memo import memoized
 import fnmatch
+import logging
+import serial
 import sys
+import time
 
 DEFAULT_BAUDRATE = 115200
+
+
+PY3 = sys.version_info[0] == 3
 
 
 class SerialManagerError(Exception):
@@ -27,6 +32,7 @@ def _auto_detect_serial_unix(preferred_list=['*']):
         ret.append(d)
     return ret
 
+
 class NoneSerialManager(object):
 
     def write(self, val):
@@ -37,10 +43,10 @@ class NoneSerialManager(object):
 
     def readline(self):
         return ""
-    
+
 
 class SerialManager(object):
-    
+
     def __init__(self, device=None, baudrate=DEFAULT_BAUDRATE):
         self.baudrate = baudrate
         if device:
@@ -59,25 +65,45 @@ class SerialManager(object):
 #         time.sleep(2)
 
     def write(self, value):
-        self._serial.write(bytes(value, 'latin-1'))
+        if PY3:
+            self._serial.write(bytes(value, 'latin-1'))
+        else:
+            self._serial.write(value)
 
     def readline(self):
         s = self._serial.readline().decode()
         if not len(s):
             raise SerialManagerError('Serial timeout!')
         return s
-    
-    
-class SerialManagerPy2(SerialManager):
 
-    def __init__(self):
-        SerialManager.__init__(self)
+    def flush_input(self):
+        '''Flush input buffer, discarding all it's contents.'''
+        self._serial.flushInput()
+
+
+# TODO: remove it
+# created only for compaibility
+class SerialManagerCompatibility(object):
+    def __init__(self, device=None, baudrate=DEFAULT_BAUDRATE):
+        self.baudrate = baudrate
+        self.device = device
+
+    @property
+    @memoized
+    def manager(self):
+        return SerialManager(self.device, self.baudrate)
+
+    def connect(self, device):
+        return self.manager.connect(device)
 
     def write(self, value):
-        self._serial.write(value)
+        return self.manager.write(value)
 
-if sys.version_info[0] == 2:
-    serial_manager = SerialManagerPy2()
-elif sys.version_info[0] == 3:
-    serial_manager = SerialManager()
+    def readline(self):
+        return self.manager.readline()
+
+    def flush_input(self):
+        return self.manager.flush_input()
+
+serial_manager = SerialManagerCompatibility()
 
