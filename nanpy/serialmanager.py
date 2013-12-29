@@ -7,6 +7,7 @@ import time
 
 DEFAULT_BAUDRATE = 115200
 
+log = logging.getLogger(__name__)
 
 PY3 = sys.version_info[0] == 3
 
@@ -65,13 +66,16 @@ class SerialManager(object):
 #         time.sleep(2)
 
     def write(self, value):
+        log.debug('sending:%s' % repr(value))
         if PY3:
             self._serial.write(bytes(value, 'latin-1'))
         else:
             self._serial.write(value)
 
     def readline(self):
-        s = self._serial.readline().decode()
+        s = self._serial.readline()
+        log.debug('received:%s' % repr(s))
+        s = s.decode()
         if not len(s):
             raise SerialManagerError('Serial timeout!')
         return s
