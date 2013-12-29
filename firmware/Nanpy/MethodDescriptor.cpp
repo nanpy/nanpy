@@ -33,7 +33,7 @@ int nanpy::MethodDescriptor::getNArgs() {
 };
 
 bool nanpy::MethodDescriptor::getBool(int n) {
-    return this->stack[n] == "True" ? true : false;
+  return strcmp(this->stack[n], "True") == 0 ? true : false;
 };
 
 int nanpy::MethodDescriptor::getInt(int n) {
