@@ -13,7 +13,9 @@ response = ntp_client.request('europe.pool.ntp.org', version=3)
 
 time = int(response.tx_time)
 
-lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
+pins = [7, 8, 9, 10, 11, 12]
+cols, rows = 16, 2
+lcd = Lcd(pins, [cols, rows])
 
 while (1):
     lcd.setCursor(0, 0)
