@@ -64,6 +64,7 @@ class SerialManager(object):
     def connect(self, device):
         self._serial = serial.Serial(device, self.baudrate, timeout=1)
 #         time.sleep(2)
+        self.flush_input()
 
     def write(self, value):
         log.debug('sending:%s' % repr(value))
