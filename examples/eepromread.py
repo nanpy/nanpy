@@ -7,7 +7,7 @@
 from nanpy import EEPROM
 import sys
 
-EEPROM_SIZE = 1024//4  #only read first 256 bytes 
+EEPROM_SIZE = EEPROM.size()
 
 
 def display(a_list):
@@ -16,6 +16,7 @@ def display(a_list):
             sys.stdout.write( "%x : " % a_list[j+i*16])
         print
 
+
 def read_eeprom():
     data_list = []
     for i in range(0, EEPROM_SIZE):
@@ -23,6 +24,7 @@ def read_eeprom():
         data_list.append(s)
     return data_list
 
+
 if __name__ == "__main__":
-    print("Reading first 256 bytes of eeprom...")
+    print("Reading eeprom (%s bytes)..." % EEPROM_SIZE)
     display(read_eeprom())

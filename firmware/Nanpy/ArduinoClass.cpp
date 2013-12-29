@@ -44,5 +44,9 @@ void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "delay") == 0) {
             m->returns(0);
         }
+
+        if (strcmp(m->getName(), "millis") == 0) {
+            m->returns(millis());
+        }
     }
 };

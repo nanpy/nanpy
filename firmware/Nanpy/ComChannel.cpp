@@ -42,6 +42,10 @@ void nanpy::ComChannel::println(int val) {
     Serial.println(val);
 }
 
+void nanpy::ComChannel::println(unsigned int val) {
+    Serial.println(val);
+}
+
 void nanpy::ComChannel::println(float val) {
     Serial.println(val);
 }
@@ -51,6 +55,10 @@ void nanpy::ComChannel::println(double val) {
 }
 
 void nanpy::ComChannel::println(long val) {
+    Serial.println(val);
+}
+
+void nanpy::ComChannel::println(unsigned long val) {
     Serial.println(val);
 }
 

@@ -11,4 +11,7 @@ setup(name="nanpy",
       url="http://github.com/nanpy/nanpy",
       packages = find_packages(),
       keywords= "arduino library prototype",
+      install_requires=[
+        "python-serial",
+      ],
       zip_safe = True)
