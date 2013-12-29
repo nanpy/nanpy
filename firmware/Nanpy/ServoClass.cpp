@@ -1,11 +1,18 @@
+#include "cfg.h"
+
+#if USE_Servo
+
 #include <Arduino.h>
 #include <Servo.h>
 #include "ServoClass.h"
 #include <stdlib.h>
 
-void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
-    if (strcmp(m->getClass(), "Servo") == 0) {
+const char* nanpy::ServoClass::get_firmware_id()
+{
+    return "Servo";
+}
 
+void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<Servo>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
@@ -40,6 +47,7 @@ void nanpy::ServoClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "attached") == 0) {
             m->returns(v[m->getObjectId()]->attached());
         }
+}
 
-    }
-};
+#endif
+

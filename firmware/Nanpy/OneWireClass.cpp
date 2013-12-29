@@ -1,11 +1,17 @@
+#include "cfg.h"
+
+#if USE_OneWire
+
 #include <OneWire.h>
 #include "OneWireClass.h"
 #include <stdlib.h>
 
+const char* nanpy::OneWireClass::get_firmware_id()
+{
+    return "OneWire";
+}
+
 void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
-
-    if (strcmp(m->getClass(), "OneWire") == 0) {
-
         ObjectsManager<OneWire>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {      
@@ -65,6 +71,6 @@ void nanpy::OneWireClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "read") == 0) {
             m->returns(v[m->getObjectId()]->read());
         }
-
-    }
 };
+
+#endif

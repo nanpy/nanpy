@@ -1,12 +1,19 @@
+#include "cfg.h"
+
+#if USE_LiquidCrystal
+
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include "LiquidCrystalClass.h"
 #include <stdlib.h>
 #include <math.h>
 
-void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
-    if (strcmp(m->getClass(), "Lcd") == 0) {
+const char* nanpy::LiquidCrystalClass::get_firmware_id()
+{
+    return "Lcd";
+}
 
+void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<LiquidCrystal>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {       
@@ -31,6 +38,5 @@ void nanpy::LiquidCrystalClass::elaborate( nanpy::MethodDescriptor* m ) {
             v[m->getObjectId()]->setCursor(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
-
-    }
 };
+#endif

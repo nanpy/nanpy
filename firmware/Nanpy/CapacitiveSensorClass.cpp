@@ -1,10 +1,17 @@
+#include "cfg.h"
+
+#if USE_CapacitiveSensor
+
 #include <Arduino.h>
 #include <CapacitiveSensor.h>
 #include "CapacitiveSensorClass.h"
 
-void nanpy::CapacitiveSensorClass::elaborate( nanpy::MethodDescriptor* m ) {
-    if (strcmp(m->getClass(), "CapacitiveSensor") == 0) {
+const char* nanpy::CapacitiveSensorClass::get_firmware_id()
+{
+    return "CapacitiveSensor";
+}
 
+void nanpy::CapacitiveSensorClass::elaborate( nanpy::MethodDescriptor* m ) {
         ObjectsManager<CapacitiveSensor>::elaborate(m);
 
         if (strcmp(m->getName(), "new") == 0) {       
@@ -19,6 +26,6 @@ void nanpy::CapacitiveSensorClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "capacitiveSensorRaw") == 0) {
             m->returns(v[m->getObjectId()]->capacitiveSensorRaw(m->getInt(0)));
         }
-
-    }
 };
+
+#endif

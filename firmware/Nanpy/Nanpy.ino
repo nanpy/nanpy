@@ -1,3 +1,5 @@
+#include "cfg.h"
+
 #include <EEPROM.h>
 #include <Servo.h>
 #include <LiquidCrystal.h>
@@ -25,6 +27,8 @@
 #include "ArduinoCoreClass.h"
 #include "WatchdogClass.h"
 #include "RegisterClass.h"
+#include "CounterClass.h"
+#include "InfoClass.h"
 
 #include <avr/wdt.h>
 
@@ -38,22 +42,24 @@ void setup() {
     MCUSR = 0;
     wdt_disable();
    
-    REGISTER_CLASS(nanpy::EEPROMClass);         // 0.3 k
-    REGISTER_CLASS(ArduinoClass);               // 0.8 k
-    REGISTER_CLASS(LiquidCrystalClass);         // 2.3 k
-    REGISTER_CLASS(OneWireClass);               // 1.7 k
-//    REGISTER_CLASS(DallasTemperatureClass);     // 6.1 k
-    REGISTER_CLASS(StepperClass);               // 0.8 k
-    REGISTER_CLASS(ServoClass);                 // 2.5 k
-    REGISTER_CLASS(ToneClass);                  // 2.2 k
-    REGISTER_CLASS(CapacitiveSensorClass);      // 2.2 k
-    
-    // new classes
-    REGISTER_CLASS(DefineClass);                // 0.6 k
-    REGISTER_CLASS(ArduinoCoreClass);           // 0.7 k
-    REGISTER_CLASS(WatchdogClass);              // 0.2 k
-    REGISTER_CLASS(RegisterClass);              // 1.5 k
-    REGISTER_CLASS(DHTClass);
+    REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
+
+    REGISTER_CLASS_CONDITIONAL(nanpy::EEPROMClass, USE_EEPROM);                     // 0.3 k
+    REGISTER_CLASS_CONDITIONAL(LiquidCrystalClass, USE_LiquidCrystal);              //  2.3 k
+    REGISTER_CLASS_CONDITIONAL(OneWireClass, USE_OneWire);                          // 1.7 k
+    REGISTER_CLASS_CONDITIONAL(DallasTemperatureClass, USE_DallasTemperature);      // 6.1 k
+    REGISTER_CLASS_CONDITIONAL(StepperClass, USE_Stepper);                          // 0.8 k
+    REGISTER_CLASS_CONDITIONAL(ServoClass, USE_Servo);                              // 2.5 k
+    REGISTER_CLASS_CONDITIONAL(ToneClass, USE_Tone);                                // 2.2 k
+    REGISTER_CLASS_CONDITIONAL(CapacitiveSensorClass, USE_CapacitiveSensor);        // 2.2 k
+    REGISTER_CLASS_CONDITIONAL(DefineClass, USE_Define);                            // 0.6 k
+    REGISTER_CLASS_CONDITIONAL(ArduinoCoreClass, USE_ArduinoCore);                  // 
+    REGISTER_CLASS_CONDITIONAL(WatchdogClass, USE_Watchdog);                        // 0.2 k
+    REGISTER_CLASS_CONDITIONAL(RegisterClass, USE_Register);                        // 1.5 k
+
+    REGISTER_CLASS_CONDITIONAL(CounterClass, USE_Counter);                          // 
+    REGISTER_CLASS_CONDITIONAL(InfoClass, USE_Info);                          // 
+    REGISTER_CLASS_CONDITIONAL(DHTClass, USE_DHT);
 
     ComChannel::connect();
 }

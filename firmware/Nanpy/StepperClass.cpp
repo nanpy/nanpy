@@ -1,11 +1,18 @@
+#include "cfg.h"
+
+#if USE_Stepper
+
 #include <Arduino.h>
 #include <Stepper.h>
 #include "StepperClass.h"
 #include <stdlib.h>
 
-void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
-    if (strcmp(m->getClass(), "Stepper") == 0) {
+const char* nanpy::StepperClass::get_firmware_id()
+{
+    return "Stepper";
+}
 
+void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
         ObjectsManager<Stepper>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
@@ -23,6 +30,8 @@ void nanpy::StepperClass::elaborate( MethodDescriptor* m ) {
             v[m->getObjectId()]->step(m->getInt(0));
             m->returns(0);
         }
+}
 
-    }
-};
+
+#endif
+

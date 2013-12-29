@@ -1,3 +1,7 @@
+#include "cfg.h"
+
+#if USE_Register
+
 #include <Arduino.h>
 #include "RegisterClass.h"
 #include <stdlib.h>
@@ -39,68 +43,71 @@ const int REG_COUNT = sizeof(sizeof_list) / sizeof(sizeof_list[0]);
 
 #define LONGEST_REGISTER_NAME  21
 
+const char* nanpy::RegisterClass::get_firmware_id()
+{
+    return "R";
+}
+
 void nanpy::RegisterClass::elaborate(nanpy::MethodDescriptor* m)
 {
-    if (strcmp(m->getClass(), "_Registers") == 0)
+    if (strcmp(m->getName(), "c") == 0) // count
     {
-        if (strcmp(m->getName(), "count") == 0)
+        m->returns(REG_COUNT);
+    }
+    else if (strcmp(m->getName(), "n") == 0) // name
+    {
+        word regindex = m->getInt(0);
+        char buffer[LONGEST_REGISTER_NAME];
+        strcpy_P(buffer, (PGM_P) pgm_read_word(&(name_table[regindex])));
+        m->returns(buffer);
+    }
+    else
+    {
+        word regindex = m->getInt(0);
+        word regvalue = m->getInt(1);
+
+        word regaddr = pgm_read_word(&reg_list[regindex]);
+        byte regsize = pgm_read_byte(&sizeof_list[regindex]);
+
+        volatile byte* preg8 = (volatile byte*) regaddr;
+        volatile word* preg16 = (volatile word*) regaddr;
+
+        if (strcmp(m->getName(), "r") == 0) // read
         {
-            m->returns(REG_COUNT);
+            switch (regsize)
+            {
+            case 1:
+                m->returns(*preg8);
+                break;
+            case 2:
+                m->returns(*preg16);
+                break;
+            }
         }
-        else if (strcmp(m->getName(), "name") == 0)
+        else if (strcmp(m->getName(), "w") == 0) // write
         {
-            word regindex = m->getInt(0);
-            char buffer[LONGEST_REGISTER_NAME];
-            strcpy_P(buffer, (PGM_P) pgm_read_word(&(name_table[regindex])));
-            m->returns(buffer);
+            switch (regsize)
+            {
+            case 1:
+                *preg8 = (byte) regvalue;
+                break;
+            case 2:
+                *preg16 = regvalue;
+                break;
+            }
+            m->returns(0);
         }
-        else
+        else if (strcmp(m->getName(), "a") == 0) // address
         {
-            word regindex = m->getInt(0);
-            word regvalue = m->getInt(1);
-
-            word regaddr = pgm_read_word(&reg_list[regindex]);
-            byte regsize = pgm_read_byte(&sizeof_list[regindex]);
-
-            volatile byte* preg8 = (volatile byte*) regaddr;
-            volatile word* preg16 = (volatile word*) regaddr;
-
-            if (strcmp(m->getName(), "read") == 0)
-            {
-                switch (regsize)
-                {
-                case 1:
-                    m->returns(*preg8);
-                    break;
-                case 2:
-                    m->returns(*preg16);
-                    break;
-                }
-            }
-            else if (strcmp(m->getName(), "write") == 0)
-            {
-                switch (regsize)
-                {
-                case 1:
-                    *preg8 = (byte) regvalue;
-                    break;
-                case 2:
-                    *preg16 = regvalue;
-                    break;
-                }
-                m->returns(0);
-            }
-            else if (strcmp(m->getName(), "address") == 0)
-            {
-                m->returns(regaddr);
-            }
-            else if (strcmp(m->getName(), "size") == 0)
-            {
-                m->returns(regsize);
-            }
-
+            m->returns(regaddr);
         }
+        else if (strcmp(m->getName(), "s") == 0) // size
+        {
+            m->returns(regsize);
+        }
+
     }
 }
-;
+
+#endif
 

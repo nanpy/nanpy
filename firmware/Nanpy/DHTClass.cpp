@@ -1,11 +1,18 @@
+#include "cfg.h"
+
+#if USE_DHT
+
 #include <Arduino.h>
 #include <DHT.h>
 #include "DHTClass.h"
 #include <stdlib.h>
 
-void nanpy::DHTClass::elaborate( MethodDescriptor* m ) {
-  if (strcmp(m->getClass(), "DHT") == 0) {
+const char* nanpy::DHTClass::get_firmware_id()
+{
+    return "DHT";
+}
 
+void nanpy::DHTClass::elaborate( MethodDescriptor* m ) {
     ObjectsManager<DHT>::elaborate(m);
 
     if (strcmp(m->getName(),"new") == 0) {
@@ -27,5 +34,6 @@ void nanpy::DHTClass::elaborate( MethodDescriptor* m ) {
     if (strcmp(m->getName(), "readTemperature") == 0) {
       m->returns(v[m->getObjectId()]->readTemperature(m->getBool(0)));
     }
-  }
 };
+
+#endif

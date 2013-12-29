@@ -3,50 +3,40 @@
 #include <stdlib.h>
 
 
-byte pinModeRead(int pin)
+const char* nanpy::ArduinoClass::get_firmware_id()
 {
-        byte bitmask = digitalPinToBitMask(pin);
-        word port = digitalPinToPort(pin);
-        byte reg = *portModeRegister(port);
-        byte mode = (reg & bitmask) ? 1 : 0;
-        return mode;
+    return "A";
 }
 
 void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
-    if (strcmp(m->getClass(), "Arduino") == 0) {
-        if (strcmp(m->getName(), "digitalWrite") == 0) {
+        if (strcmp(m->getName(), "dw") == 0) { // digitalWrite
             digitalWrite(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
 
-        if (strcmp(m->getName(), "digitalRead") == 0) {
+        if (strcmp(m->getName(), "r") == 0) {  // digitalRead
             m->returns(digitalRead(m->getInt(0)));
         }
 
-        if (strcmp(m->getName(), "analogWrite") == 0) {
+        if (strcmp(m->getName(), "aw") == 0) { // analogWrite
             analogWrite(m->getInt(0), m->getInt(1));
             m->returns(0);
         }
 
-        if (strcmp(m->getName(), "analogRead") == 0) {
+        if (strcmp(m->getName(), "a") == 0) {  // analogRead
             m->returns(analogRead(m->getInt(0)));
         }
 
-        if (strcmp(m->getName(), "pinMode") == 0) {
+        if (strcmp(m->getName(), "pm") == 0) {  // pinMode
             pinMode(m->getInt(0), m->getInt(1));
             m->returns(0);
-        }
-
-        if (strcmp(m->getName(), "pinModeRead") == 0) {
-            m->returns(pinModeRead(m->getInt(0)));
         }
 
         if (strcmp(m->getName(), "delay") == 0) {
             m->returns(0);
         }
 
-        if (strcmp(m->getName(), "millis") == 0) {
+        if (strcmp(m->getName(), "m") == 0) {  // millis
             m->returns(millis());
         }
-    }
 };

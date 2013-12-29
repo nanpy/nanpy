@@ -1,13 +1,19 @@
+#include "cfg.h"
+
+#if USE_DallasTemperature
+
 #include <Arduino.h>
 #include <DallasTemperature.h>
 #include <OneWire.h>
 #include "DallasTemperatureClass.h"
 #include <stdlib.h>
 
+const char* nanpy::DallasTemperatureClass::get_firmware_id()
+{
+    return "DallasTemperature";
+}
+
 void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
-
-    if (strcmp(m->getClass(), "DallasTemperature") == 0) {
-
         ObjectsManager<DallasTemperature>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {       
@@ -82,6 +88,5 @@ void nanpy::DallasTemperatureClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "getDeviceCount") == 0) {
             m->returns(v[m->getObjectId()]->getDeviceCount());
         }
-
-    }
 };
+#endif
