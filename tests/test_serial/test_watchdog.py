@@ -1,5 +1,10 @@
 from nanpy.arduinotree import ArduinoTree
 from nanpy.watchdog import Watchdog
+import common
+
+
+def setup():
+    common.setup()
 
 
 def test():

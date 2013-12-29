@@ -3,11 +3,11 @@ from nanpy.examples.counterdemo import counterdemo
 from nanpy.examples.dump import dumpall
 from nanpy.examples.highfreqpwm import highfreqpwm
 from nanpy.examples.reset import reset_demo
-from tests.util import soft_reset
+import common
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test_dump():

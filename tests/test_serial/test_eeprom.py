@@ -1,14 +1,10 @@
-from nose.tools import eq_
-from nose.tools import ok_
-from nose.tools import eq_
-from nose.tools import ok_
-from tests.util import soft_reset
-from tests.util import exc_
 from nanpy.arduinotree import ArduinoTree
+from nose.tools import eq_
+import common
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test():

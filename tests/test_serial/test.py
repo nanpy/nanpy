@@ -3,11 +3,12 @@ from nanpy.arduinotree import ArduinoTree
 from nanpy.resgister import RegisterFeature
 from nanpy.vcc import Vcc
 from nose.tools import eq_, ok_
-from tests.util import ok_vcc, soft_reset
+from tests.util import ok_vcc
+import common
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test_avr_name():

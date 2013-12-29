@@ -26,8 +26,7 @@ def dump_dict(d):
 
 
 def dumpall():
-    connection = SerialManager()
-    a = ArduinoTree(connection=connection)
+    a = ArduinoTree()
 
     print((FORMAT + ' V') % ('read_vcc', a.vcc.read()))
     print((FORMAT + ' sec') % ('millis', a.api.millis() / 1000.0))

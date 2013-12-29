@@ -1,4 +1,5 @@
 from nanpy.arduinotree import ArduinoTree
+from nanpy.serialmanager import serial_manager
 from nose.tools import ok_
 import tempfile
 
@@ -38,7 +39,3 @@ def ok_vcc(vcc):
 def tmpdir(dir=None, suffix=''):
     x = tempfile.mkdtemp(suffix=suffix, prefix='nanpy_test_', dir=dir)
     return x
-
-
-def soft_reset():
-    ArduinoTree().soft_reset()

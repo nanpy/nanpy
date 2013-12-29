@@ -1,12 +1,12 @@
 from config import config
 from nose.tools import eq_, ok_
-from tests.util import soft_reset
+import common
 from nanpy.arduinotree import ArduinoTree
 from nanpy.define import DefineFeature
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test_defs():

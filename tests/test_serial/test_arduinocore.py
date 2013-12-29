@@ -1,11 +1,11 @@
-from tests.util import soft_reset
+import common
 from nanpy.arduinotree import ArduinoTree
 from nose.tools import eq_
 from nose.tools import ok_
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test():

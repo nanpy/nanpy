@@ -5,7 +5,7 @@ import os
 import shutil
 
 
-FIRMWARE = os.path.dirname( __file__ ) + '/../firmware/Nanpy'
+FIRMWARE = os.path.dirname(__file__) + '/../firmware/Nanpy'
 
 
 def test_make():

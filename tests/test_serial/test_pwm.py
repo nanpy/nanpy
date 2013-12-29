@@ -1,11 +1,11 @@
 from config import config
 from nose.tools import eq_
-from tests.util import soft_reset
 from nanpy.arduinotree import ArduinoTree
+import common
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 INPUT, OUTPUT = 0, 1

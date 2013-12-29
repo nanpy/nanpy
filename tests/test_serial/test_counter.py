@@ -3,14 +3,13 @@ from nanpy.arduinotree import ArduinoTree
 from nanpy.counter import Counter
 from nose.tools import ok_, eq_
 from config import config
-from tests.util import soft_reset
-import time
+import common
 
 OUTPUT = 1
 
 
 def setup():
-    soft_reset()
+    common.setup()
 
 
 def test_counter():
