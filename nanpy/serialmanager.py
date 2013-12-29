@@ -56,7 +56,7 @@ class SerialManager(object):
 
     def connect(self, device):
         self._serial = serial.Serial(device, self.baudrate, timeout=1)
-        time.sleep(2)
+#         time.sleep(2)
 
     def write(self, value):
         self._serial.write(bytes(value, 'latin-1'))
