@@ -1,0 +1,25 @@
+from config import config
+from nanpy.arduinotree import ArduinoTree
+from nanpy.resgister import RegisterFeature
+from nanpy.vcc import Vcc
+from nose.tools import eq_, ok_
+from tests.util import ok_vcc, soft_reset
+
+
+def setup():
+    soft_reset()
+
+
+def test_avr_name():
+    a = ArduinoTree()
+    eq_(a.avr_name, config['avr_name'])
+
+
+def test_vcc():
+    a = ArduinoTree()
+    ok_vcc(a.vcc.read())
+
+
+def test_vcc2():
+    vcc = Vcc(RegisterFeature())
+    ok_vcc(vcc.read())

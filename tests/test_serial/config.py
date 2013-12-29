@@ -5,5 +5,5 @@ config = dict(
     ARDUINO=105,
     F_CPU=20000000.0,
     MCU='__AVR_ATmega328P__',
-    model='ATmega328P',
+    avr_name='ATmega328P',
 )
