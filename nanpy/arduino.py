@@ -1,45 +1,38 @@
-from nanpy.arduinoboard import (arduinoclassmethod, returns)
+from nanpy.arduinoboard import arduinoclassmethod, returns, FirmwareClass
 import time
 
 
-class Arduino(object):
+class Arduino(FirmwareClass):
+    firmware_id = 'A'
 
-    HIGH = 1
-    LOW  = 0
-    INPUT  = 0
-    OUTPUT = 1
+    LOW, HIGH = 0, 1
+    INPUT, OUTPUT = 0, 1
 
     @classmethod
-    @arduinoclassmethod
+    @arduinoclassmethod('dw')
     def digitalWrite(cls, pin, value):
         pass
 
     @classmethod
     @returns(int)
-    @arduinoclassmethod
+    @arduinoclassmethod('r')
     def digitalRead(cls, pin):
         pass
 
     @classmethod
-    @arduinoclassmethod
+    @arduinoclassmethod('aw')
     def analogWrite(cls, pin, value):
         pass
 
     @classmethod
     @returns(int)
-    @arduinoclassmethod
+    @arduinoclassmethod('a')
     def analogRead(cls, pin):
         pass
 
     @classmethod
-    @arduinoclassmethod
+    @arduinoclassmethod('pm')
     def pinMode(cls, pin, mode):
-        pass
-
-    @classmethod
-    @returns(int)
-    @arduinoclassmethod
-    def pinModeRead(cls, pin):
         pass
 
     @classmethod
@@ -48,7 +41,7 @@ class Arduino(object):
         
     @classmethod
     @returns(int)
-    @arduinoclassmethod
+    @arduinoclassmethod('m')
     def millis(cls):
         pass
 

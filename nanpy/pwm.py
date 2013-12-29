@@ -1,8 +1,4 @@
 from __future__ import division
-from nanpy.arduino import Arduino
-from nanpy.arduinocore import ArduinoCore
-from nanpy.define import Define
-from nanpy.resgister import Register
 import logging
 
 log = logging.getLogger(__name__)
@@ -89,9 +85,12 @@ class ArduinoPwmPin(object):
     '''
     DEFAULT_DIVISOR = 64
 
-    def __init__(self, nr):
+    def __init__(self, nr, define, register, core, api):
         self.nr = nr
-        self.F_CPU = Define().asDict().get('F_CPU')
+        self.register = register
+        self.F_CPU = define.get('F_CPU')
+        self.api = api
+        self.core = core
 
     def reset(self):
         '''reset to the PWM default state: default frequency is set
@@ -115,7 +114,7 @@ class ArduinoPwmPin(object):
         """same as analogWrite."""
         self._check()
 #         assert self.mcu.pins.read_mode(self.nr) == OUTPUT
-        Arduino.analogWrite(self.nr, value)
+        self.api.analogWrite(self.nr, value)
 
     @property
     def divisors_available(self):
@@ -139,7 +138,7 @@ class ArduinoPwmPin(object):
     divisor = property(read_divisor, write_divisor)
 
     def _timer_id(self):
-        return ArduinoCore.digitalPinToTimer(self.nr)
+        return self.core.digitalPinToTimer(self.nr)
 
     def _timer_register_name(self, variant='B'):
         self._check()
@@ -156,12 +155,12 @@ class ArduinoPwmPin(object):
 
     def read_timer_mode(self):
         reg_name = self.timer_register_name_b
-        return Register(reg_name).read_value() & timer_mask
+        return self.register.get(reg_name).read_value() & timer_mask
 
     def write_timer_mode(self, value):
         assert value <= 7
         reg_name = self.timer_register_name_b
-        reg = Register(reg_name)
+        reg = self.register.get(reg_name)
         old = reg.value & ~timer_mask
         reg.value = (old | value)
 
@@ -187,7 +186,7 @@ class ArduinoPwmPin(object):
         wgm = self.read_wgm()
         if wgm == 14:
             # high freq mode
-            return self.F_CPU / Register('ICR1').value
+            return self.F_CPU / self.register.get('ICR1').value
         else:
             return self.calculate_frequency(self.read_divisor())
 
@@ -211,8 +210,8 @@ class ArduinoPwmPin(object):
         else:
             maskb = 8  # 0b00001000
         maska = 3  # 0b00000011
-        a = Register(rega).value & maska
-        b = Register(regb).value & maskb
+        a = self.register.get(rega).value & maska
+        b = self.register.get(regb).value & maskb
         return a + (b >> 1)
 
     wgm = property(read_wgm, None)
@@ -232,12 +231,12 @@ class ArduinoPwmPin(object):
         self.write_divisor(1)
         self.write_value(128)
 
-        TCCR1A = Register('TCCR1A')
-        TCCR1B = Register('TCCR1B')
-        TCNT1 = Register('TCNT1')
-        ICR1 = Register('ICR1')
-        OCR1A = Register('OCR1A')
-        OCR1B = Register('OCR1B')
+        TCCR1A = self.register.get('TCCR1A')
+        TCCR1B = self.register.get('TCCR1B')
+        TCNT1 = self.register.get('TCNT1')
+        ICR1 = self.register.get('ICR1')
+        OCR1A = self.register.get('OCR1A')
+        OCR1B = self.register.get('OCR1B')
 
         TCCR1A.value = 2 + \
             (240 & TCCR1A.value)  # 0b00000010 + (0b11110000 & reg.TCCR1A)

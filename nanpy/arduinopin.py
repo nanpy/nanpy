@@ -1,14 +1,9 @@
-from nanpy.arduino import Arduino
-from nanpy.arduinocore import ArduinoCore
-from nanpy.define import Define
 from nanpy.memo import memoized
 from nanpy.pwm import ArduinoPwmPin
 import sys
 
-HIGH = Arduino.HIGH
-LOW = Arduino.LOW
-INPUT = Arduino.INPUT
-OUTPUT = Arduino.OUTPUT
+LOW, HIGH = 0, 1
+INPUT, OUTPUT = 0, 1
 
 # from six
 PY3 = sys.version_info[0] == 3
@@ -16,6 +11,10 @@ if PY3:
     string_types = str,
 else:
     string_types = basestring,
+
+
+class PinError(Exception):
+    pass
 
 
 def name2int(pin_name, A0):
@@ -43,49 +42,21 @@ class ArduinoPin(object):
     Examples:
 
         # they do the same
-        ArduinoPin(0).value
-        ArduinoPin('D0').value
-        ArduinoPin('D0').read_value()
+        a=ArduinoTree()
+        a.pin.get(0).value
+        a.pin.get('D0').value
+        a.pin.get('D0').read_value()
     '''
-    @classmethod
-    @memoized
-    def count_analog(cls):
-        """Count of analog pins."""
-        return len(cls.analog_names())
 
-    @classmethod
-    @memoized
-    def count_digital(cls):
-        """Count of digital pins."""
-        return len(cls.digital_names())
-
-    @classmethod
-    @memoized
-    def count(cls):
-        """Count of all pins."""
-        return cls.count_analog() + cls.count_digital()
-
-    @classmethod
-    @memoized
-    def digital_names(cls):
-        """List of digital pin names."""
-        A0 = Define.asDict()['A0']
-        return ['D%s' % x for x in range(0, A0)]
-
-    @classmethod
-    @memoized
-    def analog_names(cls):
-        """List of analog pin names."""
-        A0 = Define.asDict()['A0']
-        return (
-            ['A%s' % (x - A0) for x in range(A0, ArduinoCore.totalPinCount())]
-        )
-
-    def __init__(self, name):
+    def __init__(self, name, total_pin_count, define, register, core, api):
         """name can be int or string."""
-        self.A0 = Define.asDict()['A0']
+        self.register = register
+        self.core = core
+        self.api = api
+        self.define = define
+        self.A0 = define.get('A0')
         self.nr = name2int(name, self.A0)
-        if self.nr >= ArduinoCore.totalPinCount():
+        if self.nr >= total_pin_count:
             raise ValueError('pin %s (Nr:%s) not in range' %
                              (name, self.nr))
 
@@ -94,7 +65,14 @@ class ArduinoPin(object):
     def pwm(self):
         '''Object-oriented representation of the pin PWM functionality
         '''
-        return ArduinoPwmPin(self.nr)
+        return (
+            ArduinoPwmPin(
+                self.nr,
+                self.define,
+                self.register,
+                self.core,
+                self.api)
+        )
 
     @property
     def is_digital(self):
@@ -108,14 +86,14 @@ class ArduinoPin(object):
     def avr_port(self):
         '''AVR port name (example: "B")
         '''
-        x = ArduinoCore.digitalPinToPort(self.nr)
+        x = self.core.digitalPinToPort(self.nr)
         return chr(ord('A') + x - 1)
 
     @property
     def avr_bit(self):
         '''AVR bit name (example: "2")
         '''
-        bitmask = ArduinoCore.digitalPinToBitMask(self.nr)
+        bitmask = self.core.digitalPinToBitMask(self.nr)
         i = 0
         while bitmask != 1:
             bitmask >>= 1
@@ -151,14 +129,13 @@ class ArduinoPin(object):
     @property
     def programming_function(self):
         """programming function (MISO, MOSI, SCK or SS)"""
-        d = Define.asDict()
-        if self.nr == d['MISO']:
+        if self.nr == self.define.get('MISO'):
             return 'MISO'
-        if self.nr == d['MOSI']:
+        if self.nr == self.define.get('MOSI'):
             return 'MOSI'
-        if self.nr == d['SCK']:
+        if self.nr == self.define.get('SCK'):
             return 'SCK'
-        if self.nr == d['SS']:
+        if self.nr == self.define.get('SS'):
             return 'SS'
 
     def reset(self):
@@ -182,7 +159,7 @@ class ArduinoPin(object):
         """
         if direction is not None:
             self.write_mode(direction)
-        return Arduino.digitalRead(self.nr)
+        return self.api.digitalRead(self.nr)
 
     def write_digital_value(self, value, direction=None):
         """write digital value  (0/1)
@@ -196,7 +173,7 @@ class ArduinoPin(object):
         if direction is not None:
             self.write_mode(direction)
         value = 1 if value else 0
-        return Arduino.digitalWrite(self.nr, value)
+        return self.api.digitalWrite(self.nr, value)
 
     digital_value = property(read_digital_value, write_digital_value)
 
@@ -205,14 +182,92 @@ class ArduinoPin(object):
         '''
         if not self.is_analog:
             return None
-        return Arduino.analogRead(self.nr)
+        return self.api.analogRead(self.nr)
     analog_value = property(read_analog_value)
 
     def read_mode(self):
         """read mode  (0/1)"""
-        return Arduino.pinModeRead(self.nr)
+        bitmask = self.core.digitalPinToBitMask(self.nr)
+        port = self.core.digitalPinToPort(self.nr)
+        reg = self.core.portModeRegister(port)
+        mode = OUTPUT if reg & bitmask else INPUT
+        return mode
 
     def write_mode(self, value):
         """write mode  (0/1)"""
-        return Arduino.pinMode(self.nr, value)
+        return self.api.pinMode(self.nr, value)
     mode = property(read_mode, write_mode)
+
+
+class PinFeature(object):
+
+    def __init__(self, define, register, core, api):
+        self.A0 = define.get('A0')
+        self.define = define
+        self.register = register
+        self.core = core
+        self.api = api
+
+    @memoized
+    def get(self, name):
+        return (
+            ArduinoPin(
+                name,
+                self.count,
+                self.define,
+                self.register,
+                self.core,
+                self.api)
+        )
+
+    @property
+    @memoized
+    def count_analog(self):
+        """Count of analog pins."""
+        return len(self.names_analog)
+
+    @property
+    @memoized
+    def count_digital(self):
+        """Count of digital pins."""
+        return len(self.names_digital)
+
+    @property
+    @memoized
+    def count(self):
+        """Count of all pins.
+
+        HACK!
+
+        """
+        #    HACK!
+        for i in range(100):
+            x = self.core.digitalPinToBitMask(i)
+            ok = False
+            for j in range(8):
+                if x == (1 << j):
+                    ok = True
+                    break
+
+            if not ok:
+                return i
+        raise PinError('Can not calculate pin count!')
+
+    @property
+    def names(self):
+        """List of all pin names."""
+        return self.names_digital + self.names_analog
+
+    @property
+    def names_digital(self):
+        """List of digital pin names."""
+        A0 = self.A0
+        return ['D%s' % x for x in range(0, A0)]
+
+    @property
+    def names_analog(self):
+        """List of analog pin names."""
+        A0 = self.A0
+        return (
+            ['A%s' % (x - A0) for x in range(A0, self.count)]
+        )

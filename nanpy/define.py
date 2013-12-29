@@ -1,4 +1,5 @@
-from nanpy.arduinoboard import arduinoclassmethod, returns
+from nanpy.arduinoboard import arduinomethod, returns, FirmwareClass
+from nanpy.classinfo import check4firmware
 from nanpy.memo import memoized
 
 
@@ -9,42 +10,70 @@ def auto_convert(x):
         return x
 
 
-class Define(object):
+@check4firmware
+class DefineArray(FirmwareClass):
+    firmware_id = 'D'
+
+    @property
+    @memoized
+    @returns(int)
+    @arduinomethod('c')
+    def count(self):
+        pass
+
+    @memoized
+    @arduinomethod('n')
+    def name(self, index):
+        pass
+
+    @memoized
+    @returns(auto_convert)
+    @arduinomethod('v')
+    def value(self, index):
+        pass
+
+
+class DefineFeature(object):
 
     """Access to firmware constants.
 
     Examples:
 
-        Define.asDict().get('F_CPU') # AVR frequency
-        Define.asDict().get('__DATE__') # firmware upload date
+        a=ArduinoTree()
+        a.define.get('F_CPU') # AVR frequency
+        a.define.get('__DATE__') # firmware upload date
 
     """
 
-    @classmethod
-    @memoized
-    @returns(int)
-    @arduinoclassmethod
-    def count(cls):
-        pass
+    def __init__(self, connection=None):
+        self._arr = DefineArray(connection)
 
-    @classmethod
+    @property
     @memoized
-    @arduinoclassmethod
-    def name(cls, index):
-        pass
-
-    @classmethod
-    @memoized
-    @returns(auto_convert)
-    @arduinoclassmethod
-    def value(cls, index):
-        pass
-
-    @classmethod
-    @memoized
-    def asDict(cls):
+    def as_dict(self):
         """return all constants and their values in a dictionary."""
         d = dict()
-        for i in range(cls.count()):
-            d[cls.name(i)] = cls.value(i)
+        for i in range(self._arr.count):
+            d[self._arr.name(i)] = self._arr.value(i)
+        assert len(d)
         return d
+
+    @property
+    def names(self):
+        return sorted(self.as_dict.keys())
+
+    @property
+    @memoized
+    def count(self):
+        return len(self.as_dict)
+
+    def get(self, name):
+        """get a constant.
+
+        Examples:
+
+            a=ArduinoTree()
+            a.define.get('F_CPU') # AVR frequency
+
+        """
+        return self.as_dict.get(name)

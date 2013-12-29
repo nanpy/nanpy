@@ -1,124 +1,175 @@
-from nanpy.arduinoboard import arduinoclassmethod, returns
+from nanpy.arduinoboard import arduinomethod, returns, FirmwareClass
+from nanpy.classinfo import check4firmware
 from nanpy.memo import memoized
 
 
-class _Registers(object):
+@check4firmware
+class RegisterArray(FirmwareClass):
+    firmware_id = 'R'
 
-    @classmethod
     @memoized
     @returns(int)
-    @arduinoclassmethod
-    def count(cls):
+    @arduinomethod('c')
+    def count(self):
         pass
 
-    @classmethod
     @returns(int)
-    @arduinoclassmethod
-    def read(cls, index):
+    @arduinomethod('r')
+    def read(self, index):
         pass
 
-    @classmethod
-    @arduinoclassmethod
-    def write(cls, index, value):
+    @arduinomethod('w')
+    def write(self, index, value):
         pass
 
-    @classmethod
     @memoized
     @returns(int)
-    @arduinoclassmethod
-    def address(cls, index):
+    @arduinomethod('a')
+    def address(self, index):
         pass
 
-    @classmethod
     @memoized
     @returns(int)
-    @arduinoclassmethod
-    def size(cls, index):
+    @arduinomethod('s')
+    def size(self, index):
         pass
 
-    @classmethod
     @memoized
-    @arduinoclassmethod
-    def name(cls, index):
+    @arduinomethod('n')
+    def name(self, index):
         pass
-
-    @classmethod
-    @memoized
-    def name_index_dict(cls):
-        d = dict()
-        for i in range(cls.count()):
-            d[cls.name(i)] = i
-        return d
 
 
 class Register(object):
 
-    """Direct access to AVR registers."""
+    """Representation of an AVR register."""
 
-    @classmethod
-    @memoized
-    def names(cls):
-        """Get all register names as a sorted list."""
-        return sorted(_Registers.name_index_dict().keys())
-
-    def __init__(self, name):
+    def __init__(self, index, arr):
         """"""
-        try:
-            self.index = _Registers.name_index_dict()[name]
-        except KeyError:
-            raise ValueError('Unknown register: %s' % name)
+        self._arr = arr
+        self.index = index
 
     def read_value(self):
         """Read register value.
 
-        Example:
+        Examples:
 
-            Register('DDRB').read_value()
+            a=ArduinoTree()
+            a.register.get('DDRB').read_value()
 
         """
-        return _Registers.read(self.index)
+        return self._arr.read(self.index)
 
     def write_value(self, value):
         """Write register value.
 
-        Example:
+        Examples:
 
-            Register('DDRB').write_value(1)
+            a=ArduinoTree()
+            a.register.get('DDRB').write_value(1)
 
         """
-        return _Registers.write(self.index, value)
+        return self._arr.write(self.index, value)
 
     value = property(read_value, write_value)
 
     @property
     def name(self):
         """Register name.
-
-        Example:
-
-            Register('DDRB').name
-
         """
-        return _Registers.name(self.index)
+        return self._arr.name(self.index)
 
     @property
     def address(self):
         """Register address.
 
-        Example:
+        Examples:
 
-            Register('DDRB').address
+            a=ArduinoTree()
+            a.register.get('DDRB').address
 
         """
-        return _Registers.address(self.index)
+        return self._arr.address(self.index)
 
     @property
     def size(self):
         """Register size in bytes. 1 or 2.
 
-        Example:
+        Examples:
 
-            Register('DDRB').size
+            a=ArduinoTree()
+            a.register.get('DDRB').size
 
         """
-        return _Registers.size(self.index)
+        return self._arr.size(self.index)
+
+
+class RegisterProxy(object):
+
+    """Proxy object to allow easy register access.
+
+        Examples:
+
+            a=ArduinoTree()
+            a.register.proxy.DDRB = 1
+            print( a.register.proxy.DDRB )
+
+    """
+
+    def __init__(self, arr, name_index_dict):
+        self._name_index_dict = name_index_dict
+        self._arr = arr
+
+    def __getattr__(self, name):
+        if name in ['_name_index_dict', '_arr']:
+            return object.__getattribute__(self, name)
+
+        index = self._name_index_dict[name]
+        return self._arr.read(index)
+
+    def __setattr__(self, name, value):
+        if name in ['_name_index_dict', '_arr']:
+            self.__dict__[name] = value
+            return
+
+        index = self._name_index_dict[name]
+        return self._arr.write(index, value)
+
+
+class RegisterFeature(object):
+
+    def __init__(self, connection=None):
+        self._arr = RegisterArray(connection)
+
+    @property
+    @memoized
+    def name_index_dict(self):
+        d = dict()
+        for i in range(self._arr.count()):
+            d[self._arr.name(i)] = i
+        assert len(d)
+        return d
+
+    @property
+    def names(self):
+        """Get all register names as a sorted list."""
+        return sorted(self.name_index_dict.keys())
+
+    @property
+    @memoized
+    def count(self):
+        """Get register count."""
+        return len(self.name_index_dict.keys())
+
+    @memoized
+    def get(self, name):
+        try:
+            index = self.name_index_dict[name]
+        except KeyError:
+            raise ValueError('Unknown register: %s' % name)
+        return Register(index, self._arr)
+
+    @property
+    @memoized
+    def proxy(self):
+        return RegisterProxy(self._arr, self.name_index_dict)

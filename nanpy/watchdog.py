@@ -1,8 +1,9 @@
-from nanpy.arduinoboard import arduinoclassmethod
-import time
+from nanpy.arduinoboard import arduinomethod, FirmwareClass
+from nanpy.classinfo import check4firmware
 
 
-class Watchdog(object):
+@check4firmware
+class Watchdog(FirmwareClass):
 
     """Direct access to watchdog timer.
 
@@ -20,10 +21,9 @@ class Watchdog(object):
     WDTO_4S = 8
     WDTO_8S = 9
 
-    @classmethod
-    @arduinoclassmethod
-    def wdt_reset(cls):
-        """Reset the watchdog timer.
+    @arduinomethod
+    def reset(self):
+        """Reset the watchdog timer. (wdt_reset)
 
         When the watchdog timer is enabled,
         a call to this instruction is required before the timer expires,
@@ -31,24 +31,11 @@ class Watchdog(object):
 
         """
 
-    @classmethod
-    @arduinoclassmethod
-    def wdt_enable(cls, timeout):
+    @arduinomethod
+    def enable(self, timeout):
         """Enable the watchdog timer, configuring it for expiry after
-        timeout."""
+        timeout. (wdt_enable)"""
 
-    @classmethod
-    @arduinoclassmethod
-    def wdt_disable(cls):
-        """Disable the watchdog timer, if possible."""
-
-    @classmethod
-    def soft_reset(cls):
-        """Resets the AVR, the registers will be reset to their known, default
-        settings.
-
-        Details: http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_softreset
-
-        """
-        cls.wdt_enable(cls.WDTO_15MS)
-        time.sleep(0.1)
+    @arduinomethod
+    def disable(self):
+        """Disable the watchdog timer, if possible. (wdt_disable)"""
