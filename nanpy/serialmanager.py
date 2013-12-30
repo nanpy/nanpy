@@ -60,7 +60,8 @@ class SerialManager(object):
 
         if not self.device:
             ports = _auto_detect_serial_unix()
-            assert len(ports), "No port was set, and no port was found!"
+            if not len(ports):
+                raise SerialManagerError("No port was set, and no port was found!")
             self.device = ports[0]
         log.debug('opening port:%s [%s baud]' % (self.device, self.baudrate))
         assert self.device
