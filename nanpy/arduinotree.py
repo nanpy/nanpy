@@ -7,7 +7,7 @@ from nanpy.counter import Counter
 from nanpy.define import DefineFeature
 from nanpy.eepromobj import EepromLib
 from nanpy.memo import memoized
-from nanpy.resgister import RegisterFeature
+from nanpy.register import RegisterFeature
 from nanpy.serialmanager import SerialManager, serial_manager
 from nanpy.vcc import Vcc
 from nanpy.watchdog import Watchdog

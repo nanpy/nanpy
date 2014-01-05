@@ -1,6 +1,6 @@
 from config import config
 from nanpy.arduinotree import ArduinoTree
-from nanpy.resgister import RegisterFeature
+from nanpy.register import RegisterFeature
 from nanpy.vcc import Vcc
 from nose.tools import eq_, ok_
 from tests.util import ok_vcc
