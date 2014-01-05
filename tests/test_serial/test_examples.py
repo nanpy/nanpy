@@ -34,3 +34,7 @@ def test_counter():
 
 def test_dds():
     dds()
+
+
+def test_checkspeed():
+    checkspeed(n=1)
