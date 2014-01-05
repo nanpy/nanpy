@@ -241,22 +241,8 @@ class PinFeature(object):
     @memoized
     def count(self):
         """Count of all pins.
-
-        HACK!
-
         """
-        #    HACK!
-        for i in range(100):
-            x = self.core.digitalPinToBitMask(i)
-            ok = False
-            for j in range(8):
-                if x == (1 << j):
-                    ok = True
-                    break
-
-            if not ok:
-                return i
-        raise PinError('Can not calculate pin count!')
+        return self.define.get('NUM_DIGITAL_PINS')
 
     @property
     def names(self):

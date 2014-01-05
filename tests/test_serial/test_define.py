@@ -30,6 +30,9 @@ def test_defs():
     ok_(ARDUINO >= 100)
     ok_(ARDUINO < 200)
 
+    NUM_DIGITAL_PINS = a.define.get('NUM_DIGITAL_PINS')
+    ok_(NUM_DIGITAL_PINS >= 10)
+    ok_(NUM_DIGITAL_PINS < 1000)
 
     for x in d:
         assert x.strip(), 'empty define:-->%s<--' % x

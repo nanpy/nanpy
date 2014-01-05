@@ -1,6 +1,7 @@
 
 // frequently used constants should be placed first
 DEFINE(A0)
+DEFINE(NUM_DIGITAL_PINS)
 DEFINE(RAMEND)
 DEFINE(XRAMEND)
 DEFINE(E2END)
