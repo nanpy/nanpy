@@ -1,5 +1,7 @@
 from nanpy.examples.boottime import boot_time
+from nanpy.examples.checkspeed import checkspeed
 from nanpy.examples.counterdemo import counterdemo
+from nanpy.examples.dds import dds
 from nanpy.examples.dump import dumpall
 from nanpy.examples.highfreqpwm import highfreqpwm
 from nanpy.examples.reset import reset_demo
@@ -28,3 +30,7 @@ def test_highfreqpwm():
 
 def test_counter():
     counterdemo()
+
+
+def test_dds():
+    dds()
