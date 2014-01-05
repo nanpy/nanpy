@@ -76,4 +76,10 @@ class DefineFeature(object):
             a.define.get('F_CPU') # AVR frequency
 
         """
-        return self.as_dict.get(name)
+        count = self._arr.count
+        assert count
+        for i in range(count):
+            n = self._arr.name(i)
+            if n == name:
+                return self._arr.value(i)
+        raise ValueError('% was not found!' % name)

@@ -11,6 +11,9 @@ def setup():
 
 def test_defs():
     a = ArduinoTree()
+
+    eq_(a.define.get('A0'), config['A0'])
+
     d = a.define.as_dict
     print (d)
 
@@ -22,6 +25,11 @@ def test_defs():
     eq_(d['MCU'], config['MCU'])
     ok_('xx' not in d)
     ok_(len(d.keys()) > 15, len(d.keys()))
+
+    ARDUINO = a.define.get('ARDUINO')
+    ok_(ARDUINO >= 100)
+    ok_(ARDUINO < 200)
+
 
     for x in d:
         assert x.strip(), 'empty define:-->%s<--' % x

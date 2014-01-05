@@ -56,21 +56,21 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
         int index = m->getInt(0);
         switch (index)
         {
-        case 0:
+        case COUNT_INT_DEFS + 0:
             m->returns("__TIME__");
             break;
-        case 1:
+        case COUNT_INT_DEFS + 1:
             m->returns("__DATE__");
             break;
-        case 2:
+        case COUNT_INT_DEFS + 2:
             m->returns("__VERSION__");
             break;
-        case 3:
+        case COUNT_INT_DEFS + 3:
             m->returns("MCU");
             break;
 
         default:
-            index -= COUNT_STR_DEFS;
+//            index -= COUNT_STR_DEFS;
             char buffer[LONGEST_STRING_IN_INTDEFS_H];
             strcpy_P(buffer, (PGM_P) pgm_read_word(&(name_table[index])));
             m->returns(buffer);
@@ -81,21 +81,21 @@ void nanpy::DefineClass::elaborate(nanpy::MethodDescriptor* m)
         int index = m->getInt(0);
         switch (index)
         {
-        case 0:
+        case COUNT_INT_DEFS + 0:
             m->returns(__TIME__);
             break;
-        case 1:
+        case COUNT_INT_DEFS + 1:
             m->returns(__DATE__);
             break;
-        case 2:
+        case COUNT_INT_DEFS + 2:
             m->returns(__VERSION__);
             break;
-        case 3:
+        case COUNT_INT_DEFS + 3:
             m->returns(MCU);
             break;
 
         default:
-            index -= COUNT_STR_DEFS;
+//            index -= COUNT_STR_DEFS;
             int32_t value = pgm_read_dword(&(value_table[index]));
             m->returns(value);
         }
