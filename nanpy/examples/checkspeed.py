@@ -1,7 +1,7 @@
 from nanpy.ad9850 import AD9850
 from nanpy.arduinotree import ArduinoTree
-from nanpy.serialmanager import serial_manager
 import time
+from nanpy.serialmanager import SerialManager
 
 
 def measure(a, n, f, root='a'):
@@ -15,12 +15,15 @@ def measure(a, n, f, root='a'):
             print (cmd)
             raise
     dt = time.time() - start
-    print ('%-35s %8.2f ms per call, %5.0f call per second' % (f, 1000.0 * dt / n, 1.0 / dt * n))
+    print (
+        '%-35s %8.2f ms per call, %5.0f call per second' %
+        (f, 1000.0 * dt / n, 1.0 / dt * n))
 
 
 def checkspeed(n):
-    serial_manager.connect()
-    a = ArduinoTree()
+    connection = SerialManager()
+    connection.connect()
+    a = ArduinoTree(connection=connection)
 
     print ('performance test for ArduinoTree()')
     print ('n=%s' % n)

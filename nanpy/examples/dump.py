@@ -4,6 +4,7 @@ from nanpy.arduinotree import ArduinoTree
 from nanpy.serialmanager import SerialManager
 from pprint import pprint
 import inspect
+from nanpy.serialmanager import SerialManager
 
 FORMAT = '%-20s = %20s'
 
@@ -26,7 +27,8 @@ def dump_dict(d):
 
 
 def dumpall():
-    a = ArduinoTree()
+    connection = SerialManager()
+    a = ArduinoTree(connection=connection)
 
     print((FORMAT + ' V') % ('read_vcc', a.vcc.read()))
     print((FORMAT + ' sec') % ('millis', a.api.millis() / 1000.0))

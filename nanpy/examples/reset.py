@@ -1,6 +1,7 @@
 """soft reset demo."""
 
 from nanpy.arduinotree import ArduinoTree
+from nanpy.serialmanager import SerialManager
 
 
 def print_millis(a):
@@ -8,7 +9,8 @@ def print_millis(a):
 
 
 def reset_demo():
-    a = ArduinoTree()
+    connection = SerialManager()
+    a = ArduinoTree(connection=connection)
     print_millis(a)
     print ('soft reset')
     a.soft_reset()

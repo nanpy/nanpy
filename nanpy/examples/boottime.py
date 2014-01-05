@@ -1,9 +1,11 @@
 from nanpy.arduinotree import ArduinoTree
+from nanpy.serialmanager import SerialManager
 import time
 
 
 def boot_time():
-    a = ArduinoTree()
+    connection = SerialManager()
+    a = ArduinoTree(connection=connection)
     a.watchdog.enable(a.watchdog.WDTO_500MS)
     time.sleep(1)
     a.connection.flush_input()

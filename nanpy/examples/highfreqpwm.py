@@ -1,13 +1,14 @@
-'''High frequency PWM mode demo
-'''
+"""High frequency PWM mode demo."""
 
 from nanpy.arduinotree import ArduinoTree
+from nanpy.serialmanager import SerialManager
 
 FREQ = 10007
 
 
 def highfreqpwm():
-    a = ArduinoTree()
+    connection = SerialManager()
+    a = ArduinoTree(connection=connection)
     pin9 = a.pin.get(9)
     pin9.mode = 1
     pin9.write_digital_value(1)

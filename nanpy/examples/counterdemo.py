@@ -1,5 +1,6 @@
 from nanpy.arduinotree import ArduinoTree
 import time
+from nanpy.serialmanager import SerialManager
 
 
 GATE_TIME = 0.7  # sec
@@ -7,7 +8,8 @@ F = 9765  # Hz
 
 
 def counterdemo():
-    a = ArduinoTree()
+    connection = SerialManager()
+    a = ArduinoTree(connection=connection)
     p = a.pin.get(5)
     a.soft_reset()
     print ('PWM frequencies_available: %s' % p.pwm.frequencies_available)
