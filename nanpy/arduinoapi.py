@@ -10,6 +10,7 @@ class ArduinoApi(FirmwareClass):
 
     LOW, HIGH = 0, 1
     INPUT, OUTPUT = 0, 1
+    LSBFIRST, MSBFIRST = 0, 1
 
     @arduinomethod('dw')
     def digitalWrite(self, pin, value):
@@ -37,3 +38,17 @@ class ArduinoApi(FirmwareClass):
     @arduinomethod('m')
     def millis(self):
         pass
+
+    @returns(int)
+    @arduinomethod('s')
+    def shiftOut(self, dataPin, clockPin, bitOrder, value):
+        """Shifts out a byte of data one bit at a time.
+
+        :param dataPin: the pin on which to output each bit (int)
+        :param clockPin: the pin to toggle once the dataPin has been set to the correct value (int)
+        :param bitOrder: which order to shift out the bits; either MSBFIRST or LSBFIRST.
+        :param value: the data to shift out. (byte)
+
+        http://arduino.cc/en/Reference/shiftOut
+
+        """

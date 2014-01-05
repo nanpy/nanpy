@@ -39,4 +39,10 @@ void nanpy::ArduinoClass::elaborate( nanpy::MethodDescriptor* m ) {
         if (strcmp(m->getName(), "m") == 0) {  // millis
             m->returns(millis());
         }
+
+        if (strcmp(m->getName(), "s") == 0) {  // shiftOut
+            // shiftOut(dataPin, clockPin, bitOrder, value)
+            shiftOut(m->getInt(0), m->getInt(1), m->getInt(2), m->getInt(3));
+            m->returns(0);
+        }
 };
