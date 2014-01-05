@@ -17,17 +17,22 @@ class PinError(Exception):
     pass
 
 
-def name2int(pin_name, A0):
+def to_pin_number(pin_name, A0=None):
     try:
         if isinstance(pin_name, string_types):
             if pin_name[0] == 'D':
                 nr = int(pin_name[1:])
-                if nr >= A0:
-                    raise ValueError('invalid pin id:%r' % pin_name)
+                if A0 is not None:
+                    if nr >= A0:
+                        raise ValueError('invalid pin id:%r' % pin_name)
             elif pin_name[0] == 'A':
+                if A0 is None:
+                    raise ValueError('A0 is None, but analog pin was set! (%s)' % pin_name)
                 nr = int(pin_name[1:]) + A0
             else:
                 nr = int(pin_name)
+        elif hasattr(pin_name, 'pin_number'):
+            nr=pin_name.pin_number
         else:
             nr = int(pin_name)
     except IndexError:
@@ -55,10 +60,10 @@ class ArduinoPin(object):
         self.api = api
         self.define = define
         self.A0 = define.get('A0')
-        self.nr = name2int(name, self.A0)
-        if self.nr >= total_pin_count:
+        self.pin_number = to_pin_number(name, self.A0)
+        if self.pin_number >= total_pin_count:
             raise ValueError('pin %s (Nr:%s) not in range' %
-                             (name, self.nr))
+                             (name, self.pin_number))
 
     @property
     @memoized
@@ -67,7 +72,7 @@ class ArduinoPin(object):
         '''
         return (
             ArduinoPwmPin(
-                self.nr,
+                self.pin_number,
                 self.define,
                 self.register,
                 self.core,
@@ -76,7 +81,7 @@ class ArduinoPin(object):
 
     @property
     def is_digital(self):
-        return self.nr < self.A0
+        return self.pin_number < self.A0
 
     @property
     def is_analog(self):
@@ -86,14 +91,14 @@ class ArduinoPin(object):
     def avr_port(self):
         '''AVR port name (example: "B")
         '''
-        x = self.core.digitalPinToPort(self.nr)
+        x = self.core.digitalPinToPort(self.pin_number)
         return chr(ord('A') + x - 1)
 
     @property
     def avr_bit(self):
         '''AVR bit name (example: "2")
         '''
-        bitmask = self.core.digitalPinToBitMask(self.nr)
+        bitmask = self.core.digitalPinToBitMask(self.pin_number)
         i = 0
         while bitmask != 1:
             bitmask >>= 1
@@ -116,26 +121,26 @@ class ArduinoPin(object):
 
         """
         if self.is_digital:
-            return 'D%s' % self.nr
+            return 'D%s' % self.pin_number
         else:
-            return 'A%s' % self.nr_analog
+            return 'A%s' % self.pin_number_analog
 
     @property
-    def nr_analog(self):
-        x = self.nr - self.A0
+    def pin_number_analog(self):
+        x = self.pin_number - self.A0
         if x >= 0:
             return x
 
     @property
     def programming_function(self):
         """programming function (MISO, MOSI, SCK or SS)"""
-        if self.nr == self.define.get('MISO'):
+        if self.pin_number == self.define.get('MISO'):
             return 'MISO'
-        if self.nr == self.define.get('MOSI'):
+        if self.pin_number == self.define.get('MOSI'):
             return 'MOSI'
-        if self.nr == self.define.get('SCK'):
+        if self.pin_number == self.define.get('SCK'):
             return 'SCK'
-        if self.nr == self.define.get('SS'):
+        if self.pin_number == self.define.get('SS'):
             return 'SS'
 
     def reset(self):
@@ -159,7 +164,7 @@ class ArduinoPin(object):
         """
         if direction is not None:
             self.write_mode(direction)
-        return self.api.digitalRead(self.nr)
+        return self.api.digitalRead(self.pin_number)
 
     def write_digital_value(self, value, direction=None):
         """write digital value  (0/1)
@@ -173,7 +178,7 @@ class ArduinoPin(object):
         if direction is not None:
             self.write_mode(direction)
         value = 1 if value else 0
-        return self.api.digitalWrite(self.nr, value)
+        return self.api.digitalWrite(self.pin_number, value)
 
     digital_value = property(read_digital_value, write_digital_value)
 
@@ -182,20 +187,20 @@ class ArduinoPin(object):
         '''
         if not self.is_analog:
             return None
-        return self.api.analogRead(self.nr)
+        return self.api.analogRead(self.pin_number)
     analog_value = property(read_analog_value)
 
     def read_mode(self):
         """read mode  (0/1)"""
-        bitmask = self.core.digitalPinToBitMask(self.nr)
-        port = self.core.digitalPinToPort(self.nr)
+        bitmask = self.core.digitalPinToBitMask(self.pin_number)
+        port = self.core.digitalPinToPort(self.pin_number)
         reg = self.core.portModeRegister(port)
         mode = OUTPUT if reg & bitmask else INPUT
         return mode
 
     def write_mode(self, value):
         """write mode  (0/1)"""
-        return self.api.pinMode(self.nr, value)
+        return self.api.pinMode(self.pin_number, value)
     mode = property(read_mode, write_mode)
 
 

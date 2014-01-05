@@ -49,12 +49,12 @@ def dumpall():
     print(FORMAT % ('digital_names', a.pin.names_digital))
     print(FORMAT % ('analog_names', a.pin.names_analog))
 
-    for nr in range(a.pin.count):
-        print('---------- nr=%s ---------------' % nr)
-        pin = a.pin.get(nr)
+    for pin_number in range(a.pin.count):
+        print('---------- pin_number=%s ---------------' % pin_number)
+        pin = a.pin.get(pin_number)
         dump(
             pin,
-            'name nr nr_analog is_digital is_analog avr_pin mode digital_value analog_value programming_function'.split())
+            'name pin_number pin_number_analog is_digital is_analog avr_pin mode digital_value analog_value programming_function'.split())
         if pin.pwm.available:
             print('--- pwm ---')
             dump(pin.pwm, '''frequency frequencies_available base_divisor divisor divisors_available

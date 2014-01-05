@@ -16,24 +16,24 @@ def test_pin_nr():
     a = ArduinoTree()
     pin = a.pin.get(8)
 
-    eq_(pin.nr, 8)
-    eq_(pin.nr_analog, None)
+    eq_(pin.pin_number, 8)
+    eq_(pin.pin_number_analog, None)
 
     pin = a.pin.get(14)
-    eq_(pin.nr, 14)
-    eq_(pin.nr_analog, 0)
+    eq_(pin.pin_number, 14)
+    eq_(pin.pin_number_analog, 0)
 
     pin = a.pin.get('A1')
-    eq_(pin.nr, 15)
-    eq_(pin.nr_analog, 1)
+    eq_(pin.pin_number, 15)
+    eq_(pin.pin_number_analog, 1)
 
     pin = a.pin.get('D9')
-    eq_(pin.nr, 9)
-    eq_(pin.nr_analog, None)
+    eq_(pin.pin_number, 9)
+    eq_(pin.pin_number_analog, None)
 
     pin = a.pin.get('A2')
-    eq_(pin.nr, 16)
-    eq_(pin.nr_analog, 2)
+    eq_(pin.pin_number, 16)
+    eq_(pin.pin_number_analog, 2)
 
 
 def test_is():
