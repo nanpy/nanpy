@@ -45,18 +45,19 @@ class Counter(object):
         if F_CPU:
             self.multiplier = self.calculate_multiplier(F_CPU)
 
-    def calculate_multiplier(self, F_CPU):
+    @classmethod
+    def calculate_multiplier(cls, F_CPU):
         multiplier = 1
         # calculate multiplier for non supported frequencies
-        if F_CPU > 16000000:
+        if F_CPU >= 16000000:
             multiplier = F_CPU / 16000000
-        elif F_CPU > 8000000:
+        elif F_CPU >= 8000000:
             multiplier = F_CPU / 8000000
-        elif F_CPU > 4000000:
+        elif F_CPU >= 4000000:
             multiplier = F_CPU / 4000000
-        elif F_CPU > 2000000:
+        elif F_CPU >= 2000000:
             multiplier = F_CPU / 2000000
-        elif F_CPU > 1000000:
+        elif F_CPU >= 1000000:
             multiplier = F_CPU / 1000000
         else:
             multiplier = 1000000 / F_CPU
