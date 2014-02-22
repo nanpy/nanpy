@@ -45,6 +45,10 @@ To install Nanpy Python library just type (as root):
 
 How to use
 ----------
+### Configure your Nanpy firmware
+
+You can use cfg.h file to configure your Nanpy firmware, selecting the features you want to include. Actually all the features requiring external libraries are disabled. You can also change the baud rate.
+
 ### Serial communication
 
 Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
