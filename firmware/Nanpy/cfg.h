@@ -18,10 +18,10 @@
 
 
 // external libraries should be installed for the following features:
-#define USE_OneWire                                 1
+#define USE_OneWire                                 0
 #define USE_DallasTemperature                       0
-#define USE_CapacitiveSensor                        1
-#define USE_DHT                                     1
+#define USE_CapacitiveSensor                        0
+#define USE_DHT                                     0
 
 
 
