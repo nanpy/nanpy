@@ -53,10 +53,11 @@ class ArduinoPin(object):
         a.pin.get('D0').read_value()
     '''
 
-    def __init__(self, name, total_pin_count, define, register, core, api):
+    def __init__(self, name, total_pin_count, define, register, core, ram, api):
         """name can be int or string."""
         self.register = register
         self.core = core
+        self.ram = ram
         self.api = api
         self.define = define
         self.A0 = define.get('A0')
@@ -194,8 +195,9 @@ class ArduinoPin(object):
         """read mode  (0/1)"""
         bitmask = self.core.digitalPinToBitMask(self.pin_number)
         port = self.core.digitalPinToPort(self.pin_number)
-        reg = self.core.portModeRegister(port)
-        mode = OUTPUT if reg & bitmask else INPUT
+        reg_address = self.core.portModeRegister(port)
+        reg_value = self.ram.read(reg_address)
+        mode = OUTPUT if reg_value & bitmask else INPUT
         return mode
 
     def write_mode(self, value):
@@ -206,11 +208,12 @@ class ArduinoPin(object):
 
 class PinFeature(object):
 
-    def __init__(self, define, register, core, api):
+    def __init__(self, define, register, core, ram, api):
         self.A0 = define.get('A0')
         self.define = define
         self.register = register
         self.core = core
+        self.ram = ram
         self.api = api
 
     @memoized
@@ -222,6 +225,7 @@ class PinFeature(object):
                 self.define,
                 self.register,
                 self.core,
+                self.ram,
                 self.api)
         )
 

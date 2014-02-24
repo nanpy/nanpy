@@ -21,6 +21,7 @@
 #include "MethodDescriptor.h"
 #include "ComChannel.h"
 #include "EEPROMClass.h"
+#include "RAMClass.h"
 #include "DHTClass.h"
 
 #include "DefineClass.h"
@@ -45,6 +46,7 @@ void setup() {
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
 
     REGISTER_CLASS_CONDITIONAL(nanpy::EEPROMClass, USE_EEPROM);                     // 0.3 k
+    REGISTER_CLASS_CONDITIONAL(nanpy::RAMClass, USE_RAM);                           // 
     REGISTER_CLASS_CONDITIONAL(LiquidCrystalClass, USE_LiquidCrystal);              //  2.3 k
     REGISTER_CLASS_CONDITIONAL(OneWireClass, USE_OneWire);                          // 1.7 k
     REGISTER_CLASS_CONDITIONAL(DallasTemperatureClass, USE_DallasTemperature);      // 6.1 k

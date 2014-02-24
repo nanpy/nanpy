@@ -4,6 +4,7 @@ from nanpy.examples.counterdemo import counterdemo
 from nanpy.examples.dds import dds
 from nanpy.examples.dump import dumpall
 from nanpy.examples.highfreqpwm import highfreqpwm
+from nanpy.examples.ramdump import ramdump
 from nanpy.examples.reset import reset_demo
 import common
 
@@ -38,3 +39,7 @@ def test_dds():
 
 def test_checkspeed():
     checkspeed(n=1)
+
+
+def test_ramdump():
+    ramdump()

@@ -7,6 +7,7 @@
 #define USE_LiquidCrystal                           1
 #define USE_Stepper                                 1
 #define USE_EEPROM                                  1
+#define USE_RAM                                     1
 #define USE_Define                                  1
 #define USE_ArduinoCore                             1
 #define USE_Watchdog                                1

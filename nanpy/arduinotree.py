@@ -7,6 +7,7 @@ from nanpy.counter import Counter
 from nanpy.define import DefineFeature
 from nanpy.eepromobj import EepromLib
 from nanpy.memo import memoized
+from nanpy.ram import RAM
 from nanpy.register import RegisterFeature
 from nanpy.serialmanager import SerialManager, serial_manager
 from nanpy.vcc import Vcc
@@ -43,7 +44,7 @@ class ArduinoTree(object):
     @memoized
     def pin(self):
         """Object-oriented representation of an Arduino pin"""
-        return PinFeature(self.define, self.register, self.core, self.api)
+        return PinFeature(self.define, self.register, self.core, self.ram, self.api)
 
     @property
     @memoized
@@ -68,6 +69,12 @@ class ArduinoTree(object):
     def eeprom(self):
         """Access to EEPROM."""
         return EepromLib(self.connection)
+
+    @property
+    @memoized
+    def ram(self):
+        """Access to RAM."""
+        return RAM(self.connection)
 
     @property
     @memoized

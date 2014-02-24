@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define RETURN_PIN_FUNC(x)         if (strcmp(m->getName(), #x) == 0) { m->returns(x(m->getInt(0))); }
-#define RETURN_PORT_FUNC(x)        if (strcmp(m->getName(), #x) == 0) { m->returns(*x(m->getInt(0))); }
+#define RETURN_PORT_FUNC(x)        if (strcmp(m->getName(), #x) == 0) { m->returns((uint16_t)x(m->getInt(0))); }
 
 const char* nanpy::ArduinoCoreClass::get_firmware_id()
 {
