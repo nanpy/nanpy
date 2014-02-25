@@ -94,25 +94,9 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
+#include "Tone.h"
+
 namespace nanpy {
-
-    class Tone {
-
-        private:
-
-            int pin;
-
-        public:
-
-            Tone(int pin) : pin(pin) {}
-            void play(int note, int duration) {
-                tone(pin, note, duration);
-                delay(duration * 1.30);
-                noTone(pin);
-            }
-            void stop(void) {noTone(pin);}
-
-    };
 
     class ToneClass: public ObjectsManager<Tone> {
 
