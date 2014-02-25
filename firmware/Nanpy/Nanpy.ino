@@ -1,13 +1,10 @@
 #include "cfg.h"
 
-#include <EEPROM.h>
-#include <Servo.h>
-#include <LiquidCrystal.h>
-#include <Stepper.h>
-#include <OneWire.h>
-#include <DallasTemperature.h>
-#include <CapacitiveSensor.h>
-#include <DHT.h>
+#if USE_Tone
+# if USE_Counter
+#  error "USE_Tone conflicts with USE_Counter!"
+# endif
+#endif
 
 #include "BaseClass.h"
 #include "ArduinoClass.h"
@@ -31,7 +28,9 @@
 #include "CounterClass.h"
 #include "InfoClass.h"
 
-#include <avr/wdt.h>
+#if defined(__AVR__)
+    #include <avr/wdt.h>
+#endif
 
 using namespace nanpy;
 
@@ -39,9 +38,11 @@ MethodDescriptor *m = NULL;
 
 void setup() {
     
-    // disable watchdog (http://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html)
-    MCUSR = 0;
-    wdt_disable();
+    #ifdef MCUSR
+        // disable watchdog (http://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html)
+        MCUSR = 0;
+        wdt_disable();
+    #endif
    
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
 
