@@ -1,3 +1,7 @@
+#include "cfg.h"
+
+#if USE_Tone
+
 #include "Tone.h"
 #include <Arduino.h>
 
@@ -14,3 +18,5 @@ void nanpy::Tone::stop(void) {
         noTone(pin);
     #endif
 }
+
+#endif
