@@ -1,6 +1,7 @@
 #ifndef TONE_H
 #define TONE_H
 
+namespace nanpy {
 class Tone {
 
     private:
@@ -14,5 +15,6 @@ class Tone {
         void stop(void);
 
 };
+}
 
 #endif
