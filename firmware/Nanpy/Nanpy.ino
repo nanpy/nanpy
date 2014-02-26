@@ -6,6 +6,38 @@
 # endif
 #endif
 
+#if USE_EEPROM
+#include <EEPROM.h>
+#endif
+
+#if USE_Servo
+#include <Servo.h>
+#endif
+
+#if USE_LiquidCrystal
+#include <LiquidCrystal.h>
+#endif
+
+#if USE_Stepper
+#include <Stepper.h>
+#endif
+
+#if USE_OneWire
+#include <OneWire.h>
+#endif
+
+#if USE_DallasTemperature
+#include <DallasTemperature.h>
+#endif
+
+#if USE_CapacitiveSensor
+#include <CapacitiveSensor.h>
+#endif
+
+#if USE_DHT
+#include <DHT.h>
+#endif
+
 #include "BaseClass.h"
 #include "ArduinoClass.h"
 #include "OneWireClass.h"
