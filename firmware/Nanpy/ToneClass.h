@@ -94,11 +94,11 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-#include "Tone.h"
+#include "ToneWrapper.h"
 
 namespace nanpy {
 
-    class ToneClass: public ObjectsManager<Tone> {
+    class ToneClass: public ObjectsManager<ToneWrapper> {
 
         public:
             void elaborate( nanpy::MethodDescriptor* m );

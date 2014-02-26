@@ -1,8 +1,8 @@
-#ifndef TONE_H
-#define TONE_H
+#ifndef TONE_WRAPPER_H
+#define TONE_WRAPPER_H
 
 namespace nanpy {
-class Tone {
+class ToneWrapper {
 
     private:
 
@@ -10,7 +10,7 @@ class Tone {
 
     public:
 
-        Tone(int pin) : pin(pin) {}
+        ToneWrapper(int pin) : pin(pin) {}
         void play(int note, int duration);
         void stop(void);
 

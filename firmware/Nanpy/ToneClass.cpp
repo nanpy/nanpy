@@ -12,10 +12,10 @@ const char* nanpy::ToneClass::get_firmware_id()
 }
 
 void nanpy::ToneClass::elaborate( nanpy::MethodDescriptor* m ) {
-        ObjectsManager<Tone>::elaborate(m);
+        ObjectsManager<ToneWrapper>::elaborate(m);
 
         if (strcmp(m->getName(),"new") == 0) {
-            v.insert(new Tone (m->getInt(0)));
+            v.insert(new ToneWrapper (m->getInt(0)));
             m->returns(v.getLastIndex());
         }
 

@@ -2,10 +2,10 @@
 
 #if USE_Tone
 
-#include "Tone.h"
+#include "ToneWrapper.h"
 #include <Arduino.h>
 
-void nanpy::Tone::play(int note, int duration) {
+void nanpy::ToneWrapper::play(int note, int duration) {
     #if defined(__AVR__)
         tone(pin, note, duration);
         delay(duration * 1.30);
@@ -13,7 +13,7 @@ void nanpy::Tone::play(int note, int duration) {
     #endif
 }
 
-void nanpy::Tone::stop(void) {
+void nanpy::ToneWrapper::stop(void) {
     #if defined(__AVR__)
         noTone(pin);
     #endif
