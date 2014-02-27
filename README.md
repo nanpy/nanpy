@@ -8,15 +8,18 @@ The main purpose of Nanpy is making programmers' life easier, giving them someth
 
 Let's start with a classic example, turn on a led placed in the 13th pin..
 
-	Arduino.pinMode(13, Arduino.OUTPUT)
-	Arduino.digitalWrite(13, Arduino.HIGH)
+	connection = SerialManager()
+	a = ArduinoApi(connection=connection)
+	a.pinMode(13, a.OUTPUT)
+	a.digitalWrite(13, a.HIGH)
 
 There are a lot of projects able to do that. Nanpy can do more! 
 Nanpy is easily extensible and can theoretically use every library, allowing you to create how many objects you want.
 We started supporting OneWire, Lcd, Stepper and Servo library and they're still incomplete.
 Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and print something!
 
-	lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
+	connection = SerialManager()
+	lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2], connection=connection)
 	lcd.printString("Hello World!")
 
 really straightforward now, isn't it? :)
@@ -56,8 +59,8 @@ You can use Nanpy/cfg.h generated file to configure your Nanpy firmware, selecti
 
 Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
 
-	from nanpy import serial_manager
-	serial_manager.connect('/dev/ttyACM1')
+	from nanpy import SerialManager
+	connection = SerialManager(device='/dev/ttyACM1')
 
 ### Import modules
 
