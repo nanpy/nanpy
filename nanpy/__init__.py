@@ -23,3 +23,5 @@ from nanpy.dallastemperature import DallasTemperature
 from nanpy.tone import Tone
 from nanpy.capacitivesensor import CapacitiveSensor
 from nanpy.dht import DHT
+from nanpy.arduinoapi import ArduinoApi
+from nanpy.eepromobj import EepromLib

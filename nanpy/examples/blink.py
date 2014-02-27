@@ -4,11 +4,15 @@
 # Description: keeps your led blinking
 # Dependencies: None
 
-from nanpy import Arduino
+from nanpy import (ArduinoApi, SerialManager)
+from time import sleep
 
-Arduino.pinMode(13, Arduino.OUTPUT)
+connection = SerialManager()
+a = ArduinoApi(connection=connection)
+
+a.pinMode(13, a.OUTPUT)
 
 for i in range(10000):
-    Arduino.digitalWrite(13, (i + 1) % 2)
-    Arduino.delay(200)
+    a.digitalWrite(13, (i + 1) % 2)
+    sleep(0.2)
 
