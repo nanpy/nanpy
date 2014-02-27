@@ -12,8 +12,8 @@ EEPROM_SIZE = EEPROM.size()
 
 def display(a_list):
     for i in range(0, EEPROM_SIZE//16-1):
-        for j in range(0, 15):
-            sys.stdout.write( "%x : " % a_list[j+i*16])
+        for j in range(16):
+            sys.stdout.write("%02x:" % a_list[j + i * 16])
         print
 
 
