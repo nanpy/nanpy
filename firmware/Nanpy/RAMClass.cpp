@@ -4,6 +4,8 @@
 
 #include "RAMClass.h"
 #include <stdlib.h>
+#include "freeram.h"
+
 
 const char* nanpy::RAMClass::get_firmware_id()
 {
@@ -23,6 +25,10 @@ void nanpy::RAMClass::elaborate( nanpy::MethodDescriptor* m ) {
 
         if (strcmp(m->getName(), "size") == 0) {
             m->returns(RAMEND+1);
+        }
+
+        if (strcmp(m->getName(), "free") == 0) {
+            m->returns(free_ram2());
         }
 };
 

@@ -22,3 +22,8 @@ class RAM(FirmwareClass):
     @arduinomethod
     def size(self):
         pass
+
+    @returns(int)
+    @arduinomethod
+    def free(self):
+        pass
