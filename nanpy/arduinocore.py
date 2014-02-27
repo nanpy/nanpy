@@ -34,6 +34,7 @@ class ArduinoCore(FirmwareClass):
     def analogInPinToBit(self, pin):
         """nonpublic Arduino function."""
 
+    @memoized
     @returns(int)
     @arduinomethod
     def portOutputRegister(self, port):
@@ -43,6 +44,7 @@ class ArduinoCore(FirmwareClass):
 
         """
 
+    @memoized
     @returns(int)
     @arduinomethod
     def portInputRegister(self, port):
@@ -51,6 +53,8 @@ class ArduinoCore(FirmwareClass):
         @return: RAM address
 
         """
+
+    @memoized
     @returns(int)
     @arduinomethod
     def portModeRegister(self, port):
