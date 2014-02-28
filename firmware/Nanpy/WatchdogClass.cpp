@@ -30,4 +30,19 @@ void nanpy::WatchdogClass::elaborate(nanpy::MethodDescriptor* m)
         m->returns(0);
     }
 }
+
 #endif
+
+void disable_watchdog_at_startup()
+{
+    // disable watchdog at startup
+    // http://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html
+    // "the watchdog timer remains active even after a system reset (except a power-on condition),
+    // using the fastest prescaler value (approximately 15 ms).
+    // It is therefore required to turn off the watchdog early during program startup,.."
+    // "..clearing the watchdog reset flag before disabling the watchdog is required, according to the datasheet."
+#ifdef MCUSR
+    MCUSR = 0;
+#endif
+    wdt_disable();
+}

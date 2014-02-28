@@ -13,3 +13,4 @@ namespace nanpy {
     };
 };
 
+void disable_watchdog_at_startup();

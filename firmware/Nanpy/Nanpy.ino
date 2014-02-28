@@ -60,21 +60,12 @@
 #include "CounterClass.h"
 #include "InfoClass.h"
 
-#if defined(__AVR__)
-    #include <avr/wdt.h>
-#endif
-
 using namespace nanpy;
 
 MethodDescriptor *m = NULL;
 
 void setup() {
-    
-    #ifdef MCUSR
-        // disable watchdog (http://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html)
-        MCUSR = 0;
-        wdt_disable();
-    #endif
+    disable_watchdog_at_startup();
    
     REGISTER_CLASS(ArduinoClass);                                                   // 0.8 k
 
