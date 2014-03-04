@@ -43,6 +43,6 @@ void disable_watchdog_at_startup()
     // "..clearing the watchdog reset flag before disabling the watchdog is required, according to the datasheet."
 #ifdef MCUSR
     MCUSR = 0;
-#endif
     wdt_disable();
+#endif
 }
