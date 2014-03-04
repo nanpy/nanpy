@@ -1,4 +1,4 @@
-
+#if defined(__AVR__)
 #include <stdlib.h>
 #include <avr/io.h>
 
@@ -62,3 +62,4 @@ int free_ram3()
 
     return size;
 }
+#endif
