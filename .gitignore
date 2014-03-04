@@ -20,3 +20,8 @@ cfg.h
 #hidden files
 .*
 !.gitignore
+
+#Internal dev
+firmware/Nanpy/arduino.mk
+firmware/Nanpy/Makefile
+firmware/Nanpy/libraries
