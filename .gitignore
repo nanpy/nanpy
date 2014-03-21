@@ -7,11 +7,7 @@ dist/
 nanpy.egg-info/
 cfg.h
 setup_makefile.sh
-#Arduino
-*.o
-*.hex
-*/.dep
-*/.lib
+firmware
 
 #Python
 *.pyc
@@ -19,8 +15,3 @@ setup_makefile.sh
 #hidden files
 .*
 !.gitignore
-
-#Internal dev
-firmware/Nanpy/arduino.mk
-firmware/Nanpy/Makefile
-firmware/Nanpy/libraries

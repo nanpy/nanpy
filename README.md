@@ -40,7 +40,7 @@ What happens if you call methods in an async context? Nothing bad, all works! ev
 
 How to build and install
 ------------------------
-You need to build the firmware for your Arduino first, copy firmware/Nanpy directory under your "sketchbook" directory, start Arduino program, open Sketchbook/Nanpy, select "Upload".
+You need to build the firmware for your Arduino first, just clone the firmware repository at https://github.com/nanpy/firmware and follow the README to configure and build it.
 
 To install Nanpy Python library just type (as root):
 
@@ -48,13 +48,6 @@ To install Nanpy Python library just type (as root):
 
 How to use
 ----------
-### Configure your Nanpy firmware
-
-	$ cd firmware
-	$ ./configure.sh
-
-You can use Nanpy/cfg.h generated file to configure your Nanpy firmware, selecting the features you want to include and the baud rate.
-
 ### Serial communication
 
 Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
@@ -72,7 +65,7 @@ Import all the modules you need :)
 
 How to contribute
 -----------------
-Nanpy needs a lot of work to be a great instrument. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
+Nanpy needs a lot of work to be a great tool. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
 
 Donate
 ------
