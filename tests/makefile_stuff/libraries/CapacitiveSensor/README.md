@@ -1,4 +1,0 @@
-CapacitiveSensor
-================
-
-CapacitiveSensor
