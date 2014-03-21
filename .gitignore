@@ -5,9 +5,8 @@
 build/
 dist/
 nanpy.egg-info/
-*.sh
 cfg.h
-
+setup_makefile.sh
 #Arduino
 *.o
 *.hex
