@@ -12,6 +12,7 @@ from nanpy.register import RegisterFeature
 from nanpy.serialmanager import SerialManager, serial_manager
 from nanpy.vcc import Vcc
 from nanpy.watchdog import Watchdog
+from nanpy.wire import Wire
 import time
 
 
@@ -117,3 +118,9 @@ class ArduinoTree(object):
         # TODO: after restart the first read is not correct (why?)
         # This command helps cleaning the read buffer
         self.connection.flush_input()
+
+    @property
+    @memoized
+    def wire(self):
+        """Access to Wire."""
+        return Wire(self.connection)
