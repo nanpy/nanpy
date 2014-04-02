@@ -29,9 +29,6 @@ def checkspeed(n):
     print ('n=%s' % n)
     print('')
 
-    a.avr_name  # init cache
-    measure(a, n, 'avr_name')
-
     measure(a, n, 'api.digitalRead(0)')
     measure(a, n, 'api.digitalWrite(0,0)')
     measure(a, n, 'api.analogRead(0)')

@@ -11,11 +11,6 @@ def setup():
     common.setup()
 
 
-def test_avr_name():
-    a = ArduinoTree()
-    eq_(a.avr_name, config['avr_name'])
-
-
 def test_vcc():
     a = ArduinoTree()
     ok_vcc(a.vcc.read())

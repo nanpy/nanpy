@@ -6,6 +6,7 @@ from nanpy.classinfo import ClassInfo
 from nanpy.counter import Counter
 from nanpy.define import DefineFeature
 from nanpy.eepromobj import EepromLib
+from nanpy.fwinfo import firmware_info
 from nanpy.memo import memoized
 from nanpy.ram import RAM
 from nanpy.register import RegisterFeature
@@ -95,16 +96,6 @@ class ArduinoTree(object):
         """Access to VCC."""
         return Vcc(self.register)
 
-    @property
-    def avr_name(self):
-        """The name of the AVR.
-
-        Example: ATmega328P
-
-        """
-        s = self.define.get('MCU')
-        return s.strip('_').split('_')[-1]
-
     def soft_reset(self):
         """Resets the AVR, the registers will be reset to their known, default
         settings.
@@ -124,3 +115,9 @@ class ArduinoTree(object):
     def wire(self):
         """Access to Wire."""
         return Wire(self.connection)
+
+    @property
+    @memoized
+    def firmware_info(self):
+        """"""
+        return firmware_info(self.define.as_dict)
