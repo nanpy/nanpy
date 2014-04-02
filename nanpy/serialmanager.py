@@ -49,12 +49,17 @@ class NoneSerialManager(object):
 class SerialManager(object):
     _serial = None
 
-    def __init__(self, device=None, baudrate=DEFAULT_BAUDRATE, sleep_after_connect=2):
+    def __init__(self, device=None,
+                 baudrate=DEFAULT_BAUDRATE,
+                 sleep_after_connect=2,
+                 timeout=1):
         self.device = device
         self.baudrate = baudrate
         self.sleep_after_connect = sleep_after_connect
+        self.timeout = timeout
 
-    def connect(self, device=None):
+    def open(self, device=None):
+        '''open connection'''
         if device:
             self.device = device
 
@@ -65,14 +70,16 @@ class SerialManager(object):
             self.device = ports[0]
         log.debug('opening port:%s [%s baud]' % (self.device, self.baudrate))
         assert self.device
-        self._serial = serial.Serial(self.device, self.baudrate, timeout=1)
+        self._serial = serial.Serial(self.device,
+                                     self.baudrate,
+                                     timeout=self.timeout)
         if self.sleep_after_connect:
             time.sleep(self.sleep_after_connect)
         self._serial.flushInput()
 
     def write(self, value):
         if not self._serial:
-            self.connect()
+            self.open()
         log.debug('sending:%s' % repr(value))
         if PY3:
             self._serial.write(bytes(value, 'latin-1'))
@@ -81,7 +88,7 @@ class SerialManager(object):
 
     def readline(self):
         if not self._serial:
-            self.connect()
+            self.open()
         s = self._serial.readline()
         log.debug('received:%s' % repr(s))
         s = s.decode()
@@ -92,9 +99,14 @@ class SerialManager(object):
     def flush_input(self):
         '''Flush input buffer, discarding all it's contents.'''
         if not self._serial:
-            self.connect()
+            self.open()
         self._serial.flushInput()
 
+    def close(self):
+        '''close connection'''
+        if self._serial:
+            self._serial.close()
+            self._serial = None
 
 serial_manager = SerialManager()
 

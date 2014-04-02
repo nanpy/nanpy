@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 
 def main():
     connection = SerialManager(sleep_after_connect=2)
-    connection.connect()
+    connection.open()
     print connection.device
     a = ArduinoTree(connection=connection)
     master = I2C_Master(a.wire)

@@ -22,7 +22,7 @@ def measure(a, n, f, root='a'):
 
 def checkspeed(n):
     connection = SerialManager()
-    connection.connect()
+    connection.open()
     a = ArduinoTree(connection=connection)
 
     print ('performance test for ArduinoTree()')
