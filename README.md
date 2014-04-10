@@ -1,5 +1,8 @@
 Nanpy
 =====
+
+[![PyPI version](https://badge.fury.io/py/nanpy.svg)](http://badge.fury.io/py/nanpy)
+
 Use your Arduino board with Python.
 
 Description
