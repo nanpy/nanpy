@@ -8,6 +8,15 @@ class DallasTemperature(ArduinoObject):
         self.pin = pin
         self.id = self.call('new', pin)
 
+    @arduinoobjectmethod
+    def setResolution(self, bits):
+        pass
+
+    @returns(int)
+    @arduinoobjectmethod
+    def getResolution(self, bits):
+        pass
+
     @returns(int)
     @arduinoobjectmethod
     def getDeviceCount(self):
@@ -18,7 +27,7 @@ class DallasTemperature(ArduinoObject):
         if val == "1":
             return val
         return val.split(' ')
-            
+
 
     @arduinoobjectmethod
     def requestTemperatures(self, address = None):
