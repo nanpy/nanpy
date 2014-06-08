@@ -8,6 +8,7 @@ nanpy.egg-info/
 cfg.h
 setup_makefile.sh
 firmware
+venv
 
 #Python
 *.pyc
