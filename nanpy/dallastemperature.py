@@ -22,6 +22,7 @@ class DallasTemperature(ArduinoObject):
     def getDeviceCount(self):
         pass
 
+    @arduinoobjectmethod
     def getAddress(self, index):
         val = self.call('getAddress')
         if val == "1":
