@@ -104,7 +104,7 @@ class Wire(FirmwareClass):
 
     @returns(int)
     @arduinomethod
-    def read(self, pin, value):
+    def read(self):
         """Reads a byte that was transmitted from a slave device to a master
         after a call to requestFrom() or was transmitted from a master to a
         slave.
