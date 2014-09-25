@@ -3,8 +3,8 @@ from nanpy.arduinoboard import (arduinoobjectmethod, arduinoclassmethod, returns
 
 class DallasTemperature(ArduinoObject):
 
-    def __init__(self, pin):
-        ArduinoObject.__init__(self)
+    def __init__(self, pin, connection=None):
+        ArduinoObject.__init__(self, connection=connection)
         self.pin = pin
         self.id = self.call('new', pin)
 
