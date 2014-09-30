@@ -93,8 +93,8 @@ class Tone(ArduinoObject):
     NOTE_D8  = 4699
     NOTE_DS8 = 4978
 
-    def __init__(self, pin):
-        ArduinoObject.__init__(self)
+    def __init__(self, pin, connection=None):
+        ArduinoObject.__init__(self, connection=connection)
         self.id = self.call('new', pin)
 
     @arduinoobjectmethod

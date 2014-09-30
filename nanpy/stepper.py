@@ -3,8 +3,8 @@ from nanpy.arduinoboard import arduinoobjectmethod
 
 class Stepper(ArduinoObject):
 
-    def __init__(self, revsteps, pin1, pin2, speed=None):
-        ArduinoObject.__init__(self)
+    def __init__(self, revsteps, pin1, pin2, speed=None, connection=None):
+        ArduinoObject.__init__(self, connection=connection)
         self.id = self.call('new', revsteps, pin1, pin2)
         if speed:
             self.setSpeed(speed)

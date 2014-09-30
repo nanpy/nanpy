@@ -8,8 +8,8 @@ class DHT(ArduinoObject):
     DHT21 = 21
     AM2301 = 21
 
-    def __init__(self, pin, _type, count = 6):
-        ArduinoObject.__init__(self)
+    def __init__(self, pin, _type, count = 6, connection=None):
+        ArduinoObject.__init__(self, connection=connection)
         self.id = self.call('new', pin, _type, count)
 
     @returns(int)
