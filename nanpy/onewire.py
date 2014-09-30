@@ -2,9 +2,9 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class OneWire(ArduinoObject):
-    
-    def __init__(self, pin):
-        ArduinoObject.__init__(self)
+
+    def __init__(self, pin, connection=None):
+        ArduinoObject.__init__(self, connection=connection)
         self.id = self.call('new', pin)
 
     def search(self):

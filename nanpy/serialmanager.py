@@ -52,7 +52,7 @@ class SerialManager(object):
     def __init__(self, device=None,
                  baudrate=DEFAULT_BAUDRATE,
                  sleep_after_connect=2,
-                 timeout=1):
+                 timeout=None):
         self.device = device
         self.baudrate = baudrate
         self.sleep_after_connect = sleep_after_connect
