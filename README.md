@@ -1,79 +1,72 @@
-Nanpy
-=====
+# Nanpy
 
 [![PyPI version](https://badge.fury.io/py/nanpy.svg)](http://badge.fury.io/py/nanpy)
 
-Use your Arduino board with Python.
+---
 
-Description
------------
-The main purpose of Nanpy is making programmers' life easier, giving them something to create prototypes faster and use Arduino in a simpler way, thanks to a simple and powerful language like Python. Also Nanpy can run on RaspberryPi (tested with Raspbian http://www.raspbian.org/) so you can use it for communicating with Arduino :)
+## Overview
 
-Let's start with a classic example, turn on a led placed in the 13th pin..
+Nanpy is a library that use your Arduino as a slave, controlled by a master device where you run your scripts, such as a PC, a Raspberry Pi etc.
+The main purpose of Nanpy is making programmers' life easier, providing them a powerful library to create prototypes faster and make Arduino programming a game for kids.
 
-	connection = SerialManager()
-	a = ArduinoApi(connection=connection)
-	a.pinMode(13, a.OUTPUT)
-	a.digitalWrite(13, a.HIGH)
+    a = ArduinoApi()
+    a.pinMode(13, a.OUTPUT)
+    a.digitalWrite(13, a.HIGH)
 
-There are a lot of projects able to do that. Nanpy can do more! 
+I know, there are a lot of projects able to do that, but hey, Nanpy can do more!
 Nanpy is easily extensible and can theoretically use every library, allowing you to create how many objects you want.
-We started supporting OneWire, Lcd, Stepper and Servo library and they're still incomplete.
-Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and print something!
+We support OneWire, Lcd, Stepper, Servo, DallasTemperature and many more...
+Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and show your first "Hello world"!
 
-	connection = SerialManager()
-	lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2], connection=connection)
-	lcd.printString("Hello World!")
+    from nanpy import Lcd
+
+    lcd = Lcd([7, 8, 9, 10, 11, 12], [16, 2])
+    lcd.printString('Hello World!')
 
 really straightforward now, isn't it? :)
 
-Multithreading
---------------
-What happens if you call methods in an async context? Nothing bad, all works! every call is mutually exclusive.. For example, suppose that two threads need to write on the same Lcd and in different positions at the same time... well, just call printString on the Lcd object specifying the position (row and column)
-
-	#Thread_1
-	...
-	lcd.printString("Hello First Row!", 0, 0)
-	...
-	
-	#Thread_2
-	....
-	lcd.printString("Hello Second Row!", 0, 1)
-	...
-
-How to build and install
-------------------------
-You need to build the firmware for your Arduino first, just clone the firmware repository at https://github.com/nanpy/firmware and follow the README to configure and build it.
-
-To install Nanpy Python library just type (as root):
-
-	python setup.py install
-
-How to use
-----------
 ### Serial communication
 
-Nanpy autodetects the serial port for you, anyway you can specify another serial port manually:
+Nanpy autodetects the serial port for you, anyway you can manually specify another serial port:
 
-	from nanpy import SerialManager
-	connection = SerialManager(device='/dev/ttyACM1')
+    from nanpy import SerialManager
+    connection = SerialManager(device='/dev/ttyACM1')
 
-### Import modules
+and use it with your objects
 
-Import all the modules you need :)
+    a = ArduinoApi(connection=connection)
+    a.pinMode(13, a.OUTPUT)
+    a.digitalWrite(13, a.HIGH)
 
-	from nanpy import Arduino
-	from nanpy import (OneWire, Lcd)
-	...
+You can specify how many SerialManager objects you want and control more than one Arduino board within the same script.
 
-How to contribute
------------------
-Nanpy needs a lot of work to be a great tool. You can contribute with patches (bugfixing, writing improvements, creating support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
+---
 
-Donate
-------
-Do you want to support us with a coffee? We need it to code all night long! if you like this project and you want to support it with some cents, please donate :) https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J
+## How to build and install
 
-License
--------
-This software is released under MIT License. Copyright (c) 2012-2013 Andrea Stagi <stagi.andrea@gmail.com>
+First of all, you need to build the firmware and upload it on your Arduino, to do that clone the [nanpy-firmware repository on Github](https://github.com/nanpy/firmware) or [download it from PyPi](https://pypi.python.org/pypi/nanpy).
+
+    git clone git@github.com:nanpy/nanpy-firmware.git
+    cd nanpy-firmware
+    ./configure.sh
+
+You can now edit Nanpy/cfg.h generated file to configure your Nanpy firmware, selecting the features you want to include and the baud rate.
+To build and install Nanpy firmware, copy Nanpy directory under your "sketchbook" directory, start your Arduino IDE, open Sketchbook -> Nanpy and click on "Upload".
+
+To install Nanpy Python library on your master device just type:
+
+    pip install nanpy
+
+---
+
+## How to contribute
+
+Nanpy still needs a lot of work. You can contribute with patches (bugfixing, improvements, adding support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
+
+Do you want to support us with a coffee? We need a lot of caffeine to code all night long! if you like this project and you want to support us, [please donate using Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J)
+
+---
+
+## License
+
+This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
