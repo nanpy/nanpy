@@ -1,0 +1,21 @@
+div.col-md-9 h1:first-of-type {
+    text-align: center;
+    font-size: 60px;
+    font-weight: 300;
+}
+div.col-md-9 p:first-of-type {
+    text-align: center;
+}
+.navbar {
+    background-image: none;
+    background-color: #31a8ae;
+}
+.navbar-brand:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: url(../img/nanpy_logo_min.png) center center no-repeat;
+}
