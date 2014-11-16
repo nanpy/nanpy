@@ -67,6 +67,121 @@ Do you want to support us with a coffee? We need a lot of caffeine to code all n
 
 ---
 
+## How to extend Nanpy
+
+First of all create some boilerplate code starting with Python. Suppose you want initially support two methods of the Centpiede library
+
+    void portWrite(int port, int value);
+    int portRead(int port);
+
+You can create your centipede.py module and put it in nanpy/
+
+    from nanpy.arduinoboard import ArduinoObject
+    from nanpy.arduinoboard import (arduinoobjectmethod, returns)
+
+    class Centipede(ArduinoObject):
+
+        def __init__(self, your_parameters connection=None):
+            ArduinoObject.__init__(self, connection=connection)
+            self.id = self.call('new', your_parameters)
+
+        @arduinoobjectmethod
+        def portWrite(self, port, value):
+            pass
+
+        @returns(int)
+        @arduinoobjectmethod
+        def portRead(self, port):
+            pass
+
+After that you can include this module in the __init__.py to make it available in Nanpy (nanpy/__init__.py https://github.com/nanpy/nanpy/blob/master/nanpy/__init__.py)
+
+    from nanpy.centipede import Centipede
+
+You're done with Python :) Let's see how to add the firmware part (https://github.com/nanpy/nanpy-firmware)
+
+First of all modify sample.cfg adding
+
+    #define USE_Centipede                                   1
+
+or do it directly on your cfg.h file :)
+
+You need to create CentipedeClass.h and CentipedeClass.cpp
+
+In CentipedeClass.h you need
+
+    #ifndef CENTIPEDE_CLASS
+    #define CENTIPEDE_CLASS
+
+    #include "BaseClass.h"
+    #include "MethodDescriptor.h"
+
+    class Centipede;
+
+    namespace nanpy {
+        class CentipedeClass: public ObjectsManager<Centipede> {
+            public:
+                void elaborate( nanpy::MethodDescriptor* m );
+                const char* get_firmware_id();
+        };
+    }
+
+    #endif
+
+And in Centipede.cpp
+
+    #include "cfg.h"
+
+    #if USE_Centipede
+
+    #include <Arduino.h>
+    #include <Centipede.h> //!!!Your real Centipede Library!!!!
+    #include "CentipedeClass.h"
+    #include <stdlib.h>
+
+    const char* nanpy::CentipedeClass::get_firmware_id()
+    {
+        return "Centipede";
+    }
+
+    void nanpy::CentipedeClass::elaborate( MethodDescriptor* m ) {
+        ObjectsManager<Centipede>::elaborate(m);
+
+        if (strcmp(m->getName(),"new") == 0) {
+            Centipede* cent;
+            cent = new Centipede (m->getInt(0), m->getInt(1), m->getInt(2));
+            cent->begin();
+            v.insert(cent);
+            m->returns(v.getLastIndex());
+        }
+
+        if (strcmp(m->getName(), "portWrite") == 0) {
+            m->returns(v[m->getObjectId()]->portWrite(m->getInt(0), m->getInt(1)));
+        }
+
+        if (strcmp(m->getName(), "portRead") == 0) {
+            m->returns(v[m->getObjectId()]->portRead(m->getInt(0)));
+        }
+    };
+
+    #endif
+
+Finally you need to register your class in the main loop! Open Nanpy.ino file and add
+
+    //...
+
+    #if USE_Centipede
+    #include <Centipede.h>
+    #endif
+
+    #include "CentipedeClass.h"
+
+    //...
+
+    REGISTER_CLASS_CONDITIONAL(CentipedeClass, USE_Centipede);
+
+---
+
 ## License
 
 This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
