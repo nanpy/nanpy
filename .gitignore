@@ -16,3 +16,6 @@ venv
 #hidden files
 .*
 !.gitignore
+
+#Docs
+site/
