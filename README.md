@@ -1,6 +1,9 @@
 # Nanpy
 
-[![PyPI version](https://badge.fury.io/py/nanpy.svg)](http://badge.fury.io/py/nanpy)
+[![Latest Version](https://pypip.in/version/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
+[![Supported Python versions](https://pypip.in/py_versions/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
+[![License](https://pypip.in/license/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
+[![Downloads](https://pypip.in/download/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 
 ---
 
