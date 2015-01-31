@@ -1,3 +1,4 @@
+from nanpy import Arduino
 from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import arduinoobjectmethod
 
@@ -98,8 +99,10 @@ class Tone(ArduinoObject):
         self.id = self.call('new', pin)
 
     @arduinoobjectmethod
-    def play(self, note, duration):
-        pass
+    def play(self, note, duration=0):
+        if duration != 0:
+            Arduino.delay(duration)
+            self.stop()
 
     @arduinoobjectmethod
     def stop(self):
