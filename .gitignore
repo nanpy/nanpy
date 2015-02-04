@@ -16,6 +16,9 @@ venv
 #hidden files
 .*
 !.gitignore
+!.gitattributes
+!.travis*
+!.coveragerc
 
 #Docs
 site/
