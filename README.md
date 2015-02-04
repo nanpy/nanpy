@@ -1,6 +1,8 @@
 # Nanpy
 
 [![Latest Version](https://pypip.in/version/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
+[![Travis](http://img.shields.io/travis/nanpy/nanpy.svg)] (https://travis-ci.org/nanpy/nanpy)
+[![Coveralls](http://img.shields.io/coveralls/nanpy/nanpy/master.svg)] (https://coveralls.io/r/nanpy/nanpy)
 [![Supported Python versions](https://pypip.in/py_versions/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![License](https://pypip.in/license/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Downloads](https://pypip.in/download/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
