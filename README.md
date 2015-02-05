@@ -1,8 +1,8 @@
 # Nanpy
 
-[![Latest Version](https://pypip.in/version/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Travis](http://img.shields.io/travis/nanpy/nanpy.svg)] (https://travis-ci.org/nanpy/nanpy)
 [![Coveralls](http://img.shields.io/coveralls/nanpy/nanpy/master.svg)] (https://coveralls.io/r/nanpy/nanpy)
+[![Latest Version](https://pypip.in/version/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Supported Python versions](https://pypip.in/py_versions/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![License](https://pypip.in/license/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Downloads](https://pypip.in/download/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
@@ -45,8 +45,6 @@ and use it with your objects
 
 You can specify how many SerialManager objects you want and control more than one Arduino board within the same script.
 
----
-
 ## How to build and install
 
 First of all, you need to build the firmware and upload it on your Arduino, to do that clone the [nanpy-firmware repository on Github](https://github.com/nanpy/firmware) or [download it from PyPi](https://pypi.python.org/pypi/nanpy).
@@ -62,15 +60,11 @@ To install Nanpy Python library on your master device just type:
 
     pip install nanpy
 
----
-
 ## How to contribute
 
 Nanpy still needs a lot of work. You can contribute with patches (bugfixing, improvements, adding support for a new library not included in Nanpy yet, writing examples and so on), writing documentation, reporting bugs, creating packages or simply spreading Nanpy through the web if you like it :) If you have any doubt or problem, please contact me at <stagi.andrea@gmail.com>
 
 Do you want to support us with a coffee? We need a lot of caffeine to code all night long! if you like this project and you want to support us, [please donate using Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J)
-
----
 
 ## License
 
