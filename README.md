@@ -7,7 +7,7 @@
 [![License](https://pypip.in/license/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Downloads](https://pypip.in/download/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 
----
+Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 
 ## Overview
 
