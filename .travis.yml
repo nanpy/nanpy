@@ -7,12 +7,11 @@ python:
  - "3.4"
 
 install:
- - pip install .
  - pip install coveralls coverage
  - pip install pyserial
 
 script:  
- - cd tests/test_offline && nosetests -v --with-coverage --cover-package=nanpy  .
+ - python setup.py nosetests -w tests/test_offline --with-coverage --cover-package=nanpy
  
 after_success:
  - coveralls
