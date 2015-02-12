@@ -94,7 +94,7 @@ class ArduinoTree(object):
     @memoized
     def vcc(self):
         """Access to VCC."""
-        return Vcc(self.register)
+        return Vcc(self.register, MCU=self.define.get('MCU'))
 
     def soft_reset(self):
         """Resets the AVR, the registers will be reset to their known, default
