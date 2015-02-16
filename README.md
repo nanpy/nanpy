@@ -6,6 +6,7 @@
 [![Supported Python versions](https://pypip.in/py_versions/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![License](https://pypip.in/license/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
 [![Downloads](https://pypip.in/download/nanpy/badge.svg)](https://pypi.python.org/pypi/nanpy/)
+[![Code Health](https://landscape.io/github/nanpy/nanpy/master/landscape.svg?style=flat)](https://landscape.io/github/nanpy/nanpy/master)
 
 Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 
