@@ -6,7 +6,7 @@ from nanpy.serialmanager import SerialManager
 
 def measure(a, n, f, root='a'):
     start = time.time()
-    for x in range(n):
+    for _ in range(n):
         cmd = root + '.' + f
         try:
             locals()[root] = a

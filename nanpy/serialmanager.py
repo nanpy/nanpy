@@ -1,4 +1,3 @@
-from nanpy.memo import memoized
 import fnmatch
 import logging
 import serial
@@ -16,12 +15,15 @@ class SerialManagerError(Exception):
     pass
 
 
-def _auto_detect_serial_unix(preferred_list=['*']):
+def _auto_detect_serial_unix(preferred_list=None):
     import glob
     glist = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyACM*')
     glist += ['/dev/ttyS0', '/dev/ttyS1']
     ret = []
 
+    if preferred_list is None:
+        preferred_list = ['*']
+        
     for d in glist:
         for preferred in preferred_list:
             if fnmatch.fnmatch(d, preferred):
@@ -68,7 +70,7 @@ class SerialManager(object):
             if not len(ports):
                 raise SerialManagerError("No port was set, and no port was found!")
             self.device = ports[0]
-        log.debug('opening port:%s [%s baud]' % (self.device, self.baudrate))
+        log.debug('opening port:%s [%s baud]', self.device, self.baudrate)
         assert self.device
         self._serial = serial.Serial(self.device,
                                      self.baudrate,
@@ -80,7 +82,7 @@ class SerialManager(object):
     def write(self, value):
         if not self._serial:
             self.open()
-        log.debug('sending:%s' % repr(value))
+        log.debug('sending:%s', repr(value))
         if PY3:
             self._serial.write(bytes(value, 'latin-1'))
         else:
@@ -90,7 +92,7 @@ class SerialManager(object):
         if not self._serial:
             self.open()
         s = self._serial.readline()
-        log.debug('received:%s' % repr(s))
+        log.debug('received:%s', repr(s))
         s = s.decode()
         if not len(s):
             raise SerialManagerError('Serial timeout!')

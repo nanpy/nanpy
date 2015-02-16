@@ -10,7 +10,7 @@ from nanpy.fwinfo import firmware_info
 from nanpy.memo import memoized
 from nanpy.ram import RAM
 from nanpy.register import RegisterFeature
-from nanpy.serialmanager import SerialManager, serial_manager
+from nanpy.serialmanager import serial_manager
 from nanpy.vcc import Vcc
 from nanpy.watchdog import Watchdog
 from nanpy.wire import Wire

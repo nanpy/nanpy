@@ -82,4 +82,4 @@ class DefineFeature(object):
             n = self._arr.name(i)
             if n == name:
                 return self._arr.value(i)
-        raise ValueError('% was not found!' % name)
+        raise ValueError('%s was not found!' % name)

@@ -5,7 +5,6 @@
 # Dependencies: None
 
 from nanpy import (Arduino, OneWire)
-import time
 
 class FakeDallasTemperature():
 

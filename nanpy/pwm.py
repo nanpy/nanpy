@@ -8,8 +8,7 @@ class PwmError(Exception):
     pass
 
 
-class BiDict():
-
+class BiDict(object):
     def __init__(self, dic):
         self.norm = dic
         self.inv = dict([(v, k) for k, v in dic.items()])

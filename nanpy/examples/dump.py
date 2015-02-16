@@ -4,7 +4,6 @@ from nanpy.arduinotree import ArduinoTree
 from nanpy.serialmanager import SerialManager
 from pprint import pprint
 import inspect
-from nanpy.serialmanager import SerialManager
 
 FORMAT = '%-20s = %20s'
 
@@ -17,7 +16,7 @@ def dump(obj, selected_names=None):
     for attr in ls:
         if not attr.startswith('__'):
             if not inspect.ismethod(getattr(obj, attr)):
-                    print(FORMAT % (attr, getattr(obj, attr)))
+                print(FORMAT % (attr, getattr(obj, attr)))
 
 
 def dump_dict(d):

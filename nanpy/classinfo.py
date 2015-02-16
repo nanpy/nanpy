@@ -61,7 +61,7 @@ class ClassInfo(object):
         self.firmware_id_list = sorted(ls)
 
         for cls in check4firmware.names.values():
-                self.firmware_class_status[cls.__name__] = False
+            self.firmware_class_status[cls.__name__] = False
 
         for x in self.firmware_id_list:
             cls = check4firmware.names.get(x)
