@@ -17,7 +17,7 @@ class SerialManagerError(Exception):
 
 def _auto_detect_serial_unix(preferred_list=None):
     import glob
-    glist = glob.glob('/dev/ttyUSB*') + glob.glob('/dev/ttyACM*')
+    glist = glob.glob('/dev/ttyACM*') + glob.glob('/dev/ttyUSB*')
     glist += ['/dev/ttyS0', '/dev/ttyS1']
     ret = []
 
