@@ -17,8 +17,8 @@ def main():
     a = ArduinoTree(connection=connection)
     bmp = Bmp180(a.wire)
     p, t = bmp.read()
-    print 'pressure: %s kPa' % (p / 1000)
-    print 'temperature: %s C' % t
+    print ('pressure: %s kPa' % (p / 1000))
+    print ('temperature: %s C' % t)
 
 if __name__ == '__main__':
     main()

@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 def main():
     connection = SerialManager(sleep_after_connect=2)
     connection.open()
-    print connection.device
+    print (connection.device)
     a = ArduinoTree(connection=connection)
     master = I2C_Master(a.wire)
     master.send(0x27, [0b00001000])

@@ -69,4 +69,4 @@ Do you want to support us with a coffee? We need a lot of caffeine to code all n
 
 ## License
 
-This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
+This software is released under MIT License. Copyright (c) 2012-2015 Andrea Stagi <stagi.andrea@gmail.com>

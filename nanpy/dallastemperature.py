@@ -45,14 +45,10 @@ class DallasTemperature(ArduinoObject):
         pass
 
     @classmethod
-    @returns(float)
-    @arduinoclassmethod
     def toCelsius(cls, value):
-        pass
+        return (value - 32) * 5/9
 
     @classmethod
-    @returns(float)
-    @arduinoclassmethod
     def toFahrenheit(cls, value):
-        pass
+        return (value * 9/5) + 32
 

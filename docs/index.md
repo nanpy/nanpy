@@ -184,4 +184,4 @@ Finally you need to register your class in the main loop! Open Nanpy.ino file an
 
 ## License
 
-This software is released under MIT License. Copyright (c) 2012-2014 Andrea Stagi <stagi.andrea@gmail.com>
+This software is released under MIT License. Copyright (c) 2012-2015 Andrea Stagi <stagi.andrea@gmail.com>
