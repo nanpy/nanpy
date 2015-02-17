@@ -1,6 +1,7 @@
-from nanpy import Arduino
 from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import arduinoobjectmethod
+import time
+
 
 class Tone(ArduinoObject):
 
@@ -101,7 +102,7 @@ class Tone(ArduinoObject):
     @arduinoobjectmethod
     def play(self, note, duration=0):
         if duration != 0:
-            Arduino.delay(duration)
+            time.sleep(duration/1000.0)
             self.stop()
 
     @arduinoobjectmethod

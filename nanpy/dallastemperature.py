@@ -1,5 +1,5 @@
 from nanpy.arduinoboard import ArduinoObject
-from nanpy.arduinoboard import (arduinoobjectmethod, arduinoclassmethod, returns)
+from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class DallasTemperature(ArduinoObject):
 

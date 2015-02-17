@@ -88,30 +88,30 @@ def class_get_firmware_id(cls):
         return cls.__name__
 
 
-def arduinoclassmethod(param):
-    is_func = hasattr(param, '__call__')
-    if is_func:
-        funct = param
-
-        def wrapper(cls, *args, **kwargs):
-            cls_name = class_get_firmware_id(cls)
-            call_pars = [funct.__name__]
-            call_pars.extend(args)
-            funct(cls, *args, **kwargs)
-            return _call(cls_name, 0, call_pars, connection=None)
-        return wrapper
-    else:
-        name = param
-
-        def wrapper2(funct):
-            def wrapper(cls, *args, **kwargs):
-                cls_name = class_get_firmware_id(cls)
-                call_pars = [name]
-                call_pars.extend(args)
-                funct(cls, *args, **kwargs)
-                return _call(cls_name, 0, call_pars, connection=None)
-            return wrapper
-        return wrapper2
+# def arduinoclassmethod(param):
+#     is_func = hasattr(param, '__call__')
+#     if is_func:
+#         funct = param
+# 
+#         def wrapper(cls, *args, **kwargs):
+#             cls_name = class_get_firmware_id(cls)
+#             call_pars = [funct.__name__]
+#             call_pars.extend(args)
+#             funct(cls, *args, **kwargs)
+#             return _call(cls_name, 0, call_pars, connection=None)
+#         return wrapper
+#     else:
+#         name = param
+# 
+#         def wrapper2(funct):
+#             def wrapper(cls, *args, **kwargs):
+#                 cls_name = class_get_firmware_id(cls)
+#                 call_pars = [name]
+#                 call_pars.extend(args)
+#                 funct(cls, *args, **kwargs)
+#                 return _call(cls_name, 0, call_pars, connection=None)
+#             return wrapper
+#         return wrapper2
 
 
 def _wrapper3(name):
