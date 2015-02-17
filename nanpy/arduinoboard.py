@@ -24,27 +24,29 @@ def _call(namespace, id, args, connection):
     nel = 0
 
     mutex.acquire()
-    _write(namespace, connection)
-    _write(id, connection)
-
-    for arg in args:
-        if type(arg) == type(list()):
-            for el in arg:
-                if el != None:
-                    toprint.append(el)
+    try:
+        _write(namespace, connection)
+        _write(id, connection)
+    
+        for arg in args:
+            if type(arg) == type(list()):
+                for el in arg:
+                    if el != None:
+                        toprint.append(el)
+                        nel += 1
+            else:
+                if arg != None:
+                    toprint.append(arg)
                     nel += 1
-        else:
-            if arg != None:
-                toprint.append(arg)
-                nel += 1
-
-    _write(nel - 1, connection)
-
-    for elprint in toprint:
-        _write(elprint, connection)
-
-    ret = return_value(connection)
-    mutex.release()
+    
+        _write(nel - 1, connection)
+    
+        for elprint in toprint:
+            _write(elprint, connection)
+    
+        ret = return_value(connection)
+    finally:
+        mutex.release()
     return ret
 
 
@@ -147,8 +149,8 @@ class ArduinoObject(object):
     def call(self, *args):
         return _call(self.namespace, self.id, args, self.connection)
 
-    def __del__(self):
-        return _call(self.namespace, self.id, ["remove"], self.connection)
+#     def __del__(self):
+#         return _call(self.namespace, self.id, ["remove"], self.connection)
 
 
 class FirmwareClass(object):
