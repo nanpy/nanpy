@@ -4,7 +4,7 @@ from nanpy.memo import memoized
 
 
 @check4firmware
-class EepromLib(FirmwareClass):
+class EEPROM(FirmwareClass):
     firmware_id = 'EEPROM'
 
     @arduinomethod

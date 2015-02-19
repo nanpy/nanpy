@@ -5,7 +5,7 @@ from nanpy.arduinopin import PinFeature
 from nanpy.classinfo import ClassInfo
 from nanpy.counter import Counter
 from nanpy.define import DefineFeature
-from nanpy.eepromobj import EepromLib
+from nanpy.eeprom import EEPROM
 from nanpy.fwinfo import firmware_info
 from nanpy.memo import memoized
 from nanpy.ram import RAM
@@ -70,7 +70,7 @@ class ArduinoTree(object):
     @memoized
     def eeprom(self):
         """Access to EEPROM."""
-        return EepromLib(self.connection)
+        return EEPROM(self.connection)
 
     @property
     @memoized

@@ -4,11 +4,11 @@
 # Description: read from EEPROM
 # Dependencies: None
 
-from nanpy import (EepromLib, SerialManager)
+from nanpy import (EEPROM, SerialManager)
 import sys
 
 connection = SerialManager()
-e = EepromLib(connection=connection)
+e = EEPROM(connection=connection)
 
 
 def display(a_list):
