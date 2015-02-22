@@ -1,4 +1,4 @@
- Nanpy
+Nanpy:
 =====
 
 |Travis| |Coveralls| |Latest Version| |Supported Python versions| |License| |Downloads| |Code Health|
