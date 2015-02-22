@@ -1,13 +1,7 @@
-Nanpy
+ Nanpy
 =====
 
-| [|Travis|\ ] (https://travis-ci.org/nanpy/nanpy)
-| [|Coveralls|\ ] (https://coveralls.io/r/nanpy/nanpy)
-| |Latest Version|
-| |Supported Python versions|
-| |License|
-| |Downloads|
-| |Code Health|
+|Travis| |Coveralls| |Latest Version| |Supported Python versions| |License| |Downloads| |Code Health|
 
 Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 
@@ -116,7 +110,9 @@ This software is released under MIT License. Copyright (c) 2012-2015
 Andrea Stagi stagi.andrea@gmail.com
 
 .. |Travis| image:: http://img.shields.io/travis/nanpy/nanpy.svg
+   :target: https://travis-ci.org/nanpy/nanpy/
 .. |Coveralls| image:: http://img.shields.io/coveralls/nanpy/nanpy/master.svg
+   :target: https://coveralls.io/r/nanpy/nanpy/
 .. |Latest Version| image:: https://pypip.in/version/nanpy/badge.svg
    :target: https://pypi.python.org/pypi/nanpy/
 .. |Supported Python versions| image:: https://pypip.in/py_versions/nanpy/badge.svg
