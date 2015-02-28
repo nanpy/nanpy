@@ -113,13 +113,13 @@ Andrea Stagi stagi.andrea@gmail.com
    :target: https://travis-ci.org/nanpy/nanpy/
 .. |Coveralls| image:: http://img.shields.io/coveralls/nanpy/nanpy/master.svg
    :target: https://coveralls.io/r/nanpy/nanpy/
-.. |Latest Version| image:: https://pypip.in/version/nanpy/badge.svg
+.. |Latest Version| image:: https://pypip.in/version/nanpy/badge.svg?style=flat
    :target: https://pypi.python.org/pypi/nanpy/
-.. |Supported Python versions| image:: https://pypip.in/py_versions/nanpy/badge.svg
+.. |Supported Python versions| image:: https://pypip.in/py_versions/nanpy/badge.svg?style=flat
    :target: https://pypi.python.org/pypi/nanpy/
-.. |License| image:: https://pypip.in/license/nanpy/badge.svg
+.. |License| image:: https://pypip.in/license/nanpy/badge.svg?style=flat
    :target: https://pypi.python.org/pypi/nanpy/
-.. |Downloads| image:: https://pypip.in/download/nanpy/badge.svg
+.. |Downloads| image:: https://pypip.in/download/nanpy/badge.svg?style=flat
    :target: https://pypi.python.org/pypi/nanpy/
 .. |Code Health| image:: https://landscape.io/github/nanpy/nanpy/master/landscape.svg?style=flat
    :target: https://landscape.io/github/nanpy/nanpy/master
