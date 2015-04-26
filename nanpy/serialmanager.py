@@ -54,11 +54,13 @@ class SerialManager(object):
     def __init__(self, device=None,
                  baudrate=DEFAULT_BAUDRATE,
                  sleep_after_connect=2,
-                 timeout=7):
+                 timeout=7,
+                 rtscts=False):
         self.device = device
         self.baudrate = baudrate
         self.sleep_after_connect = sleep_after_connect
         self.timeout = timeout
+        self.rtscts = rtscts
 
     def open(self, device=None):
         '''open connection'''
@@ -74,7 +76,8 @@ class SerialManager(object):
         assert self.device
         self._serial = serial.Serial(self.device,
                                      self.baudrate,
-                                     timeout=self.timeout)
+                                     timeout=self.timeout,
+                                     rtscts=self.rtscts)
         if self.sleep_after_connect:
             time.sleep(self.sleep_after_connect)
         self._serial.flushInput()
