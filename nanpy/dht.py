@@ -8,7 +8,7 @@ class DHT(ArduinoObject):
     DHT21 = 21
     AM2301 = 21
 
-    def __init__(self, pin, _type, count = 6, connection=None):
+    def __init__(self, pin, _type, count=6, connection=None):
         ArduinoObject.__init__(self, connection=connection)
         self.id = self.call('new', pin, _type, count)
 
@@ -24,5 +24,5 @@ class DHT(ArduinoObject):
 
     @returns(float)
     @arduinoobjectmethod
-    def readTemperature(self, value = False):
+    def readTemperature(self, value=False):
         pass
