@@ -5,7 +5,7 @@
 """
 Nanpy library
 """
-__version__ = '0.9.3'
+__version__ = '0.9.4'
 __author__ = 'Andrea Stagi'
 __license__ = 'MIT'
 
