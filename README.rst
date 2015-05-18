@@ -16,7 +16,6 @@ Overview
   Arduino programming a game for kids.
 
 ::
-
     a = ArduinoApi()
     a.pinMode(13, a.OUTPUT)
     a.digitalWrite(13, a.HIGH)
@@ -53,7 +52,7 @@ specify another serial port:
 and use it with your objects
 
 ::
-
+    from nanpy import ArduinoApi
     a = ArduinoApi(connection=connection)
     a.pinMode(13, a.OUTPUT)
     a.digitalWrite(13, a.HIGH)
