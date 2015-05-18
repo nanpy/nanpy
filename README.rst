@@ -70,7 +70,7 @@ PyPi <https://pypi.python.org/pypi/nanpy>`__.
 
 ::
 
-    git clone git@github.com:nanpy/nanpy-firmware.git
+    git clone https://github.com/nanpy/nanpy-firmware.git
     cd nanpy-firmware
     ./configure.sh
 
