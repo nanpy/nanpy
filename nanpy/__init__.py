@@ -23,3 +23,5 @@ from nanpy.capacitivesensor import CapacitiveSensor
 from nanpy.dht import DHT
 from nanpy.arduinoapi import ArduinoApi
 from nanpy.eeprom import EEPROM
+
+from nanpy.TLC5947 import TLC5947
