@@ -18,3 +18,11 @@ class Lcd(ArduinoObject):
     @arduinoobjectmethod
     def setCursor(self, col, row):
         pass
+
+    @arduinoobjectmethod
+    def autoscroll(self):
+        pass
+
+    @arduinoobjectmethod
+    def noAutoscroll(self):
+        pass
