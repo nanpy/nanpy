@@ -114,7 +114,7 @@ Andrea Stagi stagi.andrea@gmail.com
    :target: https://coveralls.io/r/nanpy/nanpy/
 .. |Latest Version| image:: https://img.shields.io/pypi/v/nanpy.svg
    :target: https://pypi.python.org/pypi/nanpy/
-.. |Supported Python versions| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203.3%2C%203.4-blue.svg
+.. |Supported Python versions| image:: https://img.shields.io/badge/python-2.7%2C%203.3%2C%203.4%2C%203.5-blue.svg
    :target: https://pypi.python.org/pypi/nanpy/
 .. |License| image:: https://img.shields.io/github/license/nanpy/nanpy.svg
    :target: https://pypi.python.org/pypi/nanpy/
