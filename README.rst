@@ -105,7 +105,7 @@ Paypal <https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDT
 License
 -------
 
-This software is released under MIT License. Copyright (c) 2012-2015
+This software is released under MIT License. Copyright (c) 2012-2016
 Andrea Stagi stagi.andrea@gmail.com
 
 .. |Travis| image:: http://img.shields.io/travis/nanpy/nanpy.svg
