@@ -26,3 +26,7 @@ class Lcd(ArduinoObject):
     @arduinoobjectmethod
     def noAutoscroll(self):
         pass
+
+    @arduinoobjectmethod
+    def clear(self):
+        pass
