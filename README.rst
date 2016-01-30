@@ -1,7 +1,7 @@
 Nanpy
 =====
 
-|Travis| |Coveralls| |Latest Version| |Supported Python versions| |License| |Downloads| |Code Health|
+|Travis| |Coveralls| |Latest Version| |Supported Python versions| |Downloads|
 
 Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 
@@ -105,7 +105,7 @@ Paypal <https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDT
 License
 -------
 
-This software is released under MIT License. Copyright (c) 2012-2015
+This software is released under MIT License. Copyright (c) 2012-2016
 Andrea Stagi stagi.andrea@gmail.com
 
 .. |Travis| image:: http://img.shields.io/travis/nanpy/nanpy.svg
@@ -114,11 +114,7 @@ Andrea Stagi stagi.andrea@gmail.com
    :target: https://coveralls.io/r/nanpy/nanpy/
 .. |Latest Version| image:: https://img.shields.io/pypi/v/nanpy.svg
    :target: https://pypi.python.org/pypi/nanpy/
-.. |Supported Python versions| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203.3%2C%203.4-blue.svg
-   :target: https://pypi.python.org/pypi/nanpy/
-.. |License| image:: https://img.shields.io/github/license/nanpy/nanpy.svg
+.. |Supported Python versions| image:: https://img.shields.io/badge/python-2.7%2C%203.3%2C%203.4%2C%203.5-blue.svg
    :target: https://pypi.python.org/pypi/nanpy/
 .. |Downloads| image:: https://img.shields.io/pypi/dm/nanpy.svg
    :target: https://pypi.python.org/pypi/nanpy/
-.. |Code Health| image:: https://landscape.io/github/nanpy/nanpy/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/nanpy/nanpy/master
