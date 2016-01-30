@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
+import os, sys
+
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 
 classifiers = [
 # Get more strings from
@@ -20,12 +26,13 @@ classifiers = [
 setup(name="nanpy",
       version="0.9.5",
       description="Use your Arduino board with Python",
+      long_description=read('README.rst'),
       license="MIT",
       author="Andrea Stagi",
       author_email="stagi.andrea@gmail.com",
       url="http://github.com/nanpy/nanpy",
       packages = find_packages(),
-      keywords= "arduino library prototype",
+      keywords= "arduino library prototype serial communication rpc",
       install_requires=[
         "pyserial",
       ],
