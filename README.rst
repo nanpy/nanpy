@@ -8,26 +8,23 @@ Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 Overview
 --------
 
-| Nanpy is a library that use your Arduino as a slave, controlled by a
-  master device where you run your scripts, such as a PC, a Raspberry Pi
-  etc.
-| The main purpose of Nanpy is making programmers' life easier,
-  providing them a powerful library to create prototypes faster and make
-  Arduino programming a game for kids.
+Nanpy is a library that use your Arduino as a slave, controlled by a master device where you run your scripts, such as a PC, a Raspberry Pi etc.
+
+The main purpose of Nanpy is making programmers' life easier, providing them a powerful library to create prototypes faster and make Arduino programming a game for kids.
 
 ::
+
     a = ArduinoApi()
     a.pinMode(13, a.OUTPUT)
     a.digitalWrite(13, a.HIGH)
 
-| I know, there are a lot of projects able to do that, but hey, Nanpy
-  can do more!
-| Nanpy is easily extensible and can theoretically use every library,
-  allowing you to create how many objects you want.
-| We support OneWire, Lcd, Stepper, Servo, DallasTemperature and many
-  more...
-| Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12
-  and show your first "Hello world"!
+I know, there are a lot of projects able to do that, but hey, Nanpy can do more!
+
+Nanpy is easily extensible and can theoretically use every library,
+allowing you to create how many objects you want. We support OneWire, Lcd, Stepper, Servo, DallasTemperature and many
+more...
+  
+Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and show your first "Hello world"!
 
 ::
 
@@ -52,6 +49,7 @@ specify another serial port:
 and use it with your objects
 
 ::
+
     from nanpy import ArduinoApi
     a = ArduinoApi(connection=connection)
     a.pinMode(13, a.OUTPUT)
