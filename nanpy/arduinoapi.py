@@ -9,7 +9,7 @@ class ArduinoApi(FirmwareClass):
     firmware_id = 'A'
 
     LOW, HIGH = 0, 1
-    INPUT, OUTPUT = 0, 1
+    INPUT, OUTPUT, INPUT_PULLUP = 0, 1, 2
     LSBFIRST, MSBFIRST = 0, 1
 
     @arduinomethod('dw')
