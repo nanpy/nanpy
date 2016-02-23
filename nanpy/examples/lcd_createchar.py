@@ -9,7 +9,7 @@ if __name__ == '__main__':
     cols, rows = 16, 2
     lcd = Lcd(pins, [cols, rows])
     
-    smiley= [
+    smiley = [
         0b00000,
         0b10001,
         0b00000,
@@ -17,7 +17,8 @@ if __name__ == '__main__':
         0b10001,
         0b01110,
         0b00000,
-        0b00000]
+        0b00000
+    ]
 
     lcd.createChar(0,smiley)
     lcd.setCursor(0,0)
