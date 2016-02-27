@@ -30,3 +30,11 @@ class Lcd(ArduinoObject):
     @arduinoobjectmethod
     def clear(self):
         pass
+
+    @arduinoobjectmethod
+    def createChar(self, num, data):
+        pass
+
+    @arduinoobjectmethod
+    def write(self, data):
+        pass
