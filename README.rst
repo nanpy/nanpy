@@ -1,7 +1,7 @@
 Nanpy
 =====
 
-|Travis| |Coveralls| |Latest Version| |Supported Python versions| |Downloads|
+|Travis| |Latest Version| |Supported Python versions| |Downloads|
 
 Use your Arduino board with Python. http://pypi.python.org/pypi/nanpy
 
@@ -110,8 +110,6 @@ Andrea Stagi stagi.andrea@gmail.com
 
 .. |Travis| image:: http://img.shields.io/travis/nanpy/nanpy.svg
    :target: https://travis-ci.org/nanpy/nanpy/
-.. |Coveralls| image:: http://img.shields.io/coveralls/nanpy/nanpy/master.svg
-   :target: https://coveralls.io/r/nanpy/nanpy/
 .. |Latest Version| image:: https://img.shields.io/pypi/v/nanpy.svg
    :target: https://pypi.python.org/pypi/nanpy/
 .. |Supported Python versions| image:: https://img.shields.io/badge/python-2.7%2C%203.3%2C%203.4%2C%203.5-blue.svg
