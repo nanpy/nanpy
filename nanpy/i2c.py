@@ -41,7 +41,7 @@ class I2C_Master(I2C_Base):
         :param address: the 7-bit address of the device to request bytes from
         :param quantity: the number of bytes to request
         :param stop: boolean. true will send a stop message after the request, releasing the bus. false will continually send a restart after the request, keeping the connection active.
-        :returns: byte : the number of bytes returned from the slave device
+        :returns: list : the list of bytes returned from the slave device
 
         http://arduino.cc/en/Reference/WireRequestFrom
 
