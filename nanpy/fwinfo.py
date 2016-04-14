@@ -22,15 +22,50 @@ def arduino_version(ARDUINO):
         return '.'.join(s)
 
 
+def parse_month(s):
+    '''gcc month
+    Jan -> 1
+    ...
+    '''
+    if s == 'Jan':
+        return 1
+    if s == 'Feb':
+        return 2
+    if s == 'Mar':
+        return 3
+    if s == 'Apr':
+        return 4
+    if s == 'May':
+        return 5
+    if s == 'Jun':
+        return 6
+    if s == 'Jul':
+        return 7
+    if s == 'Aug':
+        return 8
+    if s == 'Sep':
+        return 9
+    if s == 'Oct':
+        return 10
+    if s == 'Nov':
+        return 11
+    if s == 'Dec':
+        return 12
+    raise ValueError('invalid month: %s' % s)
+
 
 def compile_datetime(DATE, TIME):
     '''
     Example: Mar 28 2014, 17:40:12
     -> datetime.datetime(2008, 3, 28, 17, 40, 12)
     '''
-    dt = datetime.datetime.strptime(
-        DATE + ' ' + TIME,
-        '%b %d %Y %H:%M:%S')
+    dls = DATE.strip().split()
+    d = datetime.date(int(dls[2]), parse_month(dls[0]), int(dls[1]))
+    t = datetime.datetime.strptime(TIME, '%H:%M:%S')
+    dt = datetime.datetime.combine(d, t.time())
+#     dt = datetime.datetime.strptime(
+#         DATE + ' ' + TIME,
+#         '%b %d %Y %H:%M:%S')
     return dt
 
 

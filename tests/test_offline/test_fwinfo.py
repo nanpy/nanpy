@@ -22,6 +22,8 @@ def test():
 
     eq_(compile_datetime('Mar 28 2008', '17:40:12'),
         datetime.datetime(2008, 3, 28, 17, 40, 12))
+    eq_(compile_datetime('Apr 10 2016', '15:54:18'),
+        datetime.datetime(2016, 4, 10, 15, 54, 18))
 
     eq_(firmware_info(dict(
                       MCU='__AVR_ATmega328P__',
