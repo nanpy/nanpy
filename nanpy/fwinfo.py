@@ -13,9 +13,14 @@ def avr_name(MCU):
 def arduino_version(ARDUINO):
     """
     Example: 105  -> 1.0.5
-
+    10608 -> 1.6.8
     """
-    return '.'.join(str(ARDUINO))
+    s = str(ARDUINO)
+    if len(s) == 5:
+        return '%s.%s.%s' % (s[0], int(s[1:3]), int(s[3:5]))
+    else:
+        return '.'.join(s)
+
 
 
 def compile_datetime(DATE, TIME):

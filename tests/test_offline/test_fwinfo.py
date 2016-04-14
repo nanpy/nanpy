@@ -14,6 +14,9 @@ def test():
 
     eq_(arduino_version(105), '1.0.5')
     eq_(arduino_version('105'), '1.0.5')
+    eq_(arduino_version(10608), '1.6.8')
+    eq_(arduino_version('10608'), '1.6.8')
+    eq_(arduino_version('52417'), '5.24.17')
 
     eq_(avr_name('__AVR_ATmega328P__'), 'ATmega328P')
 
