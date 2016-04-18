@@ -8,7 +8,7 @@
 # 2 - U/D - Arduino pin 3
 # 3 - VH  - 5V
 # 4 - VSS - GND
-# 5 - VW  - Output: 150 Ohm resistor -> LED -> GND
+# 5 - VW  - Output: A0 and 150 Ohm resistor -> LED -> GND
 # 6 - VL  - GND
 # 7 - CS  - Arduino pin 4
 # 8 - VCC - 5V
@@ -27,13 +27,14 @@ incPin = a.pin.get(2)
 udPin = a.pin.get(3)
 csPin = a.pin.get(4)
 
-pot = DigiPot(incPin,  udPin,  csPin)
+anPin = a.pin.get('A0')
 
-for i in range(100):
+pot = DigiPot(incPin, udPin, csPin)
+
+for i in range(100) + list(reversed(range(100))):
     pot.set(i)
-    print('set pot to %s' % i)
-    sleep(0.2)
-for i in reversed(range(100)):
-    pot.set(i)
-    print('set pot to %s' % i)
-    sleep(0.2)
+    an = anPin.read_analog_value()
+    print('set pot to %s, read analog: %s' % (i, an))
+    sleep(0.1)
+
+

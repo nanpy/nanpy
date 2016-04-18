@@ -3,26 +3,30 @@ from nanpy.util import constrain
 
 
 DIGIPOT_MAX_AMOUNT = 99
-DIGIPOT_UNKNOWN = 255
 
 LOW, HIGH = 0, 1
 INPUT, OUTPUT = 0, 1
 
 
-
 class DigiPot():
+    _udLastValue = None
+    _currentValue = None
+    range = (0, DIGIPOT_MAX_AMOUNT)
 
-    def __init__(self,  arduinoApi, incPin,  udPin,  csPin):
-        self._arduinoApi = arduinoApi
+    def __init__(self, incPin, udPin, csPin):
         self._incPin = incPin
         self._udPin = udPin
         self._csPin = csPin
-        self._currentValue = DIGIPOT_UNKNOWN
 
         self._incPin.write_mode(OUTPUT)
+        self._incPin.write_digital_value(HIGH)
+
         self._udPin.write_mode(OUTPUT)
+
         self._csPin.write_mode(OUTPUT)
-        self._csPin.write_digital_value(HIGH)
+        self._csPin.write_digital_value(LOW)
+
+        self.set(0)
 
     def reset(self):
         # change down maximum number of times to ensure the value is 0
@@ -31,11 +35,11 @@ class DigiPot():
 
     def set(self, value):
         value = constrain(value, 0, DIGIPOT_MAX_AMOUNT)
-        if (self._currentValue == DIGIPOT_UNKNOWN):
+        if self._currentValue is None:
             self.reset()
-        if (self._currentValue > value):
+        if self._currentValue > value:
             self.change(-1, self._currentValue - value)
-        elif (self._currentValue < value):
+        elif self._currentValue < value:
             self.change(1, value - self._currentValue)
 
     def get(self):
@@ -49,29 +53,27 @@ class DigiPot():
         amount = constrain(amount, 0, DIGIPOT_MAX_AMOUNT)
         self.change(-1, amount)
 
-    def change(self, direction,  amount):
-        if direction==1:
-            ud=HIGH
-        elif   direction==-1:
-            ud=LOW
+    def change(self, direction, amount):
+        if direction == 1:
+            ud = HIGH
+        elif direction == -1:
+            ud = LOW
         else:
             raise ValueError('invalid direction: %s', direction)
-        
+
         amount = constrain(amount, 0, DIGIPOT_MAX_AMOUNT)
-        if amount==0:
+        if amount == 0:
             return
-        
-        self._udPin.write_digital_value(ud)
-        self._incPin.write_digital_value(HIGH)
-        self._csPin.write_digital_value(LOW)
+
+        if self._udLastValue != ud:
+            self._udPin.write_digital_value(ud)
 
         for _ in range(amount):
             self._incPin.write_digital_value(LOW)
-#             delayMicroseconds(2)
             self._incPin.write_digital_value(HIGH)
-#             delayMicroseconds(2)
-            if (self._currentValue != DIGIPOT_UNKNOWN):
+            if self._currentValue is not None:
                 self._currentValue += direction
-                self._currentValue = constrain( self._currentValue, 0, DIGIPOT_MAX_AMOUNT)
-
-        self._csPin.write_digital_value(HIGH)
+                self._currentValue = constrain(
+                    self._currentValue,
+                    0,
+                    DIGIPOT_MAX_AMOUNT)
