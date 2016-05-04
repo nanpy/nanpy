@@ -2,7 +2,7 @@ from nanpy.arduinoboard import arduinomethod, returns, FirmwareClass
 from nanpy.memo import memoized
 
 
-class FirmwareError(Exception):
+class FirmwareMissingFeatureError(Exception):
     pass
 
 
@@ -21,7 +21,7 @@ def check4firmware(cls):
             if not hasattr(connection, 'classinfo'):
                 connection.classinfo = ClassInfo(connection)
             if cls_name not in connection.classinfo.firmware_id_list:
-                raise FirmwareError(
+                raise FirmwareMissingFeatureError(
                     '''%s ['%s'] is missing from firmware!''' %
                     (cls, cls_name))
         return cls(connection)

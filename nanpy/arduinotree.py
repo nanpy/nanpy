@@ -1,8 +1,9 @@
 from __future__ import division
+
 from nanpy.arduinoapi import ArduinoApi
 from nanpy.arduinocore import ArduinoCore
 from nanpy.arduinopin import PinFeature
-from nanpy.classinfo import ClassInfo
+from nanpy.classinfo import ClassInfo, FirmwareMissingFeatureError
 from nanpy.counter import Counter
 from nanpy.define import DefineFeature
 from nanpy.eeprom import EEPROM
@@ -15,6 +16,8 @@ from nanpy.vcc import Vcc
 from nanpy.watchdog import Watchdog
 from nanpy.wire import Wire
 import time
+
+from nanpy.esp import Esp
 
 
 class ArduinoTree(object):
@@ -46,6 +49,14 @@ class ArduinoTree(object):
     @memoized
     def pin(self):
         """Object-oriented representation of an Arduino pin"""
+#         if not self.register:
+#             return None
+#         if not self.define:
+#             return None
+#         if not self.core:
+#             return None
+#         if not self.ram:
+#             return None
         return PinFeature(self.define, self.register, self.core, self.ram, self.api)
 
     @property
@@ -58,7 +69,10 @@ class ArduinoTree(object):
     @memoized
     def register(self):
         """Direct access to AVR registers."""
-        return RegisterFeature(self.connection)
+        try:
+            return RegisterFeature(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
 
     @property
     @memoized
@@ -76,7 +90,10 @@ class ArduinoTree(object):
     @memoized
     def ram(self):
         """Access to RAM."""
-        return RAM(self.connection)
+        try:
+            return RAM(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
 
     @property
     @memoized
@@ -88,12 +105,19 @@ class ArduinoTree(object):
     @memoized
     def core(self):
         """Access to Arduino functions which are not part of the public API."""
-        return ArduinoCore(self.connection)
+        try:
+            return ArduinoCore(self.connection)
+        except FirmwareMissingFeatureError:
+            return None
 
     @property
     @memoized
     def vcc(self):
         """Access to VCC."""
+        if not self.register:
+            return None
+        if not self.define:
+            return None
         return Vcc(self.register, MCU=self.define.get('MCU'))
 
     def soft_reset(self):
@@ -121,3 +145,11 @@ class ArduinoTree(object):
     def firmware_info(self):
         """"""
         return firmware_info(self.define.as_dict)
+
+    @property
+    @memoized
+    def esp(self):
+        try:
+            return Esp(self.connection)
+        except FirmwareMissingFeatureError:
+            return None

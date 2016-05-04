@@ -107,6 +107,7 @@ Supported hardware
 
 board:
  - ATmega boards (ATtiny has not enough RAM) 
+ - ESP8266 (communication over serial or WiFi connection)
 
 external hardware:
  - BMP180 Digital pressure sensor

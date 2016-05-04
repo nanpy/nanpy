@@ -67,7 +67,7 @@ class DefineFeature(object):
     def count(self):
         return len(self.as_dict)
 
-    def get(self, name):
+    def get(self, name, defaultValue=None):
         """get a constant.
 
         Examples:
@@ -82,4 +82,5 @@ class DefineFeature(object):
             n = self._arr.name(i)
             if n == name:
                 return self._arr.value(i)
-        raise ValueError('%s was not found!' % name)
+        return defaultValue
+#         raise ValueError('%s was not found!' % name)
