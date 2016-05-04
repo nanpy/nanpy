@@ -102,6 +102,21 @@ code all night long! if you like this project and you want to support
 us, `please donate using
 Paypal <https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J>`__
 
+Supported hardware
+------------------
+
+board:
+ - ATmega boards (ATtiny has not enough RAM) 
+
+external hardware:
+ - BMP180 Digital pressure sensor
+ - AD9850 Direct Digital Synthesizer
+ - TLC5947 LED Driver
+ - DHT11, DHT22, DHT21, AM2301 humidity sensors
+ - HD44780 LCD controller
+ - PCF8574 8-Bit I/O Expander for I2C
+ - X9C1xxx (xxx = 102,103,104,503) digital potentiometers
+
 License
 -------
 
