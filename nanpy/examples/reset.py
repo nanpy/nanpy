@@ -1,4 +1,23 @@
-"""soft reset demo."""
+"""soft reset demo.
+
+https://github.com/nanpy/nanpy/issues/72
+
+watchdog doesn't work with some bootloaders.
+Soft_reset() is based on watchdog.
+
+More information:
+http://arduino.stackexchange.com/questions/2922/watchdog-timer-stuck-in-restart-loop-green-led-flashing
+"The OP is using an Adriuni Pro Mini clone. 
+The included bootloader on the Arduino Pro Mini 
+does not support system restarts by the WDT. 
+Essentially, on a device with a bootloader 
+that does not support WDT restarts, 
+the board will restart but the timer / reset will not causing 
+the board to continuously reset on reboot. 
+There are alternative bootloaders for arduino boards 
+that may resolve this issue."
+
+"""
 
 from nanpy.arduinotree import ArduinoTree
 from nanpy.serialmanager import SerialManager
