@@ -102,6 +102,16 @@ code all night long! if you like this project and you want to support
 us, `please donate using
 Paypal <https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDTPP5JHVJK8J>`__
 
+Bug reports
+-----------
+
+- try to test the function without Nanpy, using only Arduino. If the problem remains then it is not a Nanpy bug.
+- enable logging: `import logging;logging.basicConfig(level=logging.DEBUG)`
+- attach the log messages
+- attach your program. The program should be as small as possible which demonstrates the bug.
+- check cfg.h. All needed functions are enabled?
+- attach your cfg.h
+
 Supported hardware
 ------------------
 
