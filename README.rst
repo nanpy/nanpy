@@ -105,6 +105,7 @@ Paypal <https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TDT
 Bug reports
 -----------
 
+- try the blink.py example
 - try to test the function without Nanpy, using only Arduino. If the problem remains then it is not a Nanpy bug.
 - enable logging: `import logging;logging.basicConfig(level=logging.DEBUG)`
 - attach the log messages
