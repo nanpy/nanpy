@@ -41,7 +41,7 @@ class ArduinoApi(FirmwareClass):
 
     @returns(int)
     @arduinomethod('pi')
-    def shiftOut(self, pin, value):
+    def pulseIn(self, pin, value):
         pass
         
     @returns(int)
