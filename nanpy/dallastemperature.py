@@ -31,17 +31,17 @@ class DallasTemperature(ArduinoObject):
 
 
     @arduinoobjectmethod
-    def requestTemperatures(self, address = None):
+    def requestTemperatures(self, address_or_index = None):
         pass
 
     @returns(float)
     @arduinoobjectmethod
-    def getTempC(self, address):
+    def getTempC(self, address_or_index):
         pass
 
     @returns(float)
     @arduinoobjectmethod
-    def getTempF(self, address):
+    def getTempF(self, address_or_index):
         pass
 
     @classmethod
