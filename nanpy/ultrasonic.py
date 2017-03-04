@@ -13,5 +13,5 @@ class Ultrasonic(ArduinoObject):
         pass
 
     def reading_in_range(self, low, high):
-        return self.get_distance() in frange(low, high)
+        return low <= self.get_distance() <= high
         
