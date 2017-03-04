@@ -12,7 +12,7 @@ class Ultrasonic(ArduinoObject):
     def get_distance(self):
         pass
 
-    @returns(float)
+    @returns(bool)
     @arduinoobjectmethod
     def reading_in_range(self, low, high):
         pass
