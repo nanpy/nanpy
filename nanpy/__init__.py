@@ -25,3 +25,6 @@ from nanpy.arduinoapi import ArduinoApi
 from nanpy.eeprom import EEPROM
 
 from nanpy.TLC5947 import TLC5947
+
+# GW-Robotics Modules
+from nanpy.ultrasonic import Ultrasonic
