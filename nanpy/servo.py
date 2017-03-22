@@ -28,3 +28,7 @@ class Servo(ArduinoObject):
     @arduinoobjectmethod
     def attached(self):
         pass
+
+    @arduinoobjectmethod
+    def detach(self):
+        pass
