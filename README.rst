@@ -112,6 +112,7 @@ Bug reports
 - attach your program. The program should be as small as possible which demonstrates the bug.
 - check cfg.h. All needed functions are enabled?
 - attach your cfg.h
+- describe your hardware
 
 Supported hardware
 ------------------
@@ -128,6 +129,17 @@ external hardware:
  - HD44780 LCD controller
  - PCF8574 8-Bit I/O Expander for I2C
  - X9C1xxx (xxx = 102,103,104,503) digital potentiometers
+
+internal hardware:
+ - counter, frequency measurement
+ - PWM
+ - ADC
+ - I2C
+ - read, write RAM
+ - read, write EEPROM
+ - read, write all registers
+ - tone()
+
 
 License
 -------
