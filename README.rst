@@ -133,7 +133,7 @@ external hardware:
 
 internal hardware:
  - counter, frequency measurement
- - PWM
+ - PWM (advanced PWM functions are hardcoded for Uno compatible boards)
  - ADC
  - I2C
  - read, write RAM
