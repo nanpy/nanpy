@@ -125,6 +125,8 @@ class ArduinoPwmPin(object):
 
     def read_divisor(self):
         """read current divisor."""
+        if self.register is None:
+            return
         self._check()
         d = divisor_mapping[self.nr]
         return d.norm[self.read_timer_mode()]
@@ -153,6 +155,8 @@ class ArduinoPwmPin(object):
         return self._timer_register_name(variant='B')
 
     def read_timer_mode(self):
+        if self.register is None:
+            return
         reg_name = self.timer_register_name_b
         return self.register.get(reg_name).read_value() & timer_mask
 
@@ -171,6 +175,8 @@ class ArduinoPwmPin(object):
         return base_divisor[self.nr]
 
     def calculate_frequency(self, divisor):
+        if self.register is None:
+            return
         return 1.0 * self.F_CPU / self.base_divisor / divisor
 
     @property
@@ -201,6 +207,8 @@ class ArduinoPwmPin(object):
 
     def read_wgm(self):
         """read waveform generation mode."""
+        if self.register is None:
+            return
         self._check()
         rega = self.timer_register_name_a
         regb = self.timer_register_name_b
