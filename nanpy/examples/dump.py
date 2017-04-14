@@ -45,10 +45,7 @@ def dumpall():
     print('================================')
     print('firmware classes:')
     print('================================')
-    print('status:')
-    pprint(a.connection.classinfo.firmware_class_status)
-    print('unknown ids:')
-    pprint(a.connection.classinfo.unknown_firmware_ids)
+    pprint(a.connection.classinfo.firmware_name_list)
 
     print('')
     print('================================')
