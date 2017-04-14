@@ -40,6 +40,11 @@ class ArduinoApi(FirmwareClass):
         pass
 
     @returns(int)
+    @arduinomethod('pi')
+    def pulseIn(self, pin, value):
+        pass
+        
+    @returns(int)
     @arduinomethod('s')
     def shiftOut(self, dataPin, clockPin, bitOrder, value):
         """Shifts out a byte of data one bit at a time.
