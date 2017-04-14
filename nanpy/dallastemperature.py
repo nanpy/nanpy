@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class DallasTemperature(ArduinoObject):
+    cfg_h_name = 'USE_DallasTemperature'
 
     def __init__(self, pin, connection=None):
         ArduinoObject.__init__(self, connection=connection)

@@ -8,6 +8,7 @@ class ArduinoCore(FirmwareClass):
 
     """Access to Arduino functions which are not part of the public API."""
 
+    cfg_h_name = 'USE_ArduinoCore'
     firmware_id = 'Core'
 
     @memoized

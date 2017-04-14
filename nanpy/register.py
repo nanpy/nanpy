@@ -5,6 +5,7 @@ from nanpy.memo import memoized
 
 @check4firmware
 class RegisterArray(FirmwareClass):
+    cfg_h_name = 'USE_Register'
     firmware_id = 'R'
 
     @memoized

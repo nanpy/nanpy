@@ -6,6 +6,7 @@ import time
 
 @check4firmware
 class CounterLib(FirmwareClass):
+    cfg_h_name = 'USE_Counter'
     firmware_id = 'Counter'
 
     @arduinomethod

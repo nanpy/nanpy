@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import arduinoobjectmethod
 
 class Lcd(ArduinoObject):
+    cfg_h_name = 'USE_LiquidCrystal'
 
     def __init__(self, pins, begin, connection=None):
         '''

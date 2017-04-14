@@ -22,8 +22,11 @@ def check4firmware(cls):
                 connection.classinfo = ClassInfo(connection)
             if cls_name not in connection.classinfo.firmware_id_list:
                 raise FirmwareMissingFeatureError(
-                    '''%s ['%s'] is missing from firmware!''' %
-                    (cls, cls_name))
+                    '''%s ['%s'] is missing from firmware! 
+Please enable it in your cfg.h:
+#define  %s  1
+                    ''' %
+                    (cls, cls_name, cls.cfg_h_name))
         return cls(connection)
 #     getinstance.__name__ = cls.__name__
     return getinstance
@@ -31,6 +34,7 @@ def check4firmware(cls):
 
 @check4firmware
 class ClassInfoArray(FirmwareClass):
+    cfg_h_name = 'USE_Info'
     firmware_id = 'Info'
 
     @property

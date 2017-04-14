@@ -4,6 +4,7 @@ import time
 
 
 class Tone(ArduinoObject):
+    cfg_h_name = 'USE_Tone'
 
     NOTE_B0  = 31
     NOTE_C1  = 33

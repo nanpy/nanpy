@@ -9,6 +9,7 @@ class Wire(FirmwareClass):
     http://arduino.cc/en/reference/wire
     """
     firmware_id = 'Wire'
+    cfg_h_name = 'USE_Wire'
 
     @arduinomethod
     def begin(self, address=None):

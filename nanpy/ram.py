@@ -5,6 +5,7 @@ from nanpy.memo import memoized
 
 @check4firmware
 class RAM(FirmwareClass):
+    cfg_h_name = 'USE_RAM'
     firmware_id = 'RAM'
 
     @arduinomethod

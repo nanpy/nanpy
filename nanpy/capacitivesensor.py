@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class CapacitiveSensor(ArduinoObject):
+    cfg_h_name = 'USE_CapacitiveSensor'
 
     def __init__(self, pin1, pin2, connection=None):
         ArduinoObject.__init__(self, connection=connection)

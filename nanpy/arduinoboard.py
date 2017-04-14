@@ -156,6 +156,7 @@ class ArduinoObject(object):
 class FirmwareClass(object):
     connection = None
     firmware_id = None
+    cfg_h_name = 'missing implementation!'
 
     @classmethod
     def get_firmware_id(cls):

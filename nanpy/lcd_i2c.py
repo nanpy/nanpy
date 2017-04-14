@@ -3,6 +3,7 @@ from nanpy.arduinoboard import arduinoobjectmethod
 
 
 class Lcd_I2C(ArduinoObject):
+    cfg_h_name = 'USE_LiquidCrystal_I2C'
 
     def __init__(self, pins, begin, connection=None):
         '''

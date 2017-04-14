@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class DHT(ArduinoObject):
+    cfg_h_name = 'USE_DHT'
 
     DHT11 = 11
     DHT22 = 22

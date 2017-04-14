@@ -12,6 +12,7 @@ def auto_convert(x):
 
 @check4firmware
 class DefineArray(FirmwareClass):
+    cfg_h_name = 'USE_Define'
     firmware_id = 'D'
 
     @property

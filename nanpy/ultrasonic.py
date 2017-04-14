@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import (arduinoobjectmethod, returns)
 
 class Ultrasonic(ArduinoObject):
+    cfg_h_name = 'USE_Ultrasonic'
 
     def __init__(self, echo, trig, useInches, connection=None):
         ArduinoObject.__init__(self, connection=connection)

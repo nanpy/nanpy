@@ -10,6 +10,8 @@ class Watchdog(FirmwareClass):
     Details: http://www.nongnu.org/avr-libc/user-manual/group__avr__watchdog.html
 
     """
+    cfg_h_name = 'USE_Watchdog'
+
     WDTO_15MS = 0
     WDTO_30MS = 1
     WDTO_60MS = 2

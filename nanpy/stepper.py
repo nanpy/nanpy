@@ -2,6 +2,7 @@ from nanpy.arduinoboard import ArduinoObject
 from nanpy.arduinoboard import arduinoobjectmethod
 
 class Stepper(ArduinoObject):
+    cfg_h_name = 'USE_Stepper'
 
     def __init__(self, revsteps, pin1, pin2, speed=None, connection=None, pin3=None, pin4=None):
         ArduinoObject.__init__(self, connection=connection)
