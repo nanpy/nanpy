@@ -53,7 +53,8 @@ class ClassInfo(object):
     def __init__(self, connection):
         self.firmware_class_status = dict()
         self.unknown_firmware_ids = []
-
+        self.firmware_name_list = []
+        
         self._arr = ClassInfoArray(connection=connection)
 
         ls = [self._arr.name(i) for i in range(self._arr.count)]
@@ -66,6 +67,8 @@ class ClassInfo(object):
         for x in self.firmware_id_list:
             cls = check4firmware.names.get(x)
             if cls:
+                self.firmware_name_list.append(str(cls.__name__))
                 self.firmware_class_status[cls.__name__] = True
             else:
+                self.firmware_name_list.append(str(x))
                 self.unknown_firmware_ids.append(x)
