@@ -25,7 +25,7 @@ I know, there are a lot of projects able to do that, but hey, Nanpy can do more!
 Nanpy is easily extensible and can theoretically use every library,
 allowing you to create how many objects you want. We support OneWire, Lcd, Stepper, Servo, DallasTemperature and many
 more...
-  
+
 Let's try to connect our 16x2 lcd screen on pins 7, 8, 9, 10, 11, 12 and show your first "Hello world"!
 
 ::
@@ -118,7 +118,7 @@ Supported hardware
 ------------------
 
 board:
- - ATmega boards (ATtiny has not enough RAM) 
+ - ATmega boards (ATtiny has not enough RAM)
  - ESP8266 (communication over serial or WiFi connection)
 
 external hardware:
@@ -129,6 +129,7 @@ external hardware:
  - HD44780 LCD controller
  - PCF8574 8-Bit I/O Expander for I2C
  - X9C1xxx (xxx = 102,103,104,503) digital potentiometers
+ - HC-SR04 (ultrasonic sensor)
 
 internal hardware:
  - counter, frequency measurement
