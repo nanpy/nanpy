@@ -91,6 +91,7 @@ class ArduinoPin(object):
     @property
     def avr_port(self):
         '''AVR port name (example: "B")
+        AVR only.
         '''
         x = self.core.digitalPinToPort(self.pin_number)
         return chr(ord('A') + x - 1)
@@ -98,6 +99,7 @@ class ArduinoPin(object):
     @property
     def avr_bit(self):
         '''AVR bit name (example: "2")
+        AVR only.
         '''
         bitmask = self.core.digitalPinToBitMask(self.pin_number)
         i = 0

@@ -6,7 +6,9 @@ from nanpy.memo import memoized
 @check4firmware
 class ArduinoCore(FirmwareClass):
 
-    """Access to Arduino functions which are not part of the public API."""
+    """Access to Arduino functions which are not part of the public API.
+    AVR only. SAM has different interface. 
+    """
 
     cfg_h_name = 'USE_ArduinoCore'
     firmware_id = 'Core'
@@ -41,7 +43,7 @@ class ArduinoCore(FirmwareClass):
     def portOutputRegister(self, port):
         """nonpublic Arduino function.
 
-        @return: RAM address
+        @return: address
 
         """
 
@@ -51,7 +53,7 @@ class ArduinoCore(FirmwareClass):
     def portInputRegister(self, port):
         """nonpublic Arduino function.
 
-        @return: RAM address
+        @return: address
 
         """
 
@@ -61,6 +63,6 @@ class ArduinoCore(FirmwareClass):
     def portModeRegister(self, port):
         """nonpublic Arduino function.
 
-        @return: RAM address
+        @return: address
 
         """
