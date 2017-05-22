@@ -87,6 +87,15 @@ To install Nanpy Python library on your master device just type:
 
     pip install nanpy
 
+To uninstall::
+
+    pip uninstall nanpy
+
+To install the latest version from Github::
+
+    pip install https://github.com/nanpy/nanpy/archive/master.zip
+
+
 How to contribute
 -----------------
 
